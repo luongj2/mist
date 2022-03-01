@@ -1,0 +1,48 @@
+<!--
+    Name: Eric Liao
+    Last Modified day: Mar 1 2022
+    Purpose: logup interface
+-->
+<!DOCTYPE HTML>
+<html>
+    <head><title>Become a member</title></head>
+    <body>
+        <form action="logupProcess.php" method="POST"> 
+        <fieldset>
+        <legend>CREATE ACCOUNT</legend>
+       <table>
+            <style type="text/css">
+                td {
+                    width :300px;
+                    font-weight:bold;
+                    line-height: 40px;
+    
+                    }
+            </style>   
+            <tr>
+                <td> FIRST NAME</td>
+                <td >LAST NAME</td>           
+            </tr>
+
+            <tr>
+                <td ><input style="BACKGROUND-COLOR: #9c9c9c" type="text" name="fNameLU" required="required"/> </td>
+                <td><input style="BACKGROUND-COLOR: #9c9c9c" type="text" name="lNameLU"  required="required"/> </td>
+</tr>
+
+<tr>
+                <td> EMAIL ADDRESS</td>
+                <td >PASSWORD</td>           
+            </tr>
+
+            <tr>
+                <td><input style="BACKGROUND-COLOR: #9c9c9c" type="text" name="emailLU" required="required"/> </td>
+                <td><input style="BACKGROUND-COLOR: #9c9c9c" type="password" name="passwdLU" required="required"/> </td>
+</tr>
+</table>
+<input type="checkbox" name="ageValid[]" value="1" />I'm at 18 years old. <a href="main.php">privacy policy</a> is here.<br />
+<input style="width:500px;" type="submit" name="createAcc" value="CREATE ACCOUNT" />
+        </fieldset>
+        </form>
+        Already be a member? Return to <a href ="userLogin.php">log in</a>
+</body>
+</html>
