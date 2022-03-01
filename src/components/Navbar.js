@@ -8,7 +8,8 @@ export default function Navbar() {
                 <Link to="/"><a className={styles.nav_brand}><i>Mist</i></a></Link>
                 <div className={styles.navbar_nav}>
                     <Link to="/store"><a className={styles.nav_item}>Store</a></Link>
-                    <Link to="forum"><a className={styles.nav_item}>Forum</a></Link>
+                    <Link to="/forum"><a className={styles.nav_item}>Forum</a></Link>
+                    <Link to="/about"><a className={styles.nav_item}>About</a></Link>
                 </div>
             </div>
             <div className={styles.account}>
