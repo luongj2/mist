@@ -3,6 +3,10 @@ $navbar-blue: #55a5f0;
 $white: white;
 $white-inactive: rgba(255, 255, 255, 0.753);
 
+a {
+    text-decoration: none;
+}
+
 .navbar {
     display: flex;
     padding-left: 10%;
@@ -28,11 +32,14 @@ $white-inactive: rgba(255, 255, 255, 0.753);
             display: flex;
             column-gap: 30%;
 
-            .nav_item {
-                cursor: pointer;
-                &:hover {
-                    color: $white;
-                    transition: 300ms;
+            a {
+                .nav_item {
+                    color: $white-inactive;
+                    cursor: pointer;
+                    &:hover {
+                        color: $white;
+                        transition: 300ms;
+                    }
                 }
             }
         }
@@ -47,8 +54,9 @@ $white-inactive: rgba(255, 255, 255, 0.753);
             cursor: pointer;
             background-color: $navbar-black;
             border: solid 1px;
-            border-radius: 5px;
+            border-radius: 10px;
             border-color: $white-inactive;
+            box-shadow: 0 0 1px $white-inactive;
             color: $white-inactive;
             padding: 8px 25px;
             width: 115px;
@@ -59,6 +67,7 @@ $white-inactive: rgba(255, 255, 255, 0.753);
         
             &:hover {
                 // border-color: $navbar-blue;
+                box-shadow: 0 0 5px $navbar-blue;
                 background-color: $navbar-blue;
                 color: $white;
                 transition: 300ms;
