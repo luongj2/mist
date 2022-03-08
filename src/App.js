@@ -4,6 +4,7 @@ import Forum from "./components/Forum"
 import Login from "./components/Login"
 import Signup from "./components/Signup"
 import About from "./components/About"
+import GamePage from "./components/GamePage"
 import { Routes, Route } from "react-router-dom";
 
 export default function App() {
@@ -11,6 +12,7 @@ export default function App() {
         <div className='App'>
             <Navbar />
             <Routes>
+                <Route path="/game/:id" element={<GamePage />} />
                 <Route path="/store" element={<Store />} />
                 <Route path="/forum" element={<Forum />} />
                 <Route path="/login" element={<Login />} />
