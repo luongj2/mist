@@ -1,7 +1,8 @@
 import styles from "./Store.module.scss";
 import ListItem from "./ListItem";
+import SeachBar from "./SearchBar";
 
-var items = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
+var items = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11];
 
 function GameList(props) {
 	const items = props.items;
@@ -21,10 +22,7 @@ function GameList(props) {
 export default function Store() {
 	return (
 		<div className={styles.store}>
-			<div className={styles.search_bar}>
-				<h1>Search Bar</h1>
-			</div>
-			
+			<SeachBar />
 			<GameList items={items}/>
 		</div>
 	);
