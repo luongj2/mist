@@ -4,7 +4,7 @@
     Purpose: logup interface
 -->
 <?php 
-namespace example\BobsAutoPart;
+//namespace
 include('../settings.php');
 session_start();
 /*
