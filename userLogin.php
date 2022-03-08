@@ -1,14 +1,9 @@
-<!--
-    Name: Eric Liao
-    Last Modified day: Mar 8 2022
-    Purpose: User login interface
--->
 <?php session_start();
 $status = $_POST['status'];
 if($status == 0)
 session_destroy(); ?>
 <html>
-<head><title>Register or Log in | Mist</title></head>
+<head><title>Register or Log in | CookiePerfect</title></head>
 <body>
 <p><font color="#ff0000"><b><?php echo $_SESSION['message'] ?></b></font></p>
     
@@ -27,14 +22,14 @@ session_destroy(); ?>
         <td>Email Address<td>
 </tr>
        <tr>
-           <td><input type="text" name="nameAD" size="15" maxlength="30" required ="required" /></td>
+           <td><input type="text" name="emailLI" size="15" maxlength="30" required ="required" /></td>
         </tr>
 
         <tr>
             <td>Password</td>
         </tr>
 <tr>
-        <td><input type="password" name="passwdAD" size="15" maxlength="30" required = "required" /></td>
+        <td><input type="password" name="passwdLI" size="15" maxlength="30" required = "required" /></td>
 </tr>
 
 </table>
