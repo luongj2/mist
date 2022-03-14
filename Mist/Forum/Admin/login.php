@@ -1,9 +1,5 @@
-<!--
-    Name: Eric Liao
-    Last Modified day: Mar 8 2022
-    Purpose: Admin login interface
--->
 <?php
+namespace Mist\Forum\Admin;
 session_start();
 $status = $_POST['status'];
 if($status == 0)
@@ -36,13 +32,12 @@ session_destroy();
             <td>Password</td>
         </tr>
 <tr>
-        <td><input type="password" name="passwdLI" size="15" maxlength="30" required = "required" /></td>
+        <td><input type="password" name="passwdAD" size="15" maxlength="30" required = "required" /></td>
 </tr>
 
 </table>
-        <input style="width:150px"type="submit" name="signin" value="SIGN IN" /><br />
+        <input style="width:150px"type="submit" name="s" value="SUBMIT"/><br />
         <input style="width:150px"type="reset" name="reset" value="RESET" />
-        <input type="hidden" name="isAdmin" value="1">
         </fieldset> 
         </form>
 

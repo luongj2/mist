@@ -1,9 +1,11 @@
-<?php session_start();
+<?php 
+namespace Mist\Forum;
+session_start();
 $status = $_POST['status'];
 if($status == 0)
 session_destroy(); ?>
 <html>
-<head><title>Register or Log in | CookiePerfect</title></head>
+<head><title>Register or Log in | Mist</title></head>
 <body>
 <p><font color="#ff0000"><b><?php echo $_SESSION['message'] ?></b></font></p>
     
