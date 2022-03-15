@@ -1,16 +1,15 @@
-<?php
-namespace Mist\Forum\Admin;
+<?php 
+namespace Mist\Store;
 session_start();
 $status = $_POST['status'];
 if($status == 0)
-session_destroy(); 
-?>
+session_destroy(); ?>
 <html>
-<head><title>Admin Log in | Mist </title></head>
+<head><title>Register or Log in | Mist</title></head>
 <body>
 <p><font color="#ff0000"><b><?php echo $_SESSION['message'] ?></b></font></p>
     
-<form action ="../login.php" method ="POST">
+<form action ="login.php" method ="POST">
     <fieldset>
 
     <legend>SIGN IN</legend>
@@ -25,21 +24,23 @@ session_destroy();
         <td>Email Address<td>
 </tr>
        <tr>
-           <td><input type="text" name="accountAD" size="15" maxlength="30" required ="required" /></td>
+           <td><input type="text" name="emailLI" size="15" maxlength="30" required ="required" /></td>
         </tr>
 
         <tr>
             <td>Password</td>
         </tr>
 <tr>
-        <td><input type="password" name="passwdAD" size="15" maxlength="30" required = "required" /></td>
+        <td><input type="password" name="passwdLI" size="15" maxlength="30" required = "required" /></td>
 </tr>
 
 </table>
-        <input style="width:150px"type="submit" name="s" value="SUBMIT"/><br />
+        <p><a href="forgetPd.php">Forget Password?</a></p>
+        <input style="width:150px"type="submit" name="signin" value="SIGN IN" /><br />
         <input style="width:150px"type="reset" name="reset" value="RESET" />
         </fieldset> 
         </form>
+        Not a member? <a href ="logup.html">Join Us</a>
 
 </body>
 </html>

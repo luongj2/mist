@@ -1,5 +1,5 @@
 <?php 
-namespace Mist\Forum;
+namespace Mist\Store;
 include('../settings.php');
 session_start();
 $nameF = filter_input(INPUT_POST, 'fNameLU', FILTER_SANITIZE_STRING);

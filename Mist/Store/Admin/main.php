@@ -1,5 +1,5 @@
 <?php 
-namespace Mist\Forum\Admin;
+namespace Mist\Store\Admin;
 session_start();
 include_once("../../settings.php");
 ?>
@@ -65,7 +65,7 @@ li{
                 echo '/ <li><a href=login.php?status=0>'. 'Log Out'.'</a></li>' ;
                 }
             ?>
-           <li><input type="text" name="search" style="width:100px;" /><button style="Height: 23px;">
+           <li><input type="search" name="search" style="width:100px;" /><button style="Height: 23px;">
                 <img type="image" src="../search.png" alt="add picture" width="10" height="10"/></button></li>
             </ul></div>
             </form>
@@ -74,11 +74,15 @@ li{
            <th scope="col">Game's Name</th>
            <th scope="col" colspan="8">Discription</th>
            <th scope="col">Add Time</th>
+           <th scope="col">Game ID</th>
+           
            <tr>
-    <th scope="row" rowspan="2"> <img type="image" src="../eldenring.png" alt="add picture" width="100" height="100"/></th> <!--Game Name-->
+
+    <td scope="row" rowspan="2"> <img type="image" src="../eldenring.png" alt="add picture" width="100" height="100"/></th> <!--Game Name-->
     <td>Elden ring</td> <!--Game id-->
     <td colspan="8" rowspan="2">Elden Ring is an action role-playing game played in a..</td><!--Distription limit:50 character-->
     <td rowspan="2">2019/12/33</td>
+    <td rowspan="2">ID</td>
     <?php if($_SESSION['isLogin'] == 1){ 
     echo "<td rowspan='2'><a href='edit.php?ID={$_POST['ID']}'>[Edit]</td>";
     echo "<td rowspan='2'><a href=''>[View]</td>";

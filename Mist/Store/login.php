@@ -1,5 +1,5 @@
 <?php
-namespace Mist\Forum;
+namespace Mist\Store;
 include('../settings.php'); 
 session_start();
 try{
