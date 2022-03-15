@@ -1,0 +1,46 @@
+body {
+    background-color: #1D2024;
+}
+
+.store {
+    display: flex;
+    text-align: center;
+}
+
+.search-item {
+    width: 20%;
+    border-right: black 3px solid;
+    padding-top: 100px;
+}
+
+.search-bar {
+    margin-bottom: 30px;
+}
+
+.filter-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    row-gap: 10px;
+}
+
+.filter-item button {
+    width: 60%;
+}
+
+.browse-list {
+    width: 60%;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    border-right: black 3px solid;
+}
+
+.browse-item {
+    cursor: pointer;
+    width: 80%;
+    height: 27vh;
+    border: black 1px solid;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
