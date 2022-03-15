@@ -1,15 +1,4 @@
-<html>
-
-<head>
-    <?php include(dirname(__DIR__).'/includes/html/head.html')?>
-
-    <title>Mist Store</title>
-</head>
-
-<body>
-    <noscript>You need to enable JavaScript to access this page.</noscript>
-
-    <?php include(dirname(__DIR__).'/includes/html/header.html')?>
+<?php include(dirname(__DIR__).'/includes/html/header.php')?>
 
     <link rel="stylesheet" href="store.css">
 
@@ -45,6 +34,5 @@
             </script>
         </div>
     </div>
-</body>
-
-</html>
+    
+ <?php include(dirname(__DIR__).'/includes/html/footer.php')?>

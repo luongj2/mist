@@ -1,5 +1,5 @@
-<?php include(dirname(__DIR__).'/includes/html/header.html')?>
+<?php include(dirname(__DIR__).'/includes/html/header.php')?>
 
     <h1>Main Page</h1>
 
-<?php include(dirname(__DIR__).'/includes/html/footer.html')?>
+<?php include(dirname(__DIR__).'/includes/html/footer.php')?>

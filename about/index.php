@@ -1,15 +1,4 @@
-<html>
-
-<head>
-    <?php include(dirname(__DIR__).'/includes/html/head.html')?>    
-    
-    <title>About Mist</title>
-</head>
-
-<body>
-    <noscript>You need to enable JavaScript to access this page.</noscript>
-
-    <?php include(dirname(__DIR__).'/includes/html/header.html')?>
+<?php include(dirname(__DIR__).'/includes/html/header.php')?>
 
     <link rel="stylesheet" href="about.css">
 
@@ -48,6 +37,5 @@
             
         </div>
     </div>
-</body>
-
-</html>
+    
+<?php include(dirname(__DIR__).'/includes/html/footer.php')?>
