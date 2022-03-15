@@ -6,7 +6,7 @@
     <link rel="stylesheet" href="../includes/css/main.css">
     <link rel="icon" href="../includes/png/icon.png">
 
-    <title>Welcome to Mist</title>
+    <title><?php echo $title ?></title>
 </head>
 
 <body>

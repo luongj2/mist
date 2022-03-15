@@ -1,19 +1,10 @@
 body {
+    color: rgba(255, 255, 255, 0.75);
     background-color: rgb(29, 32, 36);
 }
 
-li {
-    list-style-type: none;
-}
-
-.about {
-    color: rgba(255, 255, 255, 0.75);
-}
-
 .title {
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    text-align: center;
     padding-top: 30px;
     font-size: 40px;
     font-weight: bolder;
@@ -23,16 +14,12 @@ li {
     display: flex;
     align-items: center;
     justify-content: center;
-    column-gap: 100px
-}
-
-.information {
-    padding-top: 30px;
-    width: 1000px;
     font-size: 25px;
 }
 
 .members {
+    text-align: center;
     padding-top: 100px;
+    padding-bottom: 30px;
     font-size: 20px;
 }

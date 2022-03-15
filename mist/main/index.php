@@ -1,5 +1,6 @@
-<?php include(dirname(__DIR__).'/includes/html/header.php')?>
+<?php $title = 'Welcome to Mist' ?>
+<?php include(dirname(__DIR__).'/includes/php/header.php')?>
 
-    <h1>Main Page</h1>
+    <link rel="stylesheet" href="main.css">       
 
-<?php include(dirname(__DIR__).'/includes/html/footer.php')?>
+<?php include(dirname(__DIR__).'/includes/php/footer.php')?>

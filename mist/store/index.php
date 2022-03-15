@@ -1,11 +1,10 @@
-<?php include(dirname(__DIR__).'/includes/html/header.php')?>
+<?php $title = 'Mist Store' ?>
+<?php include(dirname(__DIR__).'/includes/php/header.php')?>
 
     <link rel="stylesheet" href="store.css">
 
     <div class="store">
         <div class="search-item">
-            <h1>Store Page</h1>
-
             <div class="search-bar">
                 <input />
                 <button>Search</button>
@@ -35,4 +34,4 @@
         </div>
     </div>
     
- <?php include(dirname(__DIR__).'/includes/html/footer.php')?>
+ <?php include(dirname(__DIR__).'/includes/php/footer.php')?>
