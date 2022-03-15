@@ -1,0 +1,66 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Operations Version="1.0" xmlns="http://schemas.microsoft.com/sqlserver/dac/Serialization/2012/02">
+  <Operation Name="Rename Refactor" Key="cdcb1dd5-204b-4b43-b7b9-9887fffb0779" ChangeDateTime="03/08/2022 19:07:10">
+    <Property Name="ElementName" Value="[dbo].[Applications].[Id]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[Applications]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="ApplicationID" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="3f372556-7f32-4fcd-bacd-2151e982b7d4" ChangeDateTime="03/08/2022 19:12:07">
+    <Property Name="ElementName" Value="[dbo].[Organizations].[Id]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[Organizations]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="OrganizationID" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="6de72eee-0135-4f03-a7cd-269c3f79093d" ChangeDateTime="03/08/2022 19:18:13">
+    <Property Name="ElementName" Value="[dbo].[Users].[Id]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[Users]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="UderID" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="5111c489-bd6e-4a3e-bdb6-7e8f0110ef7c" ChangeDateTime="03/08/2022 19:18:59">
+    <Property Name="ElementName" Value="[dbo].[Moderators].[Id]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[Moderators]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="ModeratorID" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="52729a1d-7975-49da-b452-37c0683a475d" ChangeDateTime="03/08/2022 19:20:06">
+    <Property Name="ElementName" Value="[dbo].[Users].[UderID]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[Users]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="UserID" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="7634a1ec-5720-438d-a732-07139d5847c8" ChangeDateTime="03/08/2022 19:21:11">
+    <Property Name="ElementName" Value="[dbo].[Administrators].[Id]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[Administrators]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="AdministratorID" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="804162db-62c4-41cb-91ec-dec16a5b224f" ChangeDateTime="03/08/2022 19:22:45">
+    <Property Name="ElementName" Value="[dbo].[Posts].[Id]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[Posts]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="PostID" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="ba95f7bb-8364-43bc-b01d-01a7a9fcead2" ChangeDateTime="03/08/2022 19:25:11">
+    <Property Name="ElementName" Value="[dbo].[Comments].[Id]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[Comments]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="CommentID" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="951f29d4-45ea-4897-8250-28ea64bc406a" ChangeDateTime="03/08/2022 19:26:52">
+    <Property Name="ElementName" Value="[dbo].[Requests].[Id]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[Requests]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="RequestID" />
+  </Operation>
+</Operations>
