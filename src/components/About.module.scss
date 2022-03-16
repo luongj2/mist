@@ -1,0 +1,22 @@
+.about {
+    .title {
+        text-align: center;
+        padding-top: 30px;
+        font-size: 40px;
+        font-weight: bolder;
+    }
+    
+    .description {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 25px;
+    }
+    
+    .members {
+        text-align: center;
+        padding-top: 100px;
+        padding-bottom: 30px;
+        font-size: 20px;
+    }
+}

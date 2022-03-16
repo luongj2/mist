@@ -24,8 +24,9 @@ a {
 
         .nav_brand {
             cursor: pointer;
-            color: $white;
-            font-size: 40px;
+            height: 44px;
+            width: 124px;
+            image-rendering: -webkit-optimize-contrast;
         }
 
         .navbar_nav {
@@ -52,25 +53,36 @@ a {
 
         button {
             cursor: pointer;
-            background-color: $navbar-black;
-            border: solid 1px;
-            border-radius: 10px;
-            border-color: $white-inactive;
-            box-shadow: 0 0 1px $white-inactive;
-            color: $white-inactive;
-            padding: 8px 25px;
-            width: 115px;
+            color: rgba(255, 255, 255, 0.75);
+            background-color: rgb(23, 26, 33);
+            border-radius: 5px;
+            border: solid 2px;
+            padding: 8px;
+            width: 110px;
             text-align: center;
-            text-decoration: none;
-            display: inline-block;
-            font-size: 16px;
-        
+            font-weight: bold;
+                
             &:hover {
-                // border-color: $navbar-blue;
-                box-shadow: 0 0 5px $navbar-blue;
-                background-color: $navbar-blue;
-                color: $white;
+                color: rgb(255, 255, 255);
                 transition: 300ms;
+            }
+
+            &.signup {
+                cursor: pointer;
+                color: rgb(255, 255, 255);
+                background-color: rgb(92, 126, 16);
+                border-radius: 5px;
+                border: 0px;
+                padding: 10px;
+                width: 110px;
+                text-align: center;
+                font-weight: bold;
+
+                &:hover {
+                    color: rgb(255, 255, 255);
+                    transition: 300ms;
+                    background-color: rgb(117, 161, 22);
+                }
             }
         }
     }
