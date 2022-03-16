@@ -1,3 +1,7 @@
+<?php
+    session_start();
+?>
+
 <html>
 
 <head>
@@ -24,7 +28,14 @@
         </div>
 
         <div class="account">
-            <a class="login" href="../login"><button>Log In</button></a>
-            <a class="signup" href="../signup"><button>Sign Up</button></a>
+            <?php 
+                if(isset($_SESSION["userEmail"])) {
+                    echo "<a class=\"login\" href=\"../profile\"><button>Profile</button></a>
+                    <a class=\"signup\" href=\"../logout\"><button>Log Out</button></a>";
+                } else {
+                    echo "<a class=\"login\" href=\"../login\"><button>Log In</button></a>
+                    <a class=\"signup\" href=\"../signup\"><button>Sign Up</button></a>";
+                }
+            ?>
         </div>
     </div>

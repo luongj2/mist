@@ -12,7 +12,7 @@ CREATE TABLE users (
     userFirstName 			VARCHAR(16),
     userLastName 			VARCHAR(16),
     userEmail 				VARCHAR(32),
-    userPassword 			VARCHAR(16),
+    userPassword 			VARCHAR(128),
     userJoinDate 			DATE,
     
     PRIMARY KEY 			(userID)

@@ -1,5 +1,7 @@
-<?php $title = "About Mist" ?>
-<?php include(dirname(__DIR__).'/includes/php/header.php')?>
+<?php 
+    $title = "About Mist";
+    include(dirname(__DIR__)."/includes/php/header.php");
+?>
 
     <link rel="stylesheet" href="about.css">
 

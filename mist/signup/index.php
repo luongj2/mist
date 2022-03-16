@@ -1,5 +1,7 @@
-<?php $title = "Sign Up" ?>
-<?php include(dirname(__DIR__)."/includes/php/header.php")?>
+<?php 
+    $title = "Sign Up";
+    include(dirname(__DIR__)."/includes/php/header.php");
+?>
 
     <link rel="stylesheet" href="signup.css">    
 
@@ -11,8 +13,8 @@
         <div class="form">
             <input type="text" name="userFirstName" placeholder="First Name">
             <input type="text" name="userLastName" placeholder="Last Name">
-            <input type="email" name="userEmail" placeholder="Email"
-            <input type="email" name="userEmailVerify" placeholder="Verify Email">
+            <input type="text" name="userEmail" placeholder="Email">
+            <input type="text" name="userEmailVerify" placeholder="Verify Email">
             <input type="password" name="userPassword" placeholder="Password">
             <input type="password" name="userPasswordVerify" placeholder="Verify Password">
         </div>
@@ -26,41 +28,41 @@
         if(!isset($_GET["error"])) {
             return;
         }
-
+        
         echo "<p>";
 
         if($_GET["error"] == "emptyInput") {
-            echo "Please fill in all fields!";
+            echo "Please fill in all fields.";
             return;
         }
 
         if($_GET["error"] == "emailTaken") {
-            echo "Email is taken!";
+            echo "This email is taken. <a href=\"../login\">Log In?</button>";
             return;
         }
 
         if($_GET["error"] == "emailInvalid") {
-            echo "Email Invalid!";
+            echo "Please enter a valid email address.";
             return;
         }
 
         if($_GET["error"] == "emailsDifferent") {
-            echo "Emails are not matching!";
+            echo "Please enter the same email address in both email address fields.";
             return;
         }
 
         if($_GET["error"] == "passwordInvalid") {
-            echo "Make sure password is 8 characters or more!";
+            echo "Please enter a valid password (minimum 8 characters).";
             return;
         }
 
         if($_GET["error"] == "passwordsDifferent") {
-            echo "Passwords are not matching!";
+            echo "Please enter the same password in both password fields.";
             return;
         }
 
         if($_GET["error"] == "none") {
-            echo "You are signed up!";
+            echo "You are signed up! <a href=\"../login\">Log In?</button>";
             return;
         }
 
