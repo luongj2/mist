@@ -1,5 +1,5 @@
-<?php $title = 'Mist Store' ?>
-<?php include(dirname(__DIR__).'/includes/php/header.php')?>
+<?php $title = "Mist Store" ?>
+<?php include(dirname(__DIR__)."/includes/php/header.php")?>
 
     <link rel="stylesheet" href="store.css">
 
@@ -34,4 +34,4 @@
         </div>
     </div>
     
- <?php include(dirname(__DIR__).'/includes/php/footer.php')?>
+ <?php include(dirname(__DIR__)."/includes/php/footer.php")?>

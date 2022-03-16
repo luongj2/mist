@@ -1,5 +1,5 @@
-<?php $title = 'Log In' ?>
-<?php include(dirname(__DIR__).'/includes/php/header.php')?>
+<?php $title = "Log In" ?>
+<?php include(dirname(__DIR__)."/includes/php/header.php")?>
 
     <link rel="stylesheet" href="login.css">    
 
@@ -18,4 +18,4 @@
         </div>
     </form>
     
-<?php include(dirname(__DIR__).'/includes/php/footer.php')?>
+<?php include(dirname(__DIR__)."/includes/php/footer.php")?>

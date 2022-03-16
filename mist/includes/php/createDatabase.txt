@@ -1,0 +1,104 @@
+DROP TABLE IF EXISTS users;
+DROP TABLE IF EXISTS moderators;
+DROP TABLE IF EXISTS administrators;
+DROP TABLE IF EXISTS organizations;
+DROP TABLE IF EXISTS applications;
+DROP TABLE IF EXISTS posts;
+DROP TABLE IF EXISTS comments;
+DROP TABLE IF EXISTS requests;
+
+CREATE TABLE users (
+	userID 					INT						AUTO_INCREMENT,
+    userFirstName 			VARCHAR(16),
+    userLastName 			VARCHAR(16),
+    userEmail 				VARCHAR(32),
+    userPassword 			VARCHAR(16),
+    userJoinDate 			DATE,
+    
+    PRIMARY KEY 			(userID)
+);
+
+CREATE TABLE moderators (
+	moderatorID 			INT						AUTO_INCREMENT, 
+    userID 					INT,
+    
+    PRIMARY KEY				(moderatorID),
+    FOREIGN KEY				(userID)				REFERENCES		users(userID)
+);
+
+CREATE TABLE administrators (
+	administratorID 		INT						AUTO_INCREMENT, 
+    userID 					INT,
+    
+    PRIMARY KEY				(administratorID),
+    FOREIGN KEY				(userID)				REFERENCES		users(userID)
+);
+
+CREATE TABLE organizations (
+	organizationID 			INT						AUTO_INCREMENT, 
+    organizationName 		VARCHAR(16),
+    organizationDescription VARCHAR(256), 
+    organizationLink 		VARCHAR(64),
+    
+    PRIMARY KEY				(organizationID)
+);
+
+CREATE TABLE applications (
+	applicationID 			INT						AUTO_INCREMENT,
+    organizationID 			INT,
+    applicationName 		VARCHAR(16),
+    applicationDescription 	VARCHAR(256),
+    applicationCategory 	VARCHAR(16),
+    applicationDate 		DATE,
+    applicationIcon 		VARCHAR(32),
+    applicationPreview1 	VARCHAR(32),
+    applicationPreview2 	VARCHAR(32),
+    applicationPreview3 	VARCHAR(32),
+    compatibleAndroid 		BOOLEAN,
+    compatibleIOS 			BOOLEAN,
+    compatibleWindows 		BOOLEAN,
+
+    PRIMARY KEY				(applicationID),
+    FOREIGN KEY				(organizationID)		REFERENCES		organizations(organizationID)
+);
+
+CREATE TABLE posts (
+	postID 					INT						AUTO_INCREMENT, 
+    userID 					INT, 
+    postName 				VARCHAR(64), 
+    postDescription 		VARCHAR(256), 
+    postLikes 				INT, 
+    postDate 				DATE, 
+    postDeleted 			BOOLEAN,
+    
+    PRIMARY KEY				(postID),
+    FOREIGN KEY				(userID)				REFERENCES		users(userID)
+);
+
+CREATE TABLE comments (
+	commentID 				INT						AUTO_INCREMENT, 
+    userID 					INT, 
+    postID 					INT, 
+    commentDescription 		VARCHAR(256), 
+    commentDate 			DATE, 
+    commentDeleted 			BOOLEAN,
+    
+    PRIMARY KEY				(commentID),
+    FOREIGN KEY				(userID)				REFERENCES		users(userID),
+    FOREIGN KEY				(postID)				REFERENCES		posts(postID)
+);
+
+CREATE TABLE requests
+(
+	requestID 				INT						AUTO_INCREMENT, 
+    userID 					INT,
+    requestName 			VARCHAR(64), 
+    requestDescription 		VARCHAR(256), 
+    requestLink 			VARCHAR(64),
+    requestDate 			DATE,
+    requestAction 			VARCHAR(64),
+    requestReason 			VARCHAR(64),
+    
+    PRIMARY KEY				(requestID),
+    FOREIGN KEY				(userID)				REFERENCES		users(userID)
+);

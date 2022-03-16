@@ -1,4 +1,4 @@
-<?php $title = 'About Mist' ?>
+<?php $title = "About Mist" ?>
 <?php include(dirname(__DIR__).'/includes/php/header.php')?>
 
     <link rel="stylesheet" href="about.css">
@@ -25,4 +25,4 @@
         
     </div>
     
-<?php include(dirname(__DIR__).'/includes/php/footer.php')?>
+<?php include(dirname(__DIR__)."/includes/php/footer.php")?>
