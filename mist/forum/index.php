@@ -1,8 +1,9 @@
 <?php 
     $title = "Mist Forum";
-    include(dirname(__DIR__)."/includes/php/header.php");
+    $steps = 1;
+    include(dirname(__DIR__, $steps)."/header/index.php");
 ?>
 
-    <link rel="stylesheet" href="forum.css">   
 
-<?php include(dirname(__DIR__)."/includes/php/footer.php")?>
+
+<?php include(dirname(__DIR__, $steps)."/footer/index.php")?>

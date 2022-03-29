@@ -3,7 +3,7 @@
         return (empty($userFirstName) || empty($userLastName) || empty($userEmail) || empty($userPassword));
     }
 
-    function emailTaken($connection, $userEmail) {
+    function emailTaken($userEmail) {
         $query = "
             SELECT
                 *
@@ -13,7 +13,7 @@
                 userEmail = ?;
         ";
 
-        $statement = mysqli_stmt_init($connection);
+        $statement = mysqli_stmt_init(require("../database/database.php"));
         mysqli_stmt_prepare($statement, $query);
 
         mysqli_stmt_bind_param($statement, "s", $userEmail);
@@ -41,7 +41,7 @@
         return ($userPassword != $userPasswordVerify);
     }
 
-    function signupUser($connection, $userFirstName, $userLastName, $userEmail, $userPassword) {
+    function signupUser($userFirstName, $userLastName, $userEmail, $userPassword) {
         $query = "
             INSERT INTO users (
                 userFirstName, userLastName, userEmail, userPassword, userJoinDate
@@ -51,7 +51,7 @@
             )
         ";
 
-        $statement = mysqli_stmt_init($connection);
+        $statement = mysqli_stmt_init(require("../database/database.php"));
         mysqli_stmt_prepare($statement, $query);
 
         $userPasswordHash = password_hash($userPassword, PASSWORD_DEFAULT);

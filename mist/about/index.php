@@ -1,30 +1,42 @@
 <?php 
     $title = "About Mist";
-    include(dirname(__DIR__)."/includes/php/header.php");
+    $steps = 1;
+    include(dirname(__DIR__, $steps)."/header/index.php");
 ?>
 
-    <link rel="stylesheet" href="about.css">
+<div>
+    <h1>About Us</h1>
 
-    <div class="title">
-        About Us
-    </div>
+    <li>We serve to allow users to search and browse a variety of games in our game library through a web browser.</li>
+    <li>Users can chat and create discussions through our online community forums.</li>
+    <li>Publishers can also publish their own games alongside our expanding library.</li>
 
-    <div class="description">
-        <br>We serve to allow users to search and browse a variety of games in our game library through a web browser.</br>
-        <br>Users can chat and create discussions through our online community forums.</br>
-        <br>Publishers can also publish their own games alongside our expanding library.</br>
-    </div>
+    <h2>Our Team</h2>
 
-    <div class="members">
-        <br><b>Joey Luong</b> - <i>Project Manager & Full-Stack Programmer</i></br>
-        <br><b>Harrison Baker</b> - <i>Technical Manager & Front-End Programmer</i></br>
-        <br><b>Huy Nguyen</b> - <i>Front-End Programmer</i></br>
-        <br><b>Jon Kraft</b> - <i>Back-End Programmer</i></br>
-        <br><b>Eric Liao</b> - <i>Back-End Programmer</i></br>
-    </div>
+    <p>
+        <u>Joey Luong</u><br>
+        <i>Project Manager</i><br>
+    </p>
 
-    <div class="picture">
-        
-    </div>
-    
-<?php include(dirname(__DIR__)."/includes/php/footer.php")?>
+    <p>
+        <u>Harrison Baker</u><br>
+        <i>Technical Manager</i><br>
+    </p>
+
+    <p>
+        <u>Huy Nguyen</u><br>
+        <i>Front-End Programmer</i><br>
+    </p>
+
+    <p>
+        <u>Jon Kraft</u><br>
+        <i>Back-End Programmer</i><br>
+    </p>
+
+    <p>
+        <u>Eric Liao</u><br>
+        <i>Back-End Programmer</i>
+    </p>
+</div>
+
+<?php include(dirname(__DIR__, $steps)."/footer/index.php")?>

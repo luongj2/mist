@@ -1,0 +1,57 @@
+body {
+    color: rgb(200, 200, 200);
+    background: rgb(30, 30, 30);
+}
+
+form {
+    margin: 30px 38%;
+    padding: 30px;
+    background: rgb(25, 25, 25);
+}
+
+form h1, input, button, p {
+    font-family: "Motiva Sans", sans-serif;
+    text-decoration: none;
+}
+
+form h1, p {
+    padding: 30px;
+    text-align: center;
+}
+
+form h1 {
+    font-size: 48px;
+}
+
+form input, button {
+    display: block;
+    border-radius: 5px;
+    border: none;
+    font-size: 14px;
+}
+
+form input {
+    margin: 10px auto;
+    padding: 12px;
+    width: 80%;
+}
+
+form button {
+    cursor: pointer;
+    font-weight: bold;
+    margin: 20px auto;
+    padding: 10px 20px;
+    color: rgb(255, 255, 255);
+    background: rgb(90, 125, 15);
+    transition: 0.3s;
+}
+
+form button:hover {
+    background-color: rgb(120, 160, 20);
+}
+
+@media only screen and (max-width: 1400px) {
+    form {
+        margin: 30px 28%;
+    } 
+}

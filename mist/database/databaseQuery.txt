@@ -1,0 +1,121 @@
+DROP TABLE IF EXISTS users;
+DROP TABLE IF EXISTS mods;
+DROP TABLE IF EXISTS admins;
+DROP TABLE IF EXISTS companies;
+DROP TABLE IF EXISTS games;
+DROP TABLE IF EXISTS posts;
+DROP TABLE IF EXISTS comments;
+DROP TABLE IF EXISTS requests;
+
+CREATE TABLE users (
+	userID 					INT						AUTO_INCREMENT,
+    userFirstName 			VARCHAR(16),
+    userLastName 			VARCHAR(16),
+    userEmail 				VARCHAR(64),
+    userPassword 			VARCHAR(128),
+    userJoinDate 			DATE,
+    
+    PRIMARY KEY 			(userID)
+);
+
+CREATE TABLE mods (
+	modID 			        INT						AUTO_INCREMENT, 
+    userID 					INT,
+    
+    PRIMARY KEY				(modID),
+    FOREIGN KEY				(userID)				REFERENCES		users(userID)
+);
+
+CREATE TABLE admins (
+	adminID 		        INT						AUTO_INCREMENT, 
+    userID 					INT,
+    
+    PRIMARY KEY				(adminID),
+    FOREIGN KEY				(userID)				REFERENCES		users(userID)
+);
+
+CREATE TABLE companies (
+	companyID 			    INT						AUTO_INCREMENT, 
+    companyName 		    VARCHAR(64),
+    companyDescription      VARCHAR(1028),
+    companyLink 		    VARCHAR(64),
+    
+    PRIMARY KEY				(companyID)
+);
+
+CREATE TABLE games (
+	gameID 			        INT						AUTO_INCREMENT,
+    companyID 			    INT,
+    gameName 		        VARCHAR(64),
+    gameDescription 	    VARCHAR(1028),
+    gameGenre 	            VARCHAR(16),
+    gameReleaseDate 		DATE,
+    compatibleWindows 		BOOLEAN,
+    compatibleMacOS 		BOOLEAN,
+    compatibleLinux 		BOOLEAN,
+
+    PRIMARY KEY				(gameID),
+    FOREIGN KEY				(companyID)		        REFERENCES		companies(companyID)
+);
+
+CREATE TABLE posts (
+	postID 					INT						AUTO_INCREMENT, 
+    userID 					INT, 
+    postName 				VARCHAR(64), 
+    postDescription 		VARCHAR(1028), 
+    postLikes 				INT, 
+    postDate 				DATE, 
+    postDeleted 			BOOLEAN,
+    
+    PRIMARY KEY				(postID),
+    FOREIGN KEY				(userID)				REFERENCES		users(userID)
+);
+
+CREATE TABLE comments (
+	commentID 				INT						AUTO_INCREMENT, 
+    userID 					INT, 
+    postID 					INT, 
+    commentDescription 		VARCHAR(1028), 
+    commentDate 			DATE, 
+    commentDeleted 			BOOLEAN,
+    
+    PRIMARY KEY				(commentID),
+    FOREIGN KEY				(userID)				REFERENCES		users(userID),
+    FOREIGN KEY				(postID)				REFERENCES		posts(postID)
+);
+
+CREATE TABLE requests (
+	requestID 				INT						AUTO_INCREMENT, 
+    userID 					INT,
+    requestName 			VARCHAR(64), 
+    requestDescription 		VARCHAR(1028), 
+    requestLink 			VARCHAR(64),
+    requestDate 			DATE,
+    requestAction 			VARCHAR(64),
+    requestReason 			VARCHAR(64),
+    
+    PRIMARY KEY				(requestID),
+    FOREIGN KEY				(userID)				REFERENCES		users(userID)
+);
+
+INSERT INTO `games` (
+    `gameID`,
+    `companyID`,
+    `gameName`,
+    `gameDescription`,
+    `gameGenre`,
+    `gameReleaseDate`,
+    `compatibleWindows`,
+    `compatibleMacOS`,
+    `compatibleLinux`
+) VALUES (
+    '6',
+    '1',
+    'testName',
+    'testDescription',
+    'testGenre',
+    '2022-02-22',
+    '1',
+    '1',
+    '1'
+);

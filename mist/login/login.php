@@ -8,24 +8,23 @@
     $userPassword = $_POST["userPassword"];
 
     require "functions.php";
-    require "../includes/php/database.php";
 
     if(emptyInput($userEmail, $userPassword)) {
         header("location: index.php?error=emptyInput");
         exit();
     }
 
-    if(emailInvalid($connection, $userEmail)) {
+    if(emailInvalid($userEmail)) {
         header("location: index.php?error=emailInvalid");
         exit();
     }
 
-    if(passwordInvalid($connection, $userEmail, $userPassword)) {
+    if(passwordInvalid($userEmail, $userPassword)) {
         header("location: index.php?error=passwordInvalid");
         exit();
     }
 
-    loginUser($connection, $userEmail, $userPassword);
+    loginUser($userEmail, $userPassword);
 
     header("location: ../main");
     exit();

@@ -4,22 +4,21 @@
         exit();
     }
 
-    $userFirstName      = $_POST["userFirstName"];
-    $userLastName       = $_POST["userLastName"];
-    $userEmail          = $_POST["userEmail"];
-    $userEmailVerify    = $_POST["userEmailVerify"];
-    $userPassword       = $_POST["userPassword"];
+    $userFirstName = $_POST["userFirstName"];
+    $userLastName = $_POST["userLastName"];
+    $userEmail = $_POST["userEmail"];
+    $userEmailVerify = $_POST["userEmailVerify"];
+    $userPassword = $_POST["userPassword"];
     $userPasswordVerify = $_POST["userPasswordVerify"];
 
     require "functions.php";
-    require "../includes/php/database.php";
 
     if(emptyInput($userFirstName, $userLastName, $userEmail, $userPassword)) {
         header("location: index.php?error=emptyInput");
         exit();
     }
 
-    if(emailTaken($connection, $userEmail)) {
+    if(emailTaken($userEmail)) {
         header("location: index.php?error=emailTaken");
         exit();
     }
@@ -44,7 +43,7 @@
         exit();
     }
 
-    signupUser($connection, $userFirstName, $userLastName, $userEmail, $userPassword);
+    signupUser($userFirstName, $userLastName, $userEmail, $userPassword);
 
     header("location: index.php?error=none");
     exit();

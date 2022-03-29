@@ -1,9 +1,5 @@
 <?php
-    function emptyInput($userEmail, $userPassword) {
-        return (empty($userEmail) || empty($userPassword));
-    }
-
-    function getRecordFromEmail($connection, $userEmail) {
+    function getRecordFromEmail($userEmail) {
         $query = "
             SELECT
                 *
@@ -13,7 +9,7 @@
                 userEmail = ?;
         ";
 
-        $statement = mysqli_stmt_init($connection);
+        $statement = mysqli_stmt_init(require("../database/database.php"));
         mysqli_stmt_prepare($statement, $query);
 
         mysqli_stmt_bind_param($statement, "s", $userEmail);
@@ -27,20 +23,24 @@
         return $record;
     }
 
-    function emailInvalid($connection, $userEmail) {
-        return !getRecordFromEmail($connection, $userEmail);
+    function emptyInput($userEmail, $userPassword) {
+        return (empty($userEmail) || empty($userPassword));
     }
 
-    function passwordInvalid($connection, $userEmail, $userPassword) {
-        $record = getRecordFromEmail($connection, $userEmail);
+    function emailInvalid($userEmail) {
+        return !getRecordFromEmail($userEmail);
+    }
+
+    function passwordInvalid($userEmail, $userPassword) {
+        $record = getRecordFromEmail($userEmail);
 
         $databasePassword = $record["userPassword"];
 
         return !password_verify($userPassword, $databasePassword);
     }
 
-    function loginUser($connection, $userEmail, $userPassword) {
-        $userRecord = getRecordFromEmail($connection, $userEmail);
+    function loginUser($userEmail, $userPassword) {
+        $userRecord = getRecordFromEmail($userEmail);
         
         session_start();
         $_SESSION["userEmail"] = $userRecord["userEmail"];

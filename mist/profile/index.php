@@ -1,8 +1,9 @@
 <?php 
     $title = "Profile";
-    include(dirname(__DIR__)."/includes/php/header.php");
+    $steps = 1;
+    include(dirname(__DIR__, $steps)."/header/index.php");
 ?>
 
-    <h1>Profile Page</h1>
+
     
-<?php include(dirname(__DIR__)."/includes/php/footer.php")?>
+<?php include(dirname(__DIR__, $steps)."/footer/index.php")?>

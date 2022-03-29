@@ -1,24 +1,23 @@
 <?php 
     $title = "Log In";
-    include(dirname(__DIR__)."/includes/php/header.php");
+    $steps = 1;
+    include(dirname(__DIR__, $steps)."/header/index.php");
 ?>
 
-    <link rel="stylesheet" href="login.css">    
 
-    <div class="title">
-        Log In
-    </div>
+<form action="login.php" method="post">
+    <h1>Log In</h1>
 
-    <form action="login.php" method="post"> 
-        <div class="form">
-            <input type="text" name="userEmail" placeholder="Email">
-            <input type="password" name="userPassword" placeholder="Password">
-        </div>
+    <?php 
+        function createInput($type, $name, $placeholder) {
+            echo "<input type=\"$type\" name=\"$name\" placeholder=\"$placeholder\">";
+        }
 
-        <div class="submit">
-            <button name="submit">Log In</button>
-        </div>
-    </form>
+        createInput("text", "userEmail", "Email");
+        createInput("password", "userPassword", "Password");
+    ?>
+
+    <button name="submit">Submit</button>
 
     <?php
         if(!isset($_GET["error"])) {
@@ -29,20 +28,18 @@
 
         if($_GET["error"] == "emptyInput") {
             echo "Please fill in all fields!";
-            return;
         }
 
         if($_GET["error"] == "emailInvalid") {
             echo "The email that you entered does not match our records.";
-            return;
         }
 
         if($_GET["error"] == "passwordInvalid") {
-            echo "The password that you have entered is incorrect.";
-            return;
+            echo "The password that you entered is incorrect.";
         }
         
         echo "</p>";
     ?>
+</form>
     
-<?php include(dirname(__DIR__)."/includes/php/footer.php")?>
+<?php include(dirname(__DIR__, $step)."/footer/index.php")?>

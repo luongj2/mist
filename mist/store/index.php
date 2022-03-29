@@ -1,39 +1,29 @@
 <?php 
     $title = "Mist Store";
-    include(dirname(__DIR__)."/includes/php/header.php");
+    $steps = 1;
+    include(dirname(__DIR__, $steps)."/header/index.php");
 ?>
 
-    <link rel="stylesheet" href="store.css">
+<form action="store.php" method="post">
+    <div>
+        <input type="text" name="search" placeholder="Search">
 
-    <div class="store">
-        <div class="search-item">
-            <div class="search-bar">
-                <input />
-                <button>Search</button>
-            </div>
-
-            <div class=filter-item>
-                <button>Sort By Date</button>
-                <button>Filter By Category</button>
-            </div>
-        </div>
-
-        <div class="browse-list" id="browseList">
-            <script>
-                var games = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11];
-
-                var browseList = document.getElementById("browseList");
-
-                games.forEach((game)=>{
-                    let div = document.createElement("div");
-                    div.className = "browse-item";
-                    let h1 = document.createElement("h1");
-                    div.appendChild(h1);
-                    h1.innerText = game;
-                    browseList.appendChild(div);
-                })
-            </script>
-        </div>
+        <button name="submit">Search</button>
     </div>
-    
- <?php include(dirname(__DIR__)."/includes/php/footer.php")?>
+
+    <ul>
+        <?php
+            if(!isset($_GET["result"])) {
+                return;
+            }
+
+            $results = explode(",", $_GET["result"], -1);
+
+            foreach($results as &$result) {
+                echo "<li><a href=\"../games/$result\"><img src=\"../games/$result/thumbnail.png\"></a></li>\n";
+            }
+        ?>
+    </ul>
+</form>
+
+<?php include(dirname(__DIR__, $steps)."/footer/index.php")?>
