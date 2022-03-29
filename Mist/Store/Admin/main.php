@@ -72,22 +72,22 @@ li{
                 }
 
             ?>
-           <li><input type="search" name="search" style="width:100px;" /><button style="Height: 23px;">
+           <li><input type="search" name="search" style="width:100px;" required="required" /><button style="Height: 23px;">
                 <img type="image" src="../search.png" alt="add picture" width="10" height="10"/></button></li>
             </ul></div>
             </form>
             <table style="text-align:center;">
             <th></th>
-           <th scope="col">Game's Name</th>
+          <!-- <th scope="col">Game's Name</th>
            <th scope="col" colspan="8">Discription</th>
            <th scope="col">Add Time</th>
-           <th scope="col">Game ID</th>
+           <th scope="col">Game ID</th>-->
            <!--If User does not use search function, display default settings-->
                <?php 
-               if(!empty($_POST['search']))
-               Search($pdo,$_POST['search']);
-               else{
-               printResult($pdo);}
+               if(empty($_POST['search']))
+               printResult($pdo);
+                else
+                Search($pdo,$_POST['search']);
                ?>
             </table>
                 
