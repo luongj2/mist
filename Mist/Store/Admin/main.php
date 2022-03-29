@@ -2,6 +2,7 @@
 namespace Mist\Store\Admin;
 session_start();
 include_once("../../settings.php");
+include_once("../sort.php");
 ?>
 <?php
  try{
@@ -50,20 +51,26 @@ li{
 }
 
             </style>
+
+
         <form action="<?php echo $_SERVER['PHP_SELF'];?>" method="POST">
         <div id="header">
             <div id="nav">
                 <ul>
             <li><a href=<?php 
                 $status_name = "Login In";
+
                 if($_SESSION['isLogin'] == 1){
                     $status_name = "My Account";
                 echo "userPage.php";} 
+
                 else {
                 echo "login.php";}?>><?php echo $status_name ?></a></li>
+
                 <?php if($_SESSION['isLogin'] == 1){ 
                 echo '/ <li><a href=login.php?status=0>'. 'Log Out'.'</a></li>' ;
                 }
+
             ?>
            <li><input type="search" name="search" style="width:100px;" /><button style="Height: 23px;">
                 <img type="image" src="../search.png" alt="add picture" width="10" height="10"/></button></li>
@@ -75,37 +82,14 @@ li{
            <th scope="col" colspan="8">Discription</th>
            <th scope="col">Add Time</th>
            <th scope="col">Game ID</th>
-           
-           <tr>
-
-    <td scope="row" rowspan="2"> <img type="image" src="../eldenring.png" alt="add picture" width="100" height="100"/></th> <!--Game Name-->
-    <td>Elden ring</td> <!--Game id-->
-    <td colspan="8" rowspan="2">Elden Ring is an action role-playing game played in a..</td><!--Distription limit:50 character-->
-    <td rowspan="2">2019/12/33</td>
-    <td rowspan="2">ID</td>
-    <?php if($_SESSION['isLogin'] == 1){ 
-    echo "<td rowspan='2'><a href='edit.php?ID={$_POST['ID']}'>[Edit]</td>";
-    echo "<td rowspan='2'><a href=''>[View]</td>";
-    }
-    ?>
-</tr>
-<tr>
-    <td><b>Adventure Openworld</b></td>
-            </tr>
+           <!--If User does not use search function, display default settings-->
+               <?php 
+               if(!empty($_POST['search']))
+               Search($pdo,$_POST['search']);
+               else{
+               printResult($pdo);}
+               ?>
             </table>
                 
 </body>
 </html>
-<?php try{
-    $pdo = new \PDO(
-        sprintf('mysql:host=%s;dbname=%s',
-        $settings['host'],$settings['dbname']),$settings['username'],$settings['passwd']);
-}
-catch(PDOException $e){
-    header('refresh:5;url=index.php');
-    echo "Something wrong, please try again.<br />";
-    echo '<b>Return after 5 seconds.  <a href="Admin/main.php">return</a></b>';
-    exit;
-}
-
-?>
