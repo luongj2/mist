@@ -3,7 +3,7 @@
 /*
 Purpose: When user upload pictures, we move it to our folder.
 */
-function updatePic($pdo,$upfile,$UID){
+function updatePic($pdo,$upfile){
 $fileInfo = pathinfo($upfile['name']);
 $typelist=array("image/jpeg","image/jpg","image/png","image/gif"); #checking if the type of picture upload is invaild.
 $path = "./Pictures/"; #The path where the folder located.
@@ -29,6 +29,7 @@ if($upfile['error']>0){
             case 6:
                 $info="File writing failed!";
                 break;
+                
         }die("Upload Failed, Possible resason:".$info);
 }
 if(!in_array($upfile['type'],$typelist)){
@@ -43,13 +44,12 @@ if(is_uploaded_file($upfile['tmp_name'])){
                 SET 
                         game_image = $path$upfile
                 WHERE   
-                        game_id = {$UID}";
-                    
-                   $pdo->query($sql);
-                echo "successed!";
+                    ";
+                   //$pdo->query($sql);
+                echo 'successed!';
     }
     else 
-    echo "Upload failed!";
+    echo 'Upload failed!';
 }
 }
 ?>

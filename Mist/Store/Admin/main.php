@@ -72,22 +72,32 @@ li{
                 }
 
             ?>
-           <li><input type="search" name="search" style="width:100px;" required="required" /><button style="Height: 23px;">
-                <img type="image" src="../search.png" alt="add picture" width="10" height="10"/></button></li>
+           <li>
+               <!--Search Button-->
+               <input type="search" name="search" style="width:100px;" required="required" /><button style="Height: 23px;">
+                <img type="image" src="../search.png" alt="add picture" width="10" height="10"/></button></li><br />
             </ul></div>
-            </form>
+             <!--Sort by Date Button-->
+            <?php
+                if(empty($order))
+                $order = 'ESC';
+                //Verifying sorting direction
+                $order = Verifying($_GET['orders']);
+              echo '<button><a href=main.php?orders='. $order. '>Sort By Date</a></button>';?>
             <table style="text-align:center;">
-            <th></th>
-          <!-- <th scope="col">Game's Name</th>
+           <th scope="col">Game's Name</th>
            <th scope="col" colspan="8">Discription</th>
            <th scope="col">Add Time</th>
-           <th scope="col">Game ID</th>-->
+           <th scope="col">Game ID</th>
            <!--If User does not use search function, display default settings-->
                <?php 
-               if(empty($_POST['search']))
+               if(isset($_POST['search']))
+              Search($pdo,$_POST['search']);
+           else if(isset($_GET['orders'])){
+                SortByDate($pdo,$_GET['orders']);
+                }
+               else
                printResult($pdo);
-                else
-                Search($pdo,$_POST['search']);
                ?>
             </table>
                 

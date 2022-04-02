@@ -15,6 +15,6 @@ include_once('../settings.php');
     exit;
 }
 $upPic = $_FILES['pic'];
-
 updatePic($pdo,$upPic);
+//updateBasic();
 ?>
