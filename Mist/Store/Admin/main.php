@@ -79,11 +79,16 @@ li{
             </ul></div>
              <!--Sort by Date Button-->
             <?php
-                if(empty($order))
-                $order = 'ESC';
+                if(empty($dateOrder))
+                $dateOrder = 'ESC';
+                if(empty($likeOrder))
+                $likeOrder = 'ESC';
                 //Verifying sorting direction
-                $order = Verifying($_GET['orders']);
-              echo '<button><a href=main.php?orders='. $order. '>Sort By Date</a></button>';?>
+                $dateOrder = Verifying($_GET['Dorders']);
+                $likeOrder = Verifying($_GET['Lorders']);
+              echo '<button><a href=main.php?Dorders='. $dateOrder. '>Sort By Date</a></button>';
+              echo '<button><a href=main.php?Lorders='. $likeOrder. '>Sort By Like</a></button>';?>
+
             <table style="text-align:center;">
            <th scope="col">Game's Name</th>
            <th scope="col" colspan="8">Discription</th>
@@ -93,9 +98,12 @@ li{
                <?php 
                if(isset($_POST['search']))
               Search($pdo,$_POST['search']);
-           else if(isset($_GET['orders'])){
-                SortByDate($pdo,$_GET['orders']);
+           else if(isset($_GET['Dorders'])){
+                SortByDate($pdo,$_GET['Dorders']);
                 }
+                else if(isset($_GET['Lorders'])){
+                    SortByLike($pdo,$_GET['Lorders']);
+                    }
                else
                printResult($pdo);
                ?>
