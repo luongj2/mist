@@ -20,7 +20,7 @@
             $results = explode(",", $_GET["result"], -1);
 
             foreach($results as &$result) {
-                echo "<li><a href=\"../games/$result\"><img src=\"../games/$result/thumbnail.png\"></a></li>\n";
+                echo "<li><a href=\"../games/index.php?id=$result\"><img src=\"../games/$result/thumbnail.png\"></a></li>\n";
             }
         ?>
     </ul>
