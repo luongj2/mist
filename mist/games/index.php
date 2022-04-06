@@ -21,7 +21,7 @@
         echo "<div class=\"content\">";
             echo "<h1 class=\"title\">" . $data -> gameName . "</h1>";
             echo "<div class=\"container\">";
-                echo '<img src = "data:image/png;base64,' . base64_encode($data -> thumbnail) . '" width = "100px" height = "1090px"/>';
+                echo '<img src = data:image/png;base64,' . base64_encode($data -> gameThumbnail) . ' width = "100px" height = "1090px"/>';
                 echo "<div class=\"info\">";
                     echo "<h3>" . $data -> gameDescription . "</h3>";
                     echo "<br />";
@@ -33,5 +33,7 @@
         echo "</div>";        
     ?>
 
-<?php include(dirname(__DIR__, $steps)."/footer/index.php")?>
+<?php
+    include(dirname(__DIR__, $steps)."/footer/index.php")
+?>
 

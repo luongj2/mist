@@ -53,6 +53,7 @@ CREATE TABLE games (
     compatibleWindows 		BOOLEAN,
     compatibleMacOS 		BOOLEAN,
     compatibleLinux 		BOOLEAN,
+    gameThumbnail           LONGBLOB,
 
     PRIMARY KEY				(gameID),
     FOREIGN KEY				(companyID)		        REFERENCES		companies(companyID)

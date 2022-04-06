@@ -35,7 +35,7 @@
             $data -> gameName = $record["gameName"];
             $data -> gameDescription = $record["gameDescription"];
             $data -> gameReleaseDate = $record["gameReleaseDate"];
-            $data -> thumbnail = $record["thumbnail"];
+            $data -> gameThumbnail = $record["gameThumbnail"];
         }
         
         return $data;

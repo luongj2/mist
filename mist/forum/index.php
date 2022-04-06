@@ -6,4 +6,6 @@
 
 
 
-<?php include(dirname(__DIR__, $steps)."/footer/index.php")?>
+<?php
+    include(dirname(__DIR__, $steps)."/footer/index.php")
+?>

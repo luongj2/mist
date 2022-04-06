@@ -36,11 +36,11 @@
 
                     echo "<nav>\n";
                     if(isset($_SESSION["userEmail"])) {
-                        createLink("profile", createButton("profile", "Profile"));
-                        createLink("logout", createButton("logout", "Log Out"));
+                        createLink("account/profile", createButton("profile", "Profile"));
+                        createLink("account/logout", createButton("logout", "Log Out"));
                     } else {
-                        createLink("login", createButton("login", "Log In"));
-                        createLink("signup", createButton("signup", "Sign Up"));
+                        createLink("account/login", createButton("login", "Log In"));
+                        createLink("account/signup", createButton("signup", "Sign Up"));
                     }
                     echo "</nav>\n";
                 ?>
