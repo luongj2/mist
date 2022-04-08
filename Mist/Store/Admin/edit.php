@@ -19,6 +19,7 @@ if ($name!= ""){
 		exit;
 	}
 	try{
+		
 		$sql = ("INSERT INTO usermessage (author, note_date, note_text,reply) values('$name', '$note_date','$content','')");
 		$pdo->exec($sql);
 	}catch(Exception $error){
