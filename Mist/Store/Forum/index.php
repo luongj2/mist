@@ -5,14 +5,14 @@ include_once('functions.php');
 ?>
 
 <html>
-<head><title> Welcome to Mist's Blog</title></head>
+<head><title> Welcome to Mist's Forum</title></head>
 <script>
         function Edit() {
 			document.location.href = "edit.html";
 			}
         </script>
 <body  text = "#000000">
-<h1> Welcome to Mist's Blog</h1>
+<h1> Welcome to Mist's Forum</h1>
 <button onclick="Edit()">Edit</button><br />
 <?php
 try{

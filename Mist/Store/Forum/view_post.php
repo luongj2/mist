@@ -30,7 +30,7 @@
 <?php
 specifPost($pdo, $pid); 
 ?>
-<!--Make sure code include "enctrype" to allow PHP to send file via POST.-->
+<!--$_SERVER['PHP_SELF'] is the provide path of current file-->
 <form action ="<?php echo $_SERVER['PHP_SELF']."?post=$pid";?>" method = "POST">
 <textarea name="Ucomment" placeholder="Write some comments here..." style="resize: none;"rows="10" cols="50" maxlength="500" ></textarea>
 <br /> 

@@ -2,6 +2,7 @@
 <?php
 /*
 Print All Comment for specific post
+Page Flip Included.
 */
 function printComment($pdo,$pid){
 $query = "SELECT * from comments WHERE postID = $pid";
@@ -12,7 +13,6 @@ $pagesize = 7;
 $page = $_GET['page'];
 if($page == null)
 $page = 1;
-
 $start =($page-1) * $pagesize;
 $end = $start + $pagesize;
 $pagenum = ceil($totalnum/$pagesize);
@@ -44,6 +44,7 @@ function specifPost($pdo,$pid){
 }
 /*
 Print all post in main page
+Page Flip Included.
 */
 function printPosts($pdo){
 	$sql = "SELECT * FROM posts";
