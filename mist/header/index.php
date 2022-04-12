@@ -6,7 +6,7 @@
     <head>
         <meta charset="utf-8">
 
-        <link rel="icon" href="<?php echo str_repeat("../", $steps) ?>header/icon.png">
+        <link rel="icon" href="<?php echo str_repeat("../", $steps) ?>header/images/icon.png">
 
         <title><?php echo $title ?></title>
     </head>
@@ -28,19 +28,19 @@
                     }
 
                     echo "<nav>\n";
-                    createLink("main", "<img src=\"" . str_repeat("../", $steps) . "header/logo.png\">");
-                    createLink("store", "STORE");
-                    createLink("forum", "FORUM");
+                    createLink("main", "<img src=\"" . str_repeat("../", $steps) . "header/images/logo.png\">");
+                    createLink("store/search", "STORE");
+                    createLink("forum/search", "FORUM");
                     createLink("about", "ABOUT");
                     echo "</nav>\n";
 
                     echo "<nav>\n";
-                    if(isset($_SESSION["userEmail"])) {
-                        createLink("profile", createButton("profile", "Profile"));
-                        createLink("logout", createButton("logout", "Log Out"));
+                    if(isset($_SESSION["userID"])) {
+                        createLink("account/profile", createButton("profile", "Profile"));
+                        createLink("account/logout", createButton("logout", "Log Out"));
                     } else {
-                        createLink("login", createButton("login", "Log In"));
-                        createLink("signup", createButton("signup", "Sign Up"));
+                        createLink("account/login", createButton("login", "Log In"));
+                        createLink("account/signup", createButton("signup", "Sign Up"));
                     }
                     echo "</nav>\n";
                 ?>

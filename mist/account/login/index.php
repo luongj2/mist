@@ -1,6 +1,6 @@
 <?php 
     $title = "Log In";
-    $steps = 1;
+    $steps = 2;
     include(dirname(__DIR__, $steps)."/header/index.php");
 ?>
 
@@ -23,23 +23,28 @@
         if(!isset($_GET["error"])) {
             return;
         }
+
+        $error = $_GET["error"];
         
         echo "<p>";
 
-        if($_GET["error"] == "emptyInput") {
-            echo "Please fill in all fields!";
-        }
-
-        if($_GET["error"] == "emailInvalid") {
-            echo "The email that you entered does not match our records.";
-        }
-
-        if($_GET["error"] == "passwordInvalid") {
-            echo "The password that you entered is incorrect.";
+        switch($_GET["error"]) {
+            case "emptyFields":
+                echo "Please fill in all fields!";
+                break;
+            case "emailNonexistent":
+                echo "The email that you entered does not match our records.";
+                break;
+            case "incorrectPassword":
+                echo "The password that you entered is incorrect.";
+                break;
+            case "none":
+                header("location: ../../main");
+                break;
         }
         
         echo "</p>";
     ?>
 </form>
     
-<?php include(dirname(__DIR__, $step)."/footer/index.php")?>
+<?php include(dirname(__DIR__, $steps)."/footer/index.php")?>

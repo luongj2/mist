@@ -1,0 +1,112 @@
+body {
+    color: rgb(200, 200, 200);
+    background-color: rgb(30, 30, 30);
+    font-family: "Motiva Sans", sans-serif;
+}
+
+#store {
+    display: flex;
+    justify-content: center;
+    padding: 30px 20%;
+}
+
+form , li {
+    margin: 0px 10px;
+    background: rgb(25, 25, 25);
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+form a {
+    cursor: pointer;
+    font-weight: bold;
+    margin: 5px auto 20px auto;
+    padding: 10px 20px;
+    color: rgb(255, 255, 255);
+    background: rgb(90, 125, 15);
+    text-decoration: none;
+    border-radius: 5px;
+    border: none;
+    transition: 0.3s;
+}
+
+form a:hover {
+    background-color: rgb(120, 160, 20);
+}
+
+form .search-box {
+    padding: 30px;
+}
+
+.search-box .dropdown {
+    display: flex;
+    flex-direction: column;
+    row-gap: 10px;
+}
+
+.search-box input, button {
+    display: block;
+    border-radius: 5px;
+    border: none;
+    font-size: 14px;
+}
+
+.search-box input  {
+    margin: 10px auto;
+    padding: 12px;
+    width: 100%;
+}
+
+.search-box button {
+    cursor: pointer;
+    font-weight: bold;
+    margin: 5px auto 20px auto;
+    padding: 10px 20px;
+    color: rgb(255, 255, 255);
+    background: rgb(90, 125, 15);
+    transition: 0.3s;
+}
+
+.search-box button:hover {
+    background-color: rgb(120, 160, 20);
+}
+
+#store img {
+    padding: 30px 600px 30px 30px;
+    width: 300px;
+    height: 150px;
+}
+
+#store ul {
+    width: 900px;
+    height: 600px;
+}
+
+#store li {
+    display: list-item;
+    margin-bottom: 10px;
+    list-style: none;
+}
+
+#store li a {
+    cursor: pointer;
+    margin: 5px auto 20px auto;
+    padding: 10px 20px;
+    color: rgb(255, 255, 255);
+    text-decoration: none;
+    border-radius: 5px;
+    border: none;
+    transition: 0.3s;
+}
+
+@media only screen and (max-width: 1400px) {
+    .search-box img {
+        padding: 20px 400px 20px 20px;
+        width: 300px;
+        height: 150px;
+    }
+}

@@ -1,12 +1,12 @@
 <?php
-    function getGamesFromSearch($search, $sort, $filter) {
+    function getPostsFromSearch($search, $sort) {
         $connection = require(dirname(__DIR__, 1)."/database/database.php");
 
-        $query = "CALL spGetGamesFromSearch(?, ?, ?)";
+        $query = "CALL spGetPostsFromSearch(?, ?)";
 
         $statement = $connection->prepare($query);
 
-        $statement->execute([$search, $sort, $filter]);
+        $statement->execute([$search, $sort]);
 
         $table = $statement->get_result();
 
@@ -21,39 +21,7 @@
         return $records;
     }
 
-    function getGameFromID($gameID) {
-        $connection = require(dirname(__DIR__, 1)."/database/database.php");
-
-        $query = "CALL spGetGameFromID(?)";
-
-        $statement = $connection->prepare($query);
-
-        $statement->execute([$gameID]);
-
-        $table = $statement->get_result();
-
-        $record = $table->fetch_assoc();
-
-        return $record;
-    }
-
-    function getCompanyFromID($companyID) {
-        $connection = require(dirname(__DIR__, 1)."/database/database.php");
-
-        $query = "CALL spgetCompanyFromID(?)";
-
-        $statement = $connection->prepare($query);
-
-        $statement->execute([$companyID]);
-
-        $table = $statement->get_result();
-
-        $record = $table->fetch_assoc();
-
-        return $record;
-    }
-
-    function buildSearchQueries($search, $sort, $filter) {
+    function buildSearchQueries($search, $sort) {
         $parameters = [];
         
         if(!empty($search)) {
@@ -62,10 +30,6 @@
     
         if($sort != "none") {
             $parameters["sort"] = $sort;
-        }
-    
-        if($filter != "none") {
-            $parameters["filter"] = $filter;
         }
 
         $query = http_build_query($parameters);
@@ -81,7 +45,17 @@
         return "";
     }
 
-    function createGame($userID, $postName, $postDescription) {
+    function checkEmptyStrings($array) {
+        foreach($array as $element) {
+            if(empty($element)) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    function createPost($userID, $postName, $postDescription) {
         $connection = require(dirname(__DIR__, 1)."/database/database.php");
 
         $query = "CALL spCreatePost(?, ?, ?, ?)";
