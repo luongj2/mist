@@ -1,6 +1,6 @@
 <?php
     function getUserFromEmail($userEmail) {
-        $connection = require("../../database/database.php");
+        $connection = require(dirname(__DIR__, 1)."/database/database.php");
 
         $query = "CALL spGetUserFromEmail(?)";
 
@@ -54,7 +54,7 @@
     }
 
     function signupUser($userFirstName, $userLastName, $userEmail, $userPassword) {
-        $connection = require("../../database/database.php");
+        $connection = require(dirname(__DIR__, 1)."/database/database.php");
 
         $query = "CALL spSignupUser(?, ?, ?, ?, ?)";
 

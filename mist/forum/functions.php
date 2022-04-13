@@ -1,6 +1,6 @@
 <?php
     function getPostsFromSearch($search, $sort) {
-        $connection = require("../../database/database.php");
+        $connection = require(dirname(__DIR__, 1)."/database/database.php");
 
         $query = "CALL spGetPostsFromSearch(?, ?)";
 
@@ -22,7 +22,7 @@
     }
 
     function getPostFromID($postID) {
-        $connection = require("../../database/database.php");
+        $connection = require(dirname(__DIR__, 1)."/database/database.php");
 
         $query = "CALL spGetPostFromID(?)";
 
@@ -38,7 +38,7 @@
     }
 
     function getUserFromID($userID) {
-        $connection = require("../../database/database.php");
+        $connection = require(dirname(__DIR__, 1)."/database/database.php");
 
         $query = "CALL spgetUserFromID(?)";
 
@@ -88,7 +88,7 @@
     }
 
     function createPost($userID, $postName, $postDescription) {
-        $connection = require("../../database/database.php");
+        $connection = require(dirname(__DIR__, 1)."/database/database.php");
 
         $query = "CALL spCreatePost(?, ?, ?, ?)";
 

@@ -1,6 +1,6 @@
 <?php
     function getGamesFromSearch($search, $sort, $filter) {
-        $connection = require("../../database/database.php");
+        $connection = require(dirname(__DIR__, 1)."/database/database.php");
 
         $query = "CALL spGetGamesFromSearch(?, ?, ?)";
 
@@ -22,7 +22,7 @@
     }
 
     function getGameFromID($gameID) {
-        $connection = require("../../database/database.php");
+        $connection = require(dirname(__DIR__, 1)."/database/database.php");
 
         $query = "CALL spGetGameFromID(?)";
 
@@ -38,7 +38,7 @@
     }
 
     function getCompanyFromID($companyID) {
-        $connection = require("../../database/database.php");
+        $connection = require(dirname(__DIR__, 1)."/database/database.php");
 
         $query = "CALL spGetCompanyFromID(?)";
 
@@ -54,7 +54,7 @@
     }
 
     function getUserFromID($userID) {
-        $connection = require("../../database/database.php");
+        $connection = require(dirname(__DIR__, 1)."/database/database.php");
 
         $query = "CALL spGetUserFromID(?)";
 
@@ -118,7 +118,7 @@
     }
 
     function createGame($userID, $gameName, $gameDescription, $gameGenre, $compatibleWindows, $compatibleMacOS, $compatibleLinux, $gameThumbnail) {
-        $connection = require("../../database/database.php");
+        $connection = require(dirname(__DIR__, 1)."/database/database.php");
 
         $query = "CALL spCreateGame(?, ?, ?, ?, ?, ?, ?, ?, ?)";
 

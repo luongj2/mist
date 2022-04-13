@@ -19,6 +19,7 @@
     $compatibleWindows = isset($_POST["compatibleWindows"]) ? 1 : 0;
     $compatibleMacOS = isset($_POST["compatibleMacOS"]) ? 1 : 0;
     $compatibleLinux = isset($_POST["compatibleLinux"]) ? 1 : 0;
+    $gameThumbnail = file_get_contents($_FILES["gameThumbnail"]["tmp_name"]);
 
     require "../functions.php";
 
@@ -29,13 +30,6 @@
     if(checkEmptyBooleans([$compatibleWindows, $compatibleMacOS, $compatibleLinux])) {
         returnError("emptyChecks");
     }
-
-    if(!isset($_POST["gameThumbnail"])) {
-        returnError("emptyThumbnail");
-    } else {
-        $gameThumbnail = file_get_contents($_FILES["gameThumbnail"]["tmp_name"]);
-    }
-
     createGame($userID, $gameName, $gameDescription, $gameGenre, $compatibleWindows, $compatibleMacOS, $compatibleLinux, $gameThumbnail);
 
     returnError("none");

@@ -23,7 +23,7 @@
 
         <div class="thumbnail_upload">
             <label for="gameThumbnail">Thumbnail</label>
-            <input type="file" name="gameThumbnail" accept=".jpg, .jpeg, .png">
+            <input type="file" name="gameThumbnail" accept=".jpg, .jpeg, .png" required>
         </div>
 
         <button name="submit">Submit</button>
