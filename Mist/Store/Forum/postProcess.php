@@ -3,6 +3,7 @@
 For edit.html . Helping to Create new post and save it to database.
 */
 namespace Mist\Store\Forum;
+session_start();
 include_once('../../settings.php');
 if(isset($name)){
 	$create  = "Update";
@@ -26,7 +27,11 @@ $name = $_POST['name'];
 		exit;
 	}
 	try{
-		$sql = ("INSERT INTO posts (postName, postDate, post_title,postDescription) values('$name', '$post_date','$title','$content')");
+		/*
+		Saving Post to the database
+		*/
+		$sql = ("INSERT INTO posts (postName,user_id, postDate, post_title,postDescription) 
+				VALUES('$name','{$_SESSION['id']}','$post_date','$title','$content')");
 		$pdo->exec($sql);
 		header( "refresh:5;url=index.php" );
         echo "Add Success!<br />";

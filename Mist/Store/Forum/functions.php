@@ -5,7 +5,7 @@ Print All Comment for specific post
 Page Flip Included.
 */
 function printComment($pdo,$pid){
-$query = "SELECT * from comments WHERE postID = $pid";
+$query = "SELECT * from comments, users WHERE postID = $pid AND (comments.user_id = users.user_id)";
 $result = $pdo->query($query);
 	$totalnum = $result->num_rows;
 $pagesize = 7;
@@ -17,10 +17,10 @@ $start =($page-1) * $pagesize;
 $end = $start + $pagesize;
 $pagenum = ceil($totalnum/$pagesize);
 $row = $page * $pagesize;
-$query = "SELECT * FROM comments WHERE postID = $pid  order by commentDate DESC limit $start,$pagesize";
+$query = "SELECT *, CONCAT(userFName,' ',userLName) AS fullName FROM comments, users WHERE (postID = $pid) AND (comments.user_id = users.user_id) order by commentDate DESC limit $start,$pagesize";
 $result = $pdo->query($query);
 while($row = $result->fetch_assoc()){
-	echo " [  {$row['user_id']}  ] since   {$row['commentDate']}  say: <br />";
+	echo " [  {$row['fullName']}  ] since   {$row['commentDate']}  say: <br />";
 	echo " {$row['CommentDescription']} <br /><hr /> ";
 
 }

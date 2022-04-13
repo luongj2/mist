@@ -18,7 +18,13 @@ include_once("../settings.php");
 ?>
 <html>
     <head><title>Welcome | Mist</title></head>
+    <script>
+        function Forum() {
+			document.location.href = "Forum/index.php";
+			}
+        </script>
     <body>
+    <button onclick="Forum()">Forum</button><br />
         <style type="text/css">
             body{
                 color: #000000;
