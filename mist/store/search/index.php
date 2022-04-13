@@ -9,6 +9,7 @@
 <div>
     <form action="search.php" method="post">
         <input type="text" name="search" placeholder="Search">
+        
         <button name="submit"><i class="fa fa-search"></i></button>
         
         <select name="sort">
@@ -24,7 +25,11 @@
             <option value="rpg">RPG</option>
         </select>
 
-        <a href="../request/"><button>Request Game (WIP)</button></a>
+        <?php
+            if(isset($_SESSION["userID"])) {
+                echo "<a href=\"../request/\">Request Game</a>";
+            }
+        ?>
     </form>
 
     <ul>
@@ -43,14 +48,16 @@
                 $gameName = $game["gameName"];
                 $gameDescription = $game["gameDescription"];
                 $gameReleaseDate = $game["gameReleaseDate"];
+                $gameThumbnail = base64_encode($game["gameThumbnail"]);
 
                 echo "<a href=\"../game/index.php?id=$gameID\">";
                 echo "<li>";
-                echo "<img src = \"../images/thumbnails/$gameID.png\">";
+                echo "<img src = \"data:image/png;base64,$gameThumbnail\"><br>";
                 echo "<h1>$gameName</h1><br>";
                 echo "<h4>$gameDescription</h4><br>";
                 echo "<p>Release Date: $gameReleaseDate</p>";
                 echo "</li>";
+                echo "<br>";
                 echo "</a>\n";
             }
         ?>

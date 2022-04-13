@@ -10,27 +10,21 @@ div {
     padding: 30px 20%;
 }
 
-form, li {
+form {
     display: flex;
     flex-direction: column;
-    margin: 0px 10px;
+    margin: 20px;
     padding: 30px;
     background: rgb(25, 25, 25);
-}
-
-form a {
-    margin: 30px auto auto auto;
-    color: rgb(255, 255, 255);
-    text-decoration: none;
 }
 
 form input {
     display: block;
     margin: 5px;
     padding: 10px;
+    font-size: 14px;
     border-radius: 5px;
     border: none;
-    font-size: 14px;
 }
 
 form select {
@@ -38,20 +32,41 @@ form select {
 }
 
 form button {
+    cursor: pointer;
+    color: rgb(255, 255, 255);
     border-radius: 5px;
     border: none;
-    font-size: 14px;
-    cursor: pointer;
-    font-weight: bold;
     margin: 5px auto 20px auto;
     padding: 10px 20px;
-    color: rgb(255, 255, 255);
     background: rgb(90, 125, 15);
     transition: 0.3s;
 }
 
 form button:hover {
     background-color: rgb(120, 160, 20);
+}
+
+form a {
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: bold;
+    color: rgb(255, 255, 255);
+    text-decoration: none;
+    border-radius: 5px;
+    border: none;
+    margin: 5px auto 20px auto;
+    padding: 10px 20px;
+    background: rgb(90, 125, 15);
+    transition: 0.3s;
+}
+
+form a:hover {
+    background-color: rgb(120, 160, 20);
+}
+
+ul {
+    margin: 20px;
+    width: 60%;
 }
 
 ul a {
@@ -61,13 +76,13 @@ ul a {
 
 ul li {
     display: flex;
-    margin: auto auto 20px auto;
+    flex-direction: column;
+    padding: 30px;
     list-style: none;
-
+    background: rgb(25, 25, 25);
 }
 
-li img {
-    padding: 0px 0px 20px 0px;
+ul img {
     width: 300px;
     height: 150px;
 }

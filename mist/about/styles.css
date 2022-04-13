@@ -1,17 +1,14 @@
 body {
     color: rgb(200, 200, 200);
     background: rgb(30, 30, 30);
+    font-family: "Motiva Sans", sans-serif;
+    text-decoration: none;
 }
 
 div {
     margin: 30px 28%;
     padding: 30px;
     background: rgb(25, 25, 25);
-}
-
-div h1, h2, li, p, b, i {
-    font-family: "Motiva Sans", sans-serif;
-    text-decoration: none;
 }
 
 div h1, h2, p {

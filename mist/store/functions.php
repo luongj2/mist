@@ -1,6 +1,6 @@
 <?php
     function getGamesFromSearch($search, $sort, $filter) {
-        $connection = require(dirname(__DIR__, 1)."/database/database.php");
+        $connection = require("../../database/database.php");
 
         $query = "CALL spGetGamesFromSearch(?, ?, ?)";
 
@@ -22,7 +22,7 @@
     }
 
     function getGameFromID($gameID) {
-        $connection = require(dirname(__DIR__, 1)."/database/database.php");
+        $connection = require("../../database/database.php");
 
         $query = "CALL spGetGameFromID(?)";
 
@@ -38,13 +38,29 @@
     }
 
     function getCompanyFromID($companyID) {
-        $connection = require(dirname(__DIR__, 1)."/database/database.php");
+        $connection = require("../../database/database.php");
 
-        $query = "CALL spgetCompanyFromID(?)";
+        $query = "CALL spGetCompanyFromID(?)";
 
         $statement = $connection->prepare($query);
 
         $statement->execute([$companyID]);
+
+        $table = $statement->get_result();
+
+        $record = $table->fetch_assoc();
+
+        return $record;
+    }
+
+    function getUserFromID($userID) {
+        $connection = require("../../database/database.php");
+
+        $query = "CALL spGetUserFromID(?)";
+
+        $statement = $connection->prepare($query);
+
+        $statement->execute([$userID]);
 
         $table = $statement->get_result();
 
@@ -81,16 +97,36 @@
         return "";
     }
 
-    function createGame($userID, $postName, $postDescription) {
-        $connection = require(dirname(__DIR__, 1)."/database/database.php");
+    function checkEmptyStrings($array) {
+        foreach($array as $element) {
+            if(empty($element)) {
+                return true;
+            }
+        }
 
-        $query = "CALL spCreatePost(?, ?, ?, ?)";
+        return false;
+    }
+
+    function checkEmptyBooleans($array) {
+        foreach($array as $element) {
+            if($element == 1) {
+                return false;
+            }
+        }
+
+        return true;
+    }
+
+    function createGame($userID, $gameName, $gameDescription, $gameGenre, $compatibleWindows, $compatibleMacOS, $compatibleLinux, $gameThumbnail) {
+        $connection = require("../../database/database.php");
+
+        $query = "CALL spCreateGame(?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
         $statement = $connection->prepare($query);
 
-        $postDate = date("20y-m-d");
+        $gameReleaseDate = date("20y-m-d");
 
-        $statement->execute([$userID, $postName, $postDescription, $postDate]);
+        $statement->execute([$userID, $gameName, $gameDescription, $gameGenre, $gameReleaseDate, $compatibleWindows, $compatibleMacOS, $compatibleLinux, $gameThumbnail]);
     }
 
     function returnError($error) {

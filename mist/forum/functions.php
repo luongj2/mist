@@ -1,6 +1,6 @@
 <?php
     function getPostsFromSearch($search, $sort) {
-        $connection = require(dirname(__DIR__, 1)."/database/database.php");
+        $connection = require("../../database/database.php");
 
         $query = "CALL spGetPostsFromSearch(?, ?)";
 
@@ -19,6 +19,38 @@
         array_pop($records);
 
         return $records;
+    }
+
+    function getPostFromID($postID) {
+        $connection = require("../../database/database.php");
+
+        $query = "CALL spGetPostFromID(?)";
+
+        $statement = $connection->prepare($query);
+
+        $statement->execute([$postID]);
+
+        $table = $statement->get_result();
+
+        $record = $table->fetch_assoc();
+
+        return $record;
+    }
+
+    function getUserFromID($userID) {
+        $connection = require("../../database/database.php");
+
+        $query = "CALL spgetUserFromID(?)";
+
+        $statement = $connection->prepare($query);
+
+        $statement->execute([$userID]);
+
+        $table = $statement->get_result();
+
+        $record = $table->fetch_assoc();
+
+        return $record;
     }
 
     function buildSearchQueries($search, $sort) {
@@ -56,7 +88,7 @@
     }
 
     function createPost($userID, $postName, $postDescription) {
-        $connection = require(dirname(__DIR__, 1)."/database/database.php");
+        $connection = require("../../database/database.php");
 
         $query = "CALL spCreatePost(?, ?, ?, ?)";
 

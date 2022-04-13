@@ -1,38 +1,62 @@
 <?php 
-    $title = "New Game Request";
+    $title = "Request Game";
     $steps = 2;
     include(dirname(__DIR__, $steps)."/header/index.php");
 ?>
 
-    <div class="newgame">
-        <form action="form_action.php" method="post" enctype="multipart/form-data">
-            <input type="text" name="gameName" placeholder="Name" required>
-            <input type="number" name="companyID" placeholder="Company ID" min="1" required>
-            <input type="text" name="gameGenre" placeholder="Genre" required>
-            <input type="date" name="gameReleaseDate" placeholder="Release Date" required>
-            <textarea name="gameDescription" placeholder="Description" rows="5" required></textarea>
+<div>
+    <form action="request.php" method="post" enctype="multipart/form-data">
+        <h1>Request Game</h1>
 
-            <div class="thumbnail_upload">
-                <label for="gameThumbnail">Thumbnail</label>
-                <input type="file" name="gameThumbnail" accept=".jpg, .jpeg, .png" required>
-            </div>
+        <input type="text" name="gameName" placeholder="Name">
+        <textarea name="gameDescription" placeholder="Description" rows="5"></textarea>
+        <input type="text" name="gameGenre" placeholder="Genre">
 
-            <div class="compatibility">
-                <input type="checkbox" name="compatibleWindows" checked>
-                <label for="compatibleWindows">Windows</label>
-                <input type="checkbox" name="compatibleMacOS">
-                <label for="compatibleMacOS">MacOS</label>
-                <input type="checkbox" name="compatibleLinux">
-                <label for="compatibleLinux">Linux</label>
-            </div>
-            <button name="submit">Submit</button>
-        </form>
+        <div class="compatibility">
+            <input type="checkbox" name="compatibleWindows">
+            <label for="compatibleWindows">Windows</label>
+            <input type="checkbox" name="compatibleMacOS">
+            <label for="compatibleMacOS">MacOS</label>
+            <input type="checkbox" name="compatibleLinux">
+            <label for="compatibleLinux">Linux</label>
+        </div>
+
+        <div class="thumbnail_upload">
+            <label for="gameThumbnail">Thumbnail</label>
+            <input type="file" name="gameThumbnail" accept=".jpg, .jpeg, .png">
+        </div>
+
+        <button name="submit">Submit</button>
+
         <?php
-            if (isset($_GET["request"]) == "success") {
-                echo "<h1>Game Request Success</h1>";
+            if(!isset($_GET["error"])) {
+                return;
             }
+
+            $error = $_GET["error"];
+            
+            echo "<p>";
+
+            switch($_GET["error"]) {
+                case "emptyFields":
+                    echo "Please fill in all fields!";
+                    break;
+                case "emptyChecks":
+                    echo "Please make sure there is a compatible operating system!";
+                    break;
+                case "emptyThumbnail":
+                    echo "Please make sure you upload a thumbnail!";
+                    break;
+                case "none":
+                    echo "Game requested!";
+                    break;
+            }
+            
+            echo "</p>";
         ?>
-    </div>
+    </form>
+</div>
+
 <?php
     include(dirname(__DIR__, $steps)."/footer/index.php")
 ?>

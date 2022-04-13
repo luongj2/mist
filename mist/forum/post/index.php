@@ -6,42 +6,32 @@
 
     require "../functions.php";
 
-    $gameID = $_GET["id"];
-    $game = getGameFromID($gameID);
+    $postID = $_GET["id"];
+    $post = getPostFromID($postID);
 
-    $gameName = $game["gameName"];
-    $gameDescription = $game["gameDescription"];
-    $gameGenre = $game["gameGenre"];
-    $gameReleaseDate = $game["gameReleaseDate"];
-    $compatibleWindows = $game["compatibleWindows"];
-    $compatibleMacOS = $game["compatibleMacOS"];
-    $compatibleLinux = $game["compatibleLinux"];
+    $postName = $post["postName"];
+    $postDescription = $post["postDescription"];
+    $postLikes = $post["postLikes"];
+    $postDate = $post["postDate"];
 
-    $companyID = $game["companyID"];
-    $company = getCompanyFromID($companyID);
+    $userID = $post["userID"];
+    $user = getUserFromID($userID);
 
-    $companyName = $company["companyName"];
-    $companyDescription = $company["companyDescription"];
-    $companyLink = $company["companyLink"];
+    $userFirstName = $user["userFirstName"];
+    $userLastName = $user["userLastName"];
 
-    $title = $gameName;
+    $title = $postName;
     $steps = 2;
     include(dirname(__DIR__, $steps)."/header/index.php");
 ?>
 
 <?php
-    echo "<div class=\"content\">";
-    echo "<h1 class=\"title\">$gameName</h1>";
-    echo "<div class=\"container\">";
-    echo "<img src = \"../images/thumbnails/$gameID.png\">";
-    echo "<div class=\"info\">";
-    echo "<h3>$gameDescription</h3>";
-    echo "<br>";
-    echo "<h3> Developer: $companyName</h3>";
-    echo "<br>";
-    echo "<h3> Release Date: $gameReleaseDate</h3>";
-    echo "</div>";
-    echo "</div>";
+    echo "<div>";
+    echo "<h1>$postName</h1>";
+    echo "<h2>$postDescription</h2><br>";
+    echo "<h3>User: $userFirstName $userLastName</h3><br>";
+    echo "<h3>Release Date: $postDate</h3><br>";
+    echo "<h3>Likes: $postLikes</h3>";
     echo "</div>";        
 ?>
 

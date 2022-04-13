@@ -16,13 +16,18 @@
     $compatibleWindows = $game["compatibleWindows"];
     $compatibleMacOS = $game["compatibleMacOS"];
     $compatibleLinux = $game["compatibleLinux"];
+    $gameThumbnail = base64_encode($game["gameThumbnail"]);
 
     $companyID = $game["companyID"];
-    $company = getCompanyFromID($companyID);
+    $userID = $game["userID"];
 
-    $companyName = $company["companyName"];
-    $companyDescription = $company["companyDescription"];
-    $companyLink = $company["companyLink"];
+    if($companyID != NULL) {
+        $company = getCompanyFromID($companyID);
+        $developerName = $company["companyName"];
+    } else {
+        $user = getUserFromID($userID);
+        $developerName = $user["userFirstName"]." ".$user["userLastName"];
+    }
 
     $title = $gameName;
     $steps = 2;
@@ -30,18 +35,12 @@
 ?>
 
 <?php
-    echo "<div class=\"content\">";
-    echo "<h1 class=\"title\">$gameName</h1>";
-    echo "<div class=\"container\">";
-    echo "<img src = \"../images/thumbnails/$gameID.png\">";
-    echo "<div class=\"info\">";
-    echo "<h3>$gameDescription</h3>";
-    echo "<br>";
-    echo "<h3> Developer: $companyName</h3>";
-    echo "<br>";
-    echo "<h3> Release Date: $gameReleaseDate</h3>";
-    echo "</div>";
-    echo "</div>";
+    echo "<div>";
+    echo "<h1>$gameName</h1>";
+    echo "<img src = \"data:image/png;base64,$gameThumbnail\">";
+    echo "<h2>$gameDescription</h2><br>";
+    echo "<h3>Developer: $developerName</h3><br>";
+    echo "<h3>Release Date: $gameReleaseDate</h3>";
     echo "</div>";        
 ?>
 

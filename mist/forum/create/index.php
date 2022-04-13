@@ -1,14 +1,16 @@
 <?php
-    $title = "Create new Post";
+    $title = "Create Post";
     $steps = 2;
     include(dirname(__DIR__, $steps)."/header/index.php");
 ?>
 
-<div class="newpost">
-    <form action="request.php" method="post">
+<div>
+    <form action="create.php" method="post">
         <h1>Create Post</h1>
+
         <input type="text" name="postName" placeholder="Name">
         <textarea name="postDescription" placeholder="Description" rows="8"></textarea>
+        
         <button name="submit">Submit</button>
 
         <?php
