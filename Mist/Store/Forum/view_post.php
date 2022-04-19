@@ -2,7 +2,10 @@
 session_start();
         include_once("../../settings.php");
         include_once("functions.php");
-       $pid = $_GET['post'];
+        if(empty($token)){
+        $token = 0;
+        }
+        $pid = $_GET['post'];
        $date = date('Y-m-d H:i:s');
        $commentU =  $_POST['Ucomment'];
        $uid = $_SESSION['id'];
@@ -15,12 +18,15 @@ session_start();
 		exit;
 	}
         try{
-        if(array_key_exists('s',$_POST)){
+                echo $_SESSION['verify'];
+                echo $token;
+        if(array_key_exists('s',$_POST) && $token =1){
                 $sql = "INSERT INTO comments (postID, user_id, CommentDescription ,commentDate)
                 VALUES 
                 ('$pid','$uid','$commentU','$date')";
         $pdo->query($sql);
-        }
+        $token =1;
+        } 
         }
         catch(Exception $e){
                 
@@ -42,7 +48,7 @@ specifPost($pdo, $pid);
 <textarea name="Ucomment" placeholder="Write some comments here..." style="resize: none;"rows="10" cols="50" maxlength="500" ></textarea>
 <br /> 
 <input type="submit" name='s' value="SUBMIT"/>
-<input type="hidden" name='token' value="<?php echo $token?>">
+<input type="hidden" name='token' value="<?php echo  $verify= $token;?>">
         </form>
         <?php
 printComment($pdo, $pid);
