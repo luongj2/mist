@@ -1,7 +1,7 @@
 <?php 
     $title = "About Mist";
     $steps = 1;
-    include(dirname(__DIR__, $steps)."/header/index.php");
+    require(dirname(__DIR__, $steps)."/header/index.php");
 ?>
 
 <div>
@@ -39,4 +39,6 @@
     </p>
 </div>
 
-<?php include(dirname(__DIR__, $steps)."/footer/index.php")?>
+<?php
+    require(dirname(__DIR__, $steps)."/footer/index.php")
+?>

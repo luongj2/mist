@@ -1,0 +1,88 @@
+body {
+    color: rgb(200, 200, 200);
+    background-color: rgb(30, 30, 30);
+    font-family: "Motiva Sans", sans-serif;
+}
+
+div {
+    display: flex;
+    justify-content: center;
+    padding: 30px 20%;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    margin: 20px;
+    padding: 30px;
+    background: rgb(25, 25, 25);
+}
+
+form input {
+    display: block;
+    margin: 5px;
+    padding: 10px;
+    font-size: 14px;
+    border-radius: 5px;
+    border: none;
+}
+
+form select {
+    margin: 5px;
+}
+
+form button {
+    cursor: pointer;
+    color: rgb(255, 255, 255);
+    border-radius: 5px;
+    border: none;
+    margin: 5px auto 20px auto;
+    padding: 10px 20px;
+    background: rgb(90, 125, 15);
+    transition: 0.3s;
+}
+
+form button:hover {
+    background-color: rgb(120, 160, 20);
+}
+
+form a {
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: bold;
+    color: rgb(255, 255, 255);
+    text-decoration: none;
+    border-radius: 5px;
+    border: none;
+    margin: 5px auto 20px auto;
+    padding: 10px 20px;
+    background: rgb(90, 125, 15);
+    transition: 0.3s;
+}
+
+form a:hover {
+    background-color: rgb(120, 160, 20);
+}
+
+ul {
+    margin: 20px;
+    width: 60%;
+}
+
+ul a {
+    color: rgb(255, 255, 255);
+    text-decoration: none;
+}
+
+ul li {
+    display: flex;
+    flex-direction: column;
+    padding: 30px;
+    list-style: none;
+    background: rgb(25, 25, 25);
+}
+
+ul img {
+    width: 300px;
+    height: 150px;
+}
