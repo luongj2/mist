@@ -1,4 +1,7 @@
 <?php
+    $steps = 2;
+    require(dirname(__DIR__, $steps)."/functions.php");
+
     if(!isset($_POST["submit"])) {
         header("location: index.php");
         exit();
@@ -8,12 +11,10 @@
     $sort = $_POST["sort"];
     $filter = $_POST["filter"];
 
-    require "../functions.php";
+    $query = buildSearchQuery($search, $sort, $filter);
 
-    $queries = buildSearchQueries($search, $sort, $filter);
-
-    if(!empty($queries)) {
-        header("location: index.php?".$queries);
+    if(!empty($query)) {
+        header("location: index.php?".$query);
     } else {
         header("location: index.php");
     }

@@ -1,7 +1,9 @@
 <?php 
     $title = "Mist Store";
     $steps = 2;
-    include(dirname(__DIR__, $steps)."/header/index.php");
+    require(dirname(__DIR__, $steps)."/header/index.php");
+    require(dirname(__DIR__, $steps)."/database/database.php");
+    require(dirname(__DIR__, $steps)."/functions.php");
 ?>
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -34,20 +36,18 @@
 
     <ul>
         <?php
-            require "../functions.php";
-
             $search = getSearchQuery("search");
             $sort = getSearchQuery("sort");
             $filter = getSearchQuery("filter");
 
-            $games = getGamesFromSearch($search, $sort, $filter);
+            $games = callProcedure("spGetGamesFromSearch", $search, $sort, $filter);
 
-            foreach($games as &$game) {
+            foreach($games as $game) {
                 $gameID = $game["gameID"];
                 $companyID = $game["companyID"];
                 $gameName = $game["gameName"];
                 $gameDescription = $game["gameDescription"];
-                $gameReleaseDate = $game["gameReleaseDate"];
+                $gameDate = $game["gameDate"];
                 $gameThumbnail = base64_encode($game["gameThumbnail"]);
 
                 echo "<a href=\"../game/index.php?id=$gameID\">";
@@ -55,7 +55,7 @@
                 echo "<img src = \"data:image/png;base64,$gameThumbnail\"><br>";
                 echo "<h1>$gameName</h1><br>";
                 echo "<h4>$gameDescription</h4><br>";
-                echo "<p>Release Date: $gameReleaseDate</p>";
+                echo "<p>Release Date: $gameDate</p>";
                 echo "</li>";
                 echo "<br>";
                 echo "</a>\n";
@@ -65,5 +65,5 @@
 </div>
 
 <?php
-    include(dirname(__DIR__, $steps)."/footer/index.php")
+    require(dirname(__DIR__, $steps)."/footer/index.php")
 ?>

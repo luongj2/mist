@@ -1,18 +1,24 @@
 <?php
+    $steps = 2;
+    require(dirname(__DIR__, $steps)."/database/database.php");
+
     if(!isset($_GET["id"])) {
         header("Location: ../store/search");
         return;
     }
 
-    require "../functions.php";
-
     $gameID = $_GET["id"];
-    $game = getGameFromID($gameID);
+    $game = callProcedure("spGetGameFromID", $gameID)[0];
 
+    $title = $game["gameName"];
+    require(dirname(__DIR__, $steps)."/header/index.php");
+?>
+
+<?php
     $gameName = $game["gameName"];
     $gameDescription = $game["gameDescription"];
     $gameGenre = $game["gameGenre"];
-    $gameReleaseDate = $game["gameReleaseDate"];
+    $gameDate = $game["gameDate"];
     $compatibleWindows = $game["compatibleWindows"];
     $compatibleMacOS = $game["compatibleMacOS"];
     $compatibleLinux = $game["compatibleLinux"];
@@ -22,28 +28,22 @@
     $userID = $game["userID"];
 
     if($companyID != NULL) {
-        $company = getCompanyFromID($companyID);
+        $company = callProcedure("spGetCompanyFromID", $companyID)[0];
         $developerName = $company["companyName"];
     } else {
-        $user = getUserFromID($userID);
+        $user = callProcedure("spGetUserFromID", $userID)[0];
         $developerName = $user["userFirstName"]." ".$user["userLastName"];
     }
 
-    $title = $gameName;
-    $steps = 2;
-    include(dirname(__DIR__, $steps)."/header/index.php");
-?>
-
-<?php
     echo "<div>";
     echo "<h1>$gameName</h1>";
     echo "<img src = \"data:image/png;base64,$gameThumbnail\">";
     echo "<h2>$gameDescription</h2><br>";
     echo "<h3>Developer: $developerName</h3><br>";
-    echo "<h3>Release Date: $gameReleaseDate</h3>";
+    echo "<h3>Release Date: $gameDate</h3>";
     echo "</div>";        
 ?>
 
 <?php
-    include(dirname(__DIR__, $steps)."/footer/index.php")
+    require(dirname(__DIR__, $steps)."/footer/index.php")
 ?>

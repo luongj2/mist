@@ -1,7 +1,7 @@
 <?php 
     $title = "Request Game";
     $steps = 2;
-    include(dirname(__DIR__, $steps)."/header/index.php");
+    require(dirname(__DIR__, $steps)."/header/index.php");
 ?>
 
 <div>
@@ -58,5 +58,5 @@
 </div>
 
 <?php
-    include(dirname(__DIR__, $steps)."/footer/index.php")
+    require(dirname(__DIR__, $steps)."/footer/index.php")
 ?>

@@ -1,4 +1,8 @@
 <?php
+    $steps = 2;
+    require(dirname(__DIR__, $steps)."/database/database.php");
+    require(dirname(__DIR__, $steps)."/functions.php");
+
     session_start();
 
     if(!isset($_POST["submit"])) {
@@ -16,13 +20,11 @@
     $postName = $_POST["postName"];
     $postDescription = $_POST["postDescription"];
 
-    require "../functions.php";
-
     if(checkEmptyStrings([$postName, $postDescription])) {
         returnError("emptyFields");
     }
 
-    createPost($userID, $postName, $postDescription);
+    callProcedure("spCreatePost", $userID, $postName, $postDescription);
 
     returnError("none");
 ?>

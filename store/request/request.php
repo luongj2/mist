@@ -1,4 +1,8 @@
 <?php
+    $steps = 2;
+    require(dirname(__DIR__, $steps)."/database/database.php");
+    require(dirname(__DIR__, $steps)."/functions.php");
+    
     session_start();
 
     if(!isset($_POST["submit"])) {
@@ -21,16 +25,15 @@
     $compatibleLinux = isset($_POST["compatibleLinux"]) ? 1 : 0;
     $gameThumbnail = file_get_contents($_FILES["gameThumbnail"]["tmp_name"]);
 
-    require "../functions.php";
-
-    if(checkEmptyStrings([$gameName, $gameDescription, $gameGenre])) {
+    if(checkEmptyStrings($gameName, $gameDescription, $gameGenre)) {
         returnError("emptyFields");
     }
 
-    if(checkEmptyBooleans([$compatibleWindows, $compatibleMacOS, $compatibleLinux])) {
+    if(checkEmptyBooleans($compatibleWindows, $compatibleMacOS, $compatibleLinux)) {
         returnError("emptyChecks");
     }
-    createGame($userID, $gameName, $gameDescription, $gameGenre, $compatibleWindows, $compatibleMacOS, $compatibleLinux, $gameThumbnail);
+
+    callProcedure("spCreateGame", $userID, $gameName, $gameDescription, $gameGenre, $compatibleWindows, $compatibleMacOS, $compatibleLinux, $gameThumbnail);
 
     returnError("none");
 ?>

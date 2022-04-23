@@ -1,4 +1,8 @@
 <?php
+    $steps = 2;
+    require(dirname(__DIR__, $steps)."/database/database.php");
+    require(dirname(__DIR__, $steps)."/functions.php");
+
     if(!isset($_POST["submit"])) {
         header("location: index.php");
         exit();
@@ -11,9 +15,7 @@
     $userPassword = $_POST["userPassword"];
     $userPasswordVerify = $_POST["userPasswordVerify"];
 
-    require "../functions.php";
-
-    if(checkEmptyStrings([$userFirstName, $userLastName, $userEmail, $userPassword])) {
+    if(checkEmptyStrings($userFirstName, $userLastName, $userEmail, $userPassword)) {
         returnError("emptyFields");
     }
 
@@ -37,7 +39,9 @@
         returnError("differentPasswords");
     }
 
-    signupUser($userFirstName, $userLastName, $userEmail, $userPassword);
+    $userPasswordHash = password_hash($userPassword, PASSWORD_DEFAULT);
+
+    callProcedure("spSignupUser", $userFirstName, $userLastName, $userEmail, $userPasswordHash);
 
     returnError("none");
 ?>

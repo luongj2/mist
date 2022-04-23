@@ -1,31 +1,31 @@
 <?php
+    $steps = 2;
+    require(dirname(__DIR__, $steps)."/database/database.php");
+
     if(!isset($_GET["id"])) {
         header("Location: ../store/search");
         return;
     }
 
-    require "../functions.php";
-
     $postID = $_GET["id"];
-    $post = getPostFromID($postID);
+    $post = callProcedure("spGetPostFromID", $postID)[0];
 
+    $title = $post["postName"];
+    require(dirname(__DIR__, $steps)."/header/index.php");
+?>
+
+<?php
     $postName = $post["postName"];
     $postDescription = $post["postDescription"];
     $postLikes = $post["postLikes"];
     $postDate = $post["postDate"];
 
     $userID = $post["userID"];
-    $user = getUserFromID($userID);
+    $user = callProcedure("spgetUserFromID", $userID)[0];
 
     $userFirstName = $user["userFirstName"];
     $userLastName = $user["userLastName"];
 
-    $title = $postName;
-    $steps = 2;
-    include(dirname(__DIR__, $steps)."/header/index.php");
-?>
-
-<?php
     echo "<div>";
     echo "<h1>$postName</h1>";
     echo "<h2>$postDescription</h2><br>";
@@ -36,5 +36,5 @@
 ?>
 
 <?php
-    include(dirname(__DIR__, $steps)."/footer/index.php")
+    require(dirname(__DIR__, $steps)."/footer/index.php")
 ?>

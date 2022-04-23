@@ -1,7 +1,7 @@
 <?php 
     $title = "Sign Up";
     $steps = 2;
-    include(dirname(__DIR__, $steps)."/header/index.php");
+    require(dirname(__DIR__, $steps)."/header/index.php");
 ?>
 
 <form action="signup.php" method="post">
@@ -59,4 +59,4 @@
     ?>
 </form>
     
-<?php include(dirname(__DIR__, $steps)."/footer/index.php")?>
+<?php require(dirname(__DIR__, $steps)."/footer/index.php")?>
