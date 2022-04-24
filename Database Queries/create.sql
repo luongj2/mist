@@ -9,7 +9,7 @@ CREATE TABLE users (
     userLastName            VARCHAR(16),
     userEmail               VARCHAR(64),
     userPassword            VARCHAR(128),
-    userJoinDate            DATE,
+    userDate            DATE,
 
     PRIMARY KEY (userID)
 );
@@ -318,7 +318,7 @@ CREATE PROCEDURE spSignupUser (
     userLastName,
     userEmail,
     userPassword,
-    userJoinDate
+    userDate
 ) VALUES (
 	spUserFirstName,
     spUserLastName,
@@ -330,5 +330,3 @@ CREATE PROCEDURE spSignupUser (
 $$
 
 DELIMITER ;
-
-SHOW TABLES;
