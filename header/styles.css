@@ -3,6 +3,12 @@
     padding: 0px;
 }
 
+body {
+    color: rgb(200, 200, 200);
+    background-color: rgb(10, 30, 40);
+    font-family: "Motiva Sans", sans-serif;
+}
+
 header {
     display: flex;
     align-items: center;
@@ -61,22 +67,22 @@ nav button {
     border: none;
     padding: 10px 20px;
     color: rgb(255, 255, 255);
-    background: rgb(90, 125, 15);
+    background: rgb(45, 150, 195);
 }
 
 .signup:hover {
-    background: rgb(120, 160, 20);
+    background: rgb(55, 180, 230);
 }
 
 .profile {
     border: none;
     padding: 10px 20px;
     color: rgb(255, 255, 255);
-    background: rgb(15, 90, 125);
+    background: rgb(45, 150, 195);
 }
 
 .profile:hover {
-    background: rgb(20, 120, 160);
+    background: rgb(55, 180, 230);
 }
 
 .logout {
@@ -88,10 +94,4 @@ nav button {
 
 .logout:hover {
     color: rgb(200, 60, 60);
-}
-
-@media only screen and (max-width: 1400px) {
-    header {
-        padding: 30px 15%;
-    } 
 }

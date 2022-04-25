@@ -1,13 +1,13 @@
 <?php
     $steps = 2;
-    require(dirname(__DIR__, $steps)."/database/database.php");
+    require(dirname(__DIR__, $steps)."/database.php");
     require(dirname(__DIR__, $steps)."/functions.php");
 
     if(!isset($_POST["submit"])) {
         header("location: index.php");
         exit();
     }
-
+    
     $userFirstName = $_POST["userFirstName"];
     $userLastName = $_POST["userLastName"];
     $userEmail = $_POST["userEmail"];
@@ -41,7 +41,7 @@
 
     $userPasswordHash = password_hash($userPassword, PASSWORD_DEFAULT);
 
-    callProcedure("spSignupUser", $userFirstName, $userLastName, $userEmail, $userPasswordHash);
+    callProcedure("spCreateUser", $userFirstName, $userLastName, $userEmail, $userPasswordHash);
 
     returnError("none");
 ?>

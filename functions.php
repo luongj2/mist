@@ -57,6 +57,30 @@
         return strlen($userPassword) < 8 || preg_match('/\s/', $userPassword);
     }
 
+    function checkEmptyPicture($picture) {
+        if ($picture == "") {
+            return true;
+        }
+
+        return false;
+    }
+
+    function checkLargePictureSize($picture) {
+        $pictureDimensions = getimagesize($picture);
+        $pictureWidth = $image_info[0];
+        $pictureHeight = $image_info[1];
+
+        if ($pictureWidth > 1200) {
+            return true;
+        }
+
+        if ($pictureHeight > 600) {
+            return true;
+        }
+
+        return false;
+    }
+
     function getUserFromEmail($userEmail) {
         return callProcedure("spGetUserFromEmail", $userEmail)[0];
     }

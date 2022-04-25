@@ -1,17 +1,12 @@
 <?php
     $steps = 2;
-    require(dirname(__DIR__, $steps)."/database/database.php");
+    require(dirname(__DIR__, $steps)."/database.php");
     require(dirname(__DIR__, $steps)."/functions.php");
 
     session_start();
 
     if(!isset($_POST["submit"])) {
-        header("location: ../search/index.php");
-        exit();
-    }
-
-    if(!isset($_SESSION["userID"])) {
-        header("location: ../search/index.php");
+        header("location: ../search");
         exit();
     }
 

@@ -1,6 +1,8 @@
 <?php 
     $title = "About Mist";
     $steps = 1;
+    require(dirname(__DIR__, $steps)."/database.php");
+    require(dirname(__DIR__, $steps)."/functions.php");
     require(dirname(__DIR__, $steps)."/header/index.php");
 ?>
 

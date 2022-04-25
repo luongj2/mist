@@ -1,7 +1,14 @@
-<?php 
+<?php
     $title = "Request Game";
     $steps = 2;
+    require(dirname(__DIR__, $steps)."/database.php");
+    require(dirname(__DIR__, $steps)."/functions.php");
     require(dirname(__DIR__, $steps)."/header/index.php");
+
+    if(!isset($_SESSION["userID"])) {
+        header("location: ../search");
+        exit();
+    }
 ?>
 
 <div>
@@ -22,8 +29,8 @@
         </div>
 
         <div class="thumbnail_upload">
-            <label for="gameThumbnail">Thumbnail</label>
-            <input type="file" name="gameThumbnail" accept=".jpg, .jpeg, .png" required>
+            <label for="gamePicture">Thumbnail</label>
+            <input type="file" name="gamePicture" accept=".jpg, .jpeg, .png">
         </div>
 
         <button name="submit">Submit</button>
@@ -44,9 +51,11 @@
                 case "emptyChecks":
                     echo "Please make sure there is a compatible operating system!";
                     break;
-                case "emptyThumbnail":
-                    echo "Please make sure you upload a thumbnail!";
+                case "emptyPicture":
+                    echo "Please make sure you upload a picture!";
                     break;
+                case "largePicture":
+                    echo "Please make sure the picture is less than 1200x600 pixels!";
                 case "none":
                     echo "Game requested!";
                     break;

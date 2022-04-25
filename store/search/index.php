@@ -1,9 +1,9 @@
 <?php 
     $title = "Mist Store";
     $steps = 2;
-    require(dirname(__DIR__, $steps)."/header/index.php");
-    require(dirname(__DIR__, $steps)."/database/database.php");
+    require(dirname(__DIR__, $steps)."/database.php");
     require(dirname(__DIR__, $steps)."/functions.php");
+    require(dirname(__DIR__, $steps)."/header/index.php");
 ?>
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -44,15 +44,22 @@
 
             foreach($games as $game) {
                 $gameID = $game["gameID"];
-                $companyID = $game["companyID"];
+
+                $game = callProcedure("spGetGameFromID", $gameID)[0];
+
                 $gameName = $game["gameName"];
                 $gameDescription = $game["gameDescription"];
+                $gameGenre = $game["gameGenre"];
                 $gameDate = $game["gameDate"];
-                $gameThumbnail = base64_encode($game["gameThumbnail"]);
+                $gamePicture = base64_encode($game["gamePicture"]);
+                $compatibleWindows = $game["compatibleWindows"];
+                $compatibleMacOS = $game["compatibleMacOS"];
+                $compatibleLinux = $game["compatibleLinux"];
+                $developerName = $game["developerName"];
 
                 echo "<a href=\"../game/index.php?id=$gameID\">";
                 echo "<li>";
-                echo "<img src = \"data:image/png;base64,$gameThumbnail\"><br>";
+                echo "<img src = \"data:image/png;base64,$gamePicture\"><br>";
                 echo "<h1>$gameName</h1><br>";
                 echo "<h4>$gameDescription</h4><br>";
                 echo "<p>Release Date: $gameDate</p>";
