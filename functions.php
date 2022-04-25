@@ -1,20 +1,15 @@
 <?php
-    function buildSearchQuery(...$parameters) {
-        $query = [];
-
-        if(!empty($parameters[0])) {
-            $query["search"] = $parameters[0];
-        }
-    
-        if($parameters[1] != "none") {
-            $query["sort"] = $parameters[1];
-        }
-    
-        if($parameters[2] != "none") {
-            $query["filter"] = $parameters[2];
+    function formatSearchQuery($parameters) {
+        if(checkEmptyStrings($parameters["search"])) {
+            unset($parameters["search"]);
         }
 
-        return http_build_query($query);
+        foreach ($parameters as $index => $parameter) {
+            if($parameter == "none") {
+                unset($parameters[$index]);
+            }
+        }
+        return http_build_query($parameters);
     }
 
     function getSearchQuery($parameter) {

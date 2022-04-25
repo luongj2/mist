@@ -8,15 +8,17 @@
         exit();
     }
 
-    $search = $_POST["search"];
-    $sort = $_POST["sort"];
-    
-    $query = buildSearchQuery($search, $sort);
+    $searchQuery = [
+        "search" =>  $_POST["search"],
+        "sort" =>  $_POST["sort"]
+    ];
 
-    if(!empty($query)) {
-        header("location: index.php?".$query);
+    $searchQuery = formatSearchQuery($searchQuery);
+
+    if(!empty($searchQuery)) {
+        header("location: index.php?".$searchQuery);
     } else {
-        header("location: index.php");
+        header("location: ../search");
     }
 
     exit();

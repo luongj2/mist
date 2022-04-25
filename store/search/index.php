@@ -16,15 +16,17 @@
         
         <select name="sort">
             <option value="none">Sort By</option>
-            <option value="alphabetical">Alphabetical Order</option>
-            <option value="date">Release Date</option>
+            <option value="atoz">A-Z</option>
+            <option value="ztoa">Z-A</option>
+            <option value="oldest">Oldest</option>
+            <option value="newest">Newest</option>
         </select>
-        
+
         <select name="filter">
-            <option value="none">Filter By Genre</option>
-            <option value="casual">Casual</option>
-            <option value="fps">FPS</option>
-            <option value="rpg">RPG</option>
+            <option value="none">Filter By</option>
+            <option value="Casual">Casual</option>
+            <option value="FPS">FPS</option>
+            <option value="RPG">RPG</option>
         </select>
 
         <?php
@@ -40,7 +42,7 @@
             $sort = getSearchQuery("sort");
             $filter = getSearchQuery("filter");
 
-            $games = callProcedure("spGetGamesFromSearch", $search, $sort, $filter);
+            $games = callProcedure("spGetGamesFromSearch", $search, $sort, $filter, "Accepted");
 
             foreach($games as $game) {
                 $gameID = $game["gameID"];
