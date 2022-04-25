@@ -11,7 +11,7 @@
     $search = $_POST["search"];
     $sort = $_POST["sort"];
     
-    $query = buildSearchQueries($search, $sort);
+    $query = buildSearchQuery($search, $sort);
 
     if(!empty($query)) {
         header("location: index.php?".$query);
