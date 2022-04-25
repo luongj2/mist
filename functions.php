@@ -57,18 +57,10 @@
         return strlen($userPassword) < 8 || preg_match('/\s/', $userPassword);
     }
 
-    function checkEmptyPicture($picture) {
-        if ($picture == "") {
-            return true;
-        }
-
-        return false;
-    }
-
     function checkLargePictureSize($picture) {
         $pictureDimensions = getimagesize($picture);
-        $pictureWidth = $image_info[0];
-        $pictureHeight = $image_info[1];
+        $pictureWidth = $pictureDimensions[0];
+        $pictureHeight = $pictureDimensions[1];
 
         if ($pictureWidth > 1200) {
             return true;

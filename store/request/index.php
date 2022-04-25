@@ -56,6 +56,7 @@
                     break;
                 case "largePicture":
                     echo "Please make sure the picture is less than 1200x600 pixels!";
+                    break;
                 case "none":
                     echo "Game requested!";
                     break;

@@ -18,7 +18,8 @@
     $compatibleWindows = isset($_POST["compatibleWindows"]) ? 1 : 0;
     $compatibleMacOS = isset($_POST["compatibleMacOS"]) ? 1 : 0;
     $compatibleLinux = isset($_POST["compatibleLinux"]) ? 1 : 0;
-    $gamePicture = file_get_contents($_FILES["gamePicture"]["tmp_name"]);
+    $gamePicture = $_FILES["gamePicture"]["tmp_name"];
+    $gamePictureBLOB = file_get_contents($gamePicture);
 
     if(checkEmptyStrings($gameName, $gameDescription, $gameGenre)) {
         returnError("emptyFields");
@@ -28,7 +29,7 @@
         returnError("emptyChecks");
     }
 
-    if(checkEmptyPicture($gamePicture)) {
+    if(checkEmptyStrings($gamePictureBLOB)) {
         returnError("emptyPicture");
     }
 
@@ -36,7 +37,7 @@
         returnError("largePicture");
     }
 
-    callProcedure("spCreateGame", $userID, $gameName, $gameDescription, $gameGenre, $gamePicture, $compatibleWindows, $compatibleMacOS, $compatibleLinux);
+    callProcedure("spCreateGame", $userID, $gameName, $gameDescription, $gameGenre, $gamePictureBLOB, $compatibleWindows, $compatibleMacOS, $compatibleLinux);
 
     returnError("none");
 ?>
