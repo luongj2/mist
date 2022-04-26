@@ -1,4 +1,8 @@
 <?php
+    if(session_status() == PHP_SESSION_NONE) {
+        session_start();
+    }
+
     $steps = 1;
     require(dirname(__DIR__, $steps)."/database.php");
     require(dirname(__DIR__, $steps)."/functions.php");
