@@ -64,7 +64,7 @@
                     break;
                 case "none":
                     $gameID = $_GET["gameID"];
-                    echo "Game requested! Check <a href=\"http://localhost/mist/store/game/index.php?gameID=$gameID\">here</a> often to see the status of your game request.";
+                    echo "Game requested! Check <a href=\"../game/index.php?gameID=$gameID\">here</a> often to see the status of your game request.";
                     break;
             }
             
