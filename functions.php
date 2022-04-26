@@ -73,19 +73,19 @@
     }
 
     function checkPasswordMatchesEmail($userEmail, $userPassword) {
-        $record = getUserFromEmail($userEmail);
+        $user = getUserFromEmail($userEmail);
 
-        $databasePassword = $record["userPassword"];
+        $userPassword = $user["userPassword"];
 
         return !password_verify($userPassword, $databasePassword);
     }
 
     function loginUser($userEmail, $userPassword) {
-        $userRecord = getUserFromEmail($userEmail);
+        $user = getUserFromEmail($userEmail);
         
         session_start();
 
-        $_SESSION["userID"] = $userRecord["userID"];
+        $_SESSION["userID"] = $user["userID"];
     }
     
     function returnError($error) {
