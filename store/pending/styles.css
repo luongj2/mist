@@ -3,7 +3,6 @@ ul {
     width: 60%;
 }
 
-
 ul li {
     display: flex;
     flex-direction: row;

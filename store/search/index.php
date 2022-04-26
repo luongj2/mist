@@ -68,14 +68,33 @@
                 $compatibleLinux = $game["compatibleLinux"];
                 $developerName = $game["developerName"];
 
+                $requestID = $game["requestID"];
+
+                if($requestID != NULL) {
+                    $request = callProcedure("spGetRequestFromID", $requestID)[0];
+
+                    $requestAction = $request["requestAction"];
+                    $requestReason = $request["requestReason"];
+                }
+
                 echo "<a href=\"../game/index.php?gameID=$gameID\">";
                 echo "<li>";
+                echo "<b>Name:</b> $gameName<br>";
+                echo "<b>Developer:</b> $developerName<br>";
+                echo "<b>Description:</b> $gameDescription<br>";
+                echo "<b>Genre:</b> $gameGenre<br>";
+                echo "<b>Date:</b> $gameDate<br>";
                 echo "<img src = \"data:image/png;base64,$gamePicture\"><br>";
-                echo "<h1>$gameName</h1><br>";
-                echo "<h4>$gameDescription</h4><br>";
-                echo "<p>Release Date: $gameDate</p>";
-                echo "</li>";
-                echo "<br>";
+                echo "<b>Windows:</b> $compatibleWindows<br>";
+                echo "<b>MacOS:</b> $compatibleMacOS<br>";
+                echo "<b>Linux:</b> $compatibleLinux<br>";
+
+                if($requestID != NULL) {
+                    echo "<b>Request Action:</b> $requestAction<br>";
+                    echo "<b>Request Reason:</b> $requestReason <br>";
+                }
+
+                echo "</li><br>";
                 echo "</a>\n";
             }
         ?>

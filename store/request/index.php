@@ -63,7 +63,8 @@
                     echo "Please make sure the picture is less than 1200x600 pixels!";
                     break;
                 case "none":
-                    echo "Game requested!";
+                    $gameID = $_GET["gameID"];
+                    echo "Game requested! Check <a href=\"http://localhost/mist/store/game/index.php?gameID=$gameID\">here</a> often to see the status of your game request.";
                     break;
             }
             

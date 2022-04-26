@@ -37,7 +37,7 @@
         returnError("largePicture");
     }
 
-    callProcedure("spCreateGame", $userID, $gameName, $gameDescription, $gameGenre, $gamePictureBLOB, $compatibleWindows, $compatibleMacOS, $compatibleLinux);
+    $gameID = callProcedure("spCreateGame", $userID, $gameName, $gameDescription, $gameGenre, $gamePictureBLOB, $compatibleWindows, $compatibleMacOS, $compatibleLinux)[0]["gameID"];
 
-    returnError("none");
+    returnError("none&gameID=$gameID");
 ?>

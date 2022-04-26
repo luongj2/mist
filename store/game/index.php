@@ -17,6 +17,7 @@
     $game = callProcedure("spGetGameFromID", $gameID)[0];
 
     $gameName = $game["gameName"];
+    $developerName = $game["developerName"];
     $gameDescription = $game["gameDescription"];
     $gameGenre = $game["gameGenre"];
     $gameDate = $game["gameDate"];
@@ -24,7 +25,15 @@
     $compatibleWindows = $game["compatibleWindows"];
     $compatibleMacOS = $game["compatibleMacOS"];
     $compatibleLinux = $game["compatibleLinux"];
-    $developerName = $game["developerName"];
+
+    $requestID = $game["requestID"];
+
+    if($requestID != NULL) {
+        $request = callProcedure("spGetRequestFromID", $requestID)[0];
+
+        $requestAction = $request["requestAction"];
+        $requestReason = $request["requestReason"];
+    }
 
     $title = $gameName;
     require(dirname(__DIR__, $steps)."/header/index.php");
@@ -32,11 +41,20 @@
 
 <div>
     <?php
-        echo "<h1>$gameName</h1>";
-        echo "<img src = \"data:image/png;base64,$gamePicture\">";
-        echo "<h2>$gameDescription</h2><br>";
-        echo "<h3>Developer: $developerName</h3><br>";
-        echo "<h3>Release Date: $gameDate</h3>";     
+        echo "<b>Name:</b> $gameName<br>";
+        echo "<b>Developer:</b> $developerName<br>";
+        echo "<b>Description:</b> $gameDescription<br>";
+        echo "<b>Genre:</b> $gameGenre<br>";
+        echo "<b>Date:</b> $gameDate<br>";
+        echo "<img src = \"data:image/png;base64,$gamePicture\"><br>";
+        echo "<b>Windows:</b> $compatibleWindows<br>";
+        echo "<b>MacOS:</b> $compatibleMacOS<br>";
+        echo "<b>Linux:</b> $compatibleLinux<br>";
+
+        if($requestID != NULL) {
+            echo "<b>Request Action:</b> $requestAction<br>";
+            echo "<b>Request Reason:</b> $requestReason <br>";
+        }
     ?>
 </div>
 
