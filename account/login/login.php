@@ -23,7 +23,7 @@
         returnError("incorrectPassword");
     }
 
-    loginUser($userEmail, $userPassword);
+    loginUser($userEmail);
 
     returnError("none");
 ?>

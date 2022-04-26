@@ -1,0 +1,23 @@
+ul {
+    margin: 20px;
+    width: 60%;
+}
+
+
+ul li {
+    display: flex;
+    flex-direction: row;
+    column-gap: 40px; 
+    padding: 30px;
+    list-style: none;
+    background: rgb(25, 25, 25);
+}
+
+ul li .aaa {
+    width: 60%;
+}
+
+ul img {
+    width: 300px;
+    height: 150px;
+}

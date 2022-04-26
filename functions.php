@@ -75,17 +75,16 @@
     function checkPasswordMatchesEmail($userEmail, $userPassword) {
         $user = getUserFromEmail($userEmail);
 
-        $userPassword = $user["userPassword"];
-
-        return !password_verify($userPassword, $databasePassword);
+        return !password_verify($userPassword, $user["userPassword"]);
     }
 
-    function loginUser($userEmail, $userPassword) {
+    function loginUser($userEmail) {
         $user = getUserFromEmail($userEmail);
         
         session_start();
 
         $_SESSION["userID"] = $user["userID"];
+        $_SESSION["userRole"] = $user["userRole"];
     }
     
     function returnError($error) {

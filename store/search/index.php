@@ -1,4 +1,8 @@
 <?php
+    if(session_status() == PHP_SESSION_NONE) {
+        session_start();
+    }
+
     $steps = 2;
     require(dirname(__DIR__, $steps)."/database.php");
     require(dirname(__DIR__, $steps)."/functions.php");
@@ -33,6 +37,10 @@
         <?php
             if(isset($_SESSION["userID"])) {
                 echo "<a href=\"../request/\">Request Game</a>";
+
+                if($_SESSION["userRole"] == "admin") {
+                    echo "<a href=\"../pending/\">Pending Requests</a>";
+                }
             }
         ?>
     </form>
@@ -43,7 +51,7 @@
             $sort = getSearchQuery("sort");
             $filter = getSearchQuery("filter");
 
-            $games = callProcedure("spGetGamesFromSearch", $search, $sort, $filter, "Accepted");
+            $games = callProcedure("spGetGamesFromSearch", $search, $sort, $filter, "accepted");
 
             foreach($games as $game) {
                 $gameID = $game["gameID"];
