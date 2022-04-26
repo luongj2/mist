@@ -1,9 +1,9 @@
-<?php 
-    $title = "Welcome to Mist";
+<?php
+    $steps = 1;
     require(dirname(__DIR__, $steps)."/database.php");
     require(dirname(__DIR__, $steps)."/functions.php");
 
-    $steps = 1;
+    $title = "Welcome to Mist";
     require(dirname(__DIR__, $steps)."/header/index.php");
 ?>
 
