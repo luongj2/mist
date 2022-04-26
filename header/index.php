@@ -1,12 +1,5 @@
 <?php
-    function createLink($href, $text) {
-        global $steps;
-        echo "<a href=\"".str_repeat("../", $steps)."$href\">$text</a>\n";
-    }
-     
-    function createButton($class, $text) {
-        return "<button class=\"$class\">$text</button>\n";
-    }
+    session_start();
 ?>
 
 <html>
@@ -24,6 +17,17 @@
         <link rel="stylesheet" href="<?php echo str_repeat("../", $steps) ?>header/styles.css">
 
         <header>
+                <?php
+                    function createLink($href, $text) {
+                        global $steps;
+                        echo "<a href=\"".str_repeat("../", $steps)."$href\">$text</a>\n";
+                    }
+                     
+                    function createButton($class, $text) {
+                        return "<button class=\"$class\">$text</button>\n";
+                    }
+                ?>
+
                 <nav>
                     <?php
                         createLink("main", "<img src=\"".str_repeat("../", $steps)."header/images/logo.png\">");
