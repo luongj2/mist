@@ -17,7 +17,7 @@
     <form action="search.php" method="post">
         <input type="text" name="search" placeholder="Search">
         
-        <button name="submit"><i class="fa fa-search"></i></button>
+        <button name="submit"><img src="../../images/searchicon.svg"></button>
         
         <select name="sort">
             <option value="none">Sort By</option>
@@ -68,15 +68,6 @@
                 $compatibleLinux = $game["compatibleLinux"];
                 $developerName = $game["developerName"];
 
-                $requestID = $game["requestID"];
-
-                if($requestID != NULL) {
-                    $request = callProcedure("spGetRequestFromID", $requestID)[0];
-
-                    $requestAction = $request["requestAction"];
-                    $requestReason = $request["requestReason"];
-                }
-
                 echo "<a href=\"../game/index.php?gameID=$gameID\">";
                 echo "<li>";
                 echo "<b>Name:</b> $gameName<br>";
@@ -85,15 +76,6 @@
                 echo "<b>Genre:</b> $gameGenre<br>";
                 echo "<b>Date:</b> $gameDate<br>";
                 echo "<img src = \"data:image/png;base64,$gamePicture\"><br>";
-                echo "<b>Windows:</b> $compatibleWindows<br>";
-                echo "<b>MacOS:</b> $compatibleMacOS<br>";
-                echo "<b>Linux:</b> $compatibleLinux<br>";
-
-                if($requestID != NULL) {
-                    echo "<b>Request Action:</b> $requestAction<br>";
-                    echo "<b>Request Reason:</b> $requestReason <br>";
-                }
-
                 echo "</li><br>";
                 echo "</a>\n";
             }

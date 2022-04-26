@@ -8,7 +8,7 @@
     <head>
         <meta charset="utf-8">
 
-        <link rel="icon" href="<?php echo str_repeat("../", $steps) ?>header/images/icon.png">
+        <link rel="icon" href="<?php echo str_repeat("../", $steps) ?>images/misticon.png">
 
         <title><?php echo $title ?></title>
     </head>
@@ -32,7 +32,7 @@
 
                 <nav>
                     <?php
-                        createLink("main", "<img src=\"".str_repeat("../", $steps)."header/images/logo.png\">");
+                        createLink("main", "<img src=\"".str_repeat("../", $steps)."images/mistlogo.png\">");
                         createLink("store/search", "STORE");
                         createLink("forum/search", "FORUM");
                         createLink("about", "ABOUT");

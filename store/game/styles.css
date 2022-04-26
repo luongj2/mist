@@ -21,7 +21,17 @@ div h3 {
 div img {
     width: 600px;
     height: 300px;
+    margin: 0px;
+}
+
+div .icons img {
+    width: 30px;
+    height: 30px;
     margin: 10px;
+}
+
+div .icons {
+    margin: 0;
 }
 
 @media only screen and (max-width: 1400px) {

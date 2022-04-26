@@ -22,9 +22,9 @@
     $gameGenre = $game["gameGenre"];
     $gameDate = $game["gameDate"];
     $gamePicture = base64_encode($game["gamePicture"]);
-    $compatibleWindows = $game["compatibleWindows"];
-    $compatibleMacOS = $game["compatibleMacOS"];
-    $compatibleLinux = $game["compatibleLinux"];
+    $compatibleWindows = ($game["compatibleWindows"] == 1) ? "<img src=\"../../images/os/windows.svg\">" : "";
+    $compatibleMacOS = ($game["compatibleMacOS"] == 1) ? "<img src=\"../../images/os/macos.svg\">" : "";
+    $compatibleLinux = ($game["compatibleLinux"] == 1) ? "<img src=\"../../images/os/linux.svg\">" : "";
 
     $requestID = $game["requestID"];
 
@@ -47,9 +47,7 @@
         echo "<b>Genre:</b> $gameGenre<br>";
         echo "<b>Date:</b> $gameDate<br>";
         echo "<img src = \"data:image/png;base64,$gamePicture\"><br>";
-        echo "<b>Windows:</b> $compatibleWindows<br>";
-        echo "<b>MacOS:</b> $compatibleMacOS<br>";
-        echo "<b>Linux:</b> $compatibleLinux<br>";
+        echo "<div class=\"icons\">$compatibleWindows $compatibleMacOS $compatibleLinux</div><br>";
 
         if($requestID != NULL) {
             echo "<b>Request Action:</b> $requestAction<br>";
