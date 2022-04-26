@@ -6,14 +6,15 @@ ul {
 
 ul li {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
+    column-gap: 40px; 
     padding: 30px;
     list-style: none;
     background: rgb(25, 25, 25);
 }
 
-ul li .abc {
-    width: 20% !important;
+ul li .aaa {
+    width: 60%;
 }
 
 ul img {
