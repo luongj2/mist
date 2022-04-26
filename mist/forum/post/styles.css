@@ -11,32 +11,23 @@ div {
     background: rgb(25, 25, 25);
 }
 
-div h1, h2, p {
-    text-align: center;
-}
-
-div h1, h2 {
-    padding: 30px;
-}
-
-div p, li {
-    padding: 8px;
-}
-
 div h1 {
     font-size: 48px;
 }
 
 div h2 {
     font-size: 38px;
+    font-weight: lighter;
 }
 
-div u {
-    font-size: 28px;
-}
-
-div li, i {
+div h3 {
     font-size: 18px;
+    font-weight: lighter;
+}
+
+div img {
+    width: 600px;
+    height: 300px;
 }
 
 @media only screen and (max-width: 1400px) {

@@ -1,0 +1,22 @@
+ul {
+    margin: 20px;
+    width: 60%;
+}
+
+
+ul li {
+    display: flex;
+    flex-direction: column;
+    padding: 30px;
+    list-style: none;
+    background: rgb(25, 25, 25);
+}
+
+ul li .abc {
+    width: 20% !important;
+}
+
+ul img {
+    width: 300px;
+    height: 150px;
+}

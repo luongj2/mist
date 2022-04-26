@@ -1,9 +1,13 @@
 <?php
+    $steps = 2;
+    require(dirname(__DIR__, $steps)."/database.php");
+    require(dirname(__DIR__, $steps)."/functions.php");
+
     if(!isset($_POST["submit"])) {
         header("location: index.php");
         exit();
     }
-
+    
     $userFirstName = $_POST["userFirstName"];
     $userLastName = $_POST["userLastName"];
     $userEmail = $_POST["userEmail"];
@@ -11,13 +15,11 @@
     $userPassword = $_POST["userPassword"];
     $userPasswordVerify = $_POST["userPasswordVerify"];
 
-    require "../functions.php";
-
-    if(checkEmptyStrings(array($userFirstName, $userLastName, $userEmail, $userPassword))) {
+    if(checkEmptyStrings($userFirstName, $userLastName, $userEmail, $userPassword)) {
         returnError("emptyFields");
     }
 
-    if(getRecordFromEmail($userEmail)) {
+    if(getUserFromEmail($userEmail)) {
         returnError("emailTaken");
     }
 
@@ -37,7 +39,9 @@
         returnError("differentPasswords");
     }
 
-    signupUser($userFirstName, $userLastName, $userEmail, $userPassword);
+    $userPasswordHash = password_hash($userPassword, PASSWORD_DEFAULT);
+
+    callProcedure("spCreateUser", $userFirstName, $userLastName, $userEmail, $userPasswordHash);
 
     returnError("none");
 ?>

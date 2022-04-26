@@ -1,7 +1,14 @@
-<?php 
+<?php
     $title = "Sign Up";
     $steps = 2;
-    include(dirname(__DIR__, $steps)."/header/index.php");
+    require(dirname(__DIR__, $steps)."/database.php");
+    require(dirname(__DIR__, $steps)."/functions.php");
+    require(dirname(__DIR__, $steps)."/header/index.php");
+
+    if(isset($_SESSION["userID"])) {
+        header("location: ../profile");
+        exit();
+    }
 ?>
 
 <form action="signup.php" method="post">
@@ -59,4 +66,6 @@
     ?>
 </form>
     
-<?php include(dirname(__DIR__, $steps)."/footer/index.php")?>
+<?php
+    require(dirname(__DIR__, $steps)."/footer/index.php")
+?>
