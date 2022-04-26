@@ -1,14 +1,17 @@
 <?php
-    $title = "Create Post";
-    $steps = 2;
-    require(dirname(__DIR__, $steps)."/database.php");
-    require(dirname(__DIR__, $steps)."/functions.php");
-    require(dirname(__DIR__, $steps)."/header/index.php");
+    session_start();
 
     if(!isset($_SESSION["userID"])) {
         header("location: ../search");
         exit();
     }
+
+    $steps = 2;
+    require(dirname(__DIR__, $steps)."/database.php");
+    require(dirname(__DIR__, $steps)."/functions.php");
+
+    $title = "Create Post";
+    require(dirname(__DIR__, $steps)."/header/index.php");
 ?>
 
 <div>

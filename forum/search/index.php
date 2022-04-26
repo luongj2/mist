@@ -1,8 +1,9 @@
-<?php 
-    $title = "Mist Store";
+<?php
     $steps = 2;
     require(dirname(__DIR__, $steps)."/database.php");
     require(dirname(__DIR__, $steps)."/functions.php");
+
+    $title = "Mist Store";
     require(dirname(__DIR__, $steps)."/header/index.php");
 ?>
 
@@ -45,7 +46,7 @@
                 $postLikes = $post["postLikes"];
                 $postDate = $post["postDate"];
 
-                echo "<a href=\"../post/index.php?id=$postID\">";
+                echo "<a href=\"../post/index.php?postID=$postID\">";
                 echo "<li>";
                 echo "<h1>$postName</h1><br>";
                 echo "<h3>$postDescription</h3><br>";

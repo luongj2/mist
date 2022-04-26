@@ -1,4 +1,46 @@
 body {
     color: rgb(200, 200, 200);
-    background-color: rgb(30, 30, 30);
+    background: rgb(30, 30, 30);
+    font-family: "Motiva Sans", sans-serif;
+    text-decoration: none;
+}
+
+div {
+    margin: 30px 28%;
+    padding: 30px;
+    background: rgb(25, 25, 25);
+}
+
+div h1, h2, p {
+    text-align: center;
+}
+
+div h1, h2 {
+    padding: 30px;
+}
+
+div p, li {
+    padding: 8px;
+}
+
+div h1 {
+    font-size: 48px;
+}
+
+div h2 {
+    font-size: 38px;
+}
+
+div u {
+    font-size: 28px;
+}
+
+div li, i {
+    font-size: 18px;
+}
+
+@media only screen and (max-width: 1400px) {
+    div {
+        margin: 30px 18%;
+    }
 }

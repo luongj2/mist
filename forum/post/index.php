@@ -1,5 +1,7 @@
 <?php
-    if(!isset($_GET["id"])) {
+    session_start();
+
+    if(!isset($_GET["postID"])) {
         header("Location: ../store/search");
         return;
     }
@@ -8,7 +10,7 @@
     require(dirname(__DIR__, $steps)."/database.php");
     require(dirname(__DIR__, $steps)."/functions.php");
 
-    $postID = $_GET["id"];
+    $postID = $_GET["postID"];
     
     $post = callProcedure("spGetPostFromID", $postID)[0];
     

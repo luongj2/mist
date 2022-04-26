@@ -1,14 +1,17 @@
 <?php
-    $title = "Log In";
-    $steps = 2;
-    require(dirname(__DIR__, $steps)."/database.php");
-    require(dirname(__DIR__, $steps)."/functions.php");
-    require(dirname(__DIR__, $steps)."/header/index.php");
+    session_start();
 
     if(isset($_SESSION["userID"])) {
         header("location: ../profile");
         exit();
     }
+
+    $steps = 2;
+    require(dirname(__DIR__, $steps)."/database.php");
+    require(dirname(__DIR__, $steps)."/functions.php");
+
+    $title = "Log In";
+    require(dirname(__DIR__, $steps)."/header/index.php");
 ?>
 
 <form action="login.php" method="post">

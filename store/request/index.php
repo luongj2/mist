@@ -1,14 +1,17 @@
 <?php
-    $title = "Request Game";
-    $steps = 2;
-    require(dirname(__DIR__, $steps)."/database.php");
-    require(dirname(__DIR__, $steps)."/functions.php");
-    require(dirname(__DIR__, $steps)."/header/index.php");
+    session_start();
 
     if(!isset($_SESSION["userID"])) {
         header("location: ../search");
         exit();
     }
+
+    $steps = 2;
+    require(dirname(__DIR__, $steps)."/database.php");
+    require(dirname(__DIR__, $steps)."/functions.php");
+
+    $title = "Request Game";
+    require(dirname(__DIR__, $steps)."/header/index.php");
 ?>
 
 <div>

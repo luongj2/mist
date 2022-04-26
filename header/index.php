@@ -1,6 +1,4 @@
 <?php
-    session_start();
-
     function createLink($href, $text) {
         global $steps;
         echo "<a href=\"".str_repeat("../", $steps)."$href\">$text</a>\n";

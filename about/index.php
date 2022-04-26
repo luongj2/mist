@@ -1,8 +1,11 @@
-<?php 
-    $title = "About Mist";
+<?php
+    session_start();
+
     $steps = 1;
     require(dirname(__DIR__, $steps)."/database.php");
     require(dirname(__DIR__, $steps)."/functions.php");
+
+    $title = "About Mist";
     require(dirname(__DIR__, $steps)."/header/index.php");
 ?>
 

@@ -1,8 +1,9 @@
-<?php 
-    $title = "Mist Store";
+<?php
     $steps = 2;
     require(dirname(__DIR__, $steps)."/database.php");
     require(dirname(__DIR__, $steps)."/functions.php");
+
+    $title = "Mist Store";
     require(dirname(__DIR__, $steps)."/header/index.php");
 ?>
 
@@ -59,7 +60,7 @@
                 $compatibleLinux = $game["compatibleLinux"];
                 $developerName = $game["developerName"];
 
-                echo "<a href=\"../game/index.php?id=$gameID\">";
+                echo "<a href=\"../game/index.php?gameID=$gameID\">";
                 echo "<li>";
                 echo "<img src = \"data:image/png;base64,$gamePicture\"><br>";
                 echo "<h1>$gameName</h1><br>";
