@@ -80,3 +80,24 @@ for($i=1; $i <= $pagenum; $i++){
 };
 echo "<br />";
 }
+/*
+check if user already like or dislike the post.
+*/
+function checkExist($uid,$pid,$pdo){
+	$sql = "SELECT COUNT(*) AS cnt FROM Likes WHERE user_id = $uid AND postID = $pid";
+	$result = $pdo->query($sql);
+	$row = $result->fetch_assoc();
+	return $row['cnt'];
+}
+/*
+check the total like of specific post
+*/
+function countLike($pid,$pdo){
+	$sql = "SELECT COUNT(*) AS cnt FROM Likes WHERE postID = $pid AND isLike = 1";
+	$result = $pdo->query($sql);
+	$row = $result->fetch_assoc();
+	if($row == null)
+	$result = 0;
+	else $result = $row['cnt'];
+	return $result;
+}

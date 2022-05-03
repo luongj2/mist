@@ -45,7 +45,7 @@ DEFAULT
         echo "<td colspan='8' rowspan='2'>{$row['game_desc']}</td>";
         echo "<td rowspan='2'>{$row['create_date']}</td>";
        if($_SESSION['isLogin'] == 1){ 
-        echo "<td rowspan='2'><a href='edit.php?ID={$_POST['ID']}'>[Edit]</td>";
+        echo "<td rowspan='2'><a href='edit.php?ID={$row['game_id']}'>[Edit]</td>";
         echo "<td rowspan='2'><a href=''>[View]</td></tr><br />";
         }
  }
