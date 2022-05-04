@@ -30,7 +30,7 @@
         <header>
             <nav>
                 <?php
-                    createLink("main", "<img src=\"".str_repeat("../", $steps)."images/mistlogo.png\">");
+                    createLink("store/search", "<img src=\"".str_repeat("../", $steps)."images/mistlogo.png\">");
                     createLink("store/search", "STORE");
                     createLink("forum/search", "FORUM");
                     createLink("about", "ABOUT");
@@ -40,7 +40,7 @@
             <nav>
                 <?php
                     if(isset($_SESSION["userID"])) {
-                        createLink("account/profile", createButton("profile", "Profile"));
+                        createLink("account/profile/index.php?userID=".$_SESSION["userID"], createButton("profile", "Profile"));
                         createLink("account/logout", createButton("logout", "Log Out"));
                     } else {
                         createLink("account/login", createButton("login", "Log In"));

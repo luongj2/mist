@@ -3,20 +3,16 @@
         session_start();
     }
 
-    $title = "Pending Requests";
     $steps = 2;
     require(dirname(__DIR__, $steps)."/database.php");
     require(dirname(__DIR__, $steps)."/functions.php");
-    require(dirname(__DIR__, $steps)."/header/index.php");
 
-    if(!isset($_SESSION["userID"]) || $_SESSION["userRole"] != "admin") {
-        header("location: ../search");
-        exit();
-    }
+    $title = "Mist Store";
+    require(dirname(__DIR__, $steps)."/header/index.php");
 ?>
 
-<form action="pending.php" method="post">
-    <ul>
+<div class="search">
+    <div class="game-list">
         <?php
             $games = callProcedure("spGetGamesFromSearch", "", "", "", "pending");
 
@@ -31,32 +27,24 @@
                 $gameDate = $game["gameDate"];
                 $gamePicture = base64_encode($game["gamePicture"]);
                 $compatibleWindows = $game["compatibleWindows"];
-                $compatibleMacOS = $game["compatibleMacOS"];
-                $compatibleLinux = $game["compatibleLinux"];
-                $developerName = $game["developerName"];
-                $requestID = $game["requestID"];
+                $compatibleWindows = ($game["compatibleWindows"] == 1) ? "<img src=\"../../images/os/windows.svg\">" : "";
+                $compatibleMacOS = ($game["compatibleMacOS"] == 1) ? "<img src=\"../../images/os/macos.svg\">" : "";
+                $compatibleLinux = ($game["compatibleLinux"] == 1) ? "<img src=\"../../images/os/linux.svg\">" : "";
 
-                echo "<input style=\"display: none\" name=\"requestID\" value=$requestID>";
-                echo "<li>";
-                echo "<div class=\"aaa\">";
-                    echo "<img src = \"data:image/png;base64,$gamePicture\"><br>";
-                    echo "<h1>$gameName</h1><br>";
-                    echo "<h4>$gameDescription</h4><br>";
-                    echo "<p>Release Date: $gameDate</p>";
-                echo "</div>";
+                echo "
+                    <a class=\"game\" href=\"../game/index.php?gameID=$gameID\">
+                        <div class=\"game-info\">
+                            <h1>$gameName</h1>
+                            <h2>$gameGenre $compatibleWindows $compatibleMacOS $compatibleLinux</h2>
+                        </div>
 
-                echo "<div>";
-                    echo "<textarea style=\"display: block\"name=\"requestReason\" placeholder=\"Reason\" rows=\"8\"></textarea>";
-                    echo "<br>";
-                    echo "<button name=\"accept\">Accept</button>";
-                    echo "<button name=\"deny\">Deny</button>";
-                echo "</div>";
-                echo "</li>";
-                echo "<br>";
+                        <img class=\"game-picture\" src = \"data:image/png;base64,$gamePicture\">
+                    </a>
+                ";
             }
         ?>
-    </ul>
-</form>
+    </div>
+</div>
 
 <?php
     require(dirname(__DIR__, $steps)."/footer/index.php")

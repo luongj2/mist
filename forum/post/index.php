@@ -29,28 +29,34 @@
     require(dirname(__DIR__, $steps)."/header/index.php");
 ?>
 
-<div>
-    <?php
-        echo "
-            <h1>$postName</h1><br>
-            <h2>$postDescription</h2><br>
-            <h3>$postAuthor</h3><br>
-            <h3>$postDate</h3><br>
-            <h3>$postLikes</h3><br>
-        ";
-        
-        if(isset($_SESSION["userID"])) {
-            if($_SESSION["userRole"] == "admin" || $_SESSION["userRole"] == "mod") {
-                if($postDeleted == 0) {
-                    echo "
-                        <form action=\"post.php?postID=$postID\" method=\"post\">
-                            <button name=\"submit\">Delete Post</button>
-                        </form>
-                    ";
+<div class="post">
+    <form action="post.php? <?php echo "postID=$postID" ?>" method="post">
+        <?php
+            echo "
+                <div class=\"post-info\">
+                    <h1><img src=\"https://robohash.org/$postAuthor?set=set4\">$postAuthor</h1>
+                    <h2>$postDate</h2>
+                </div>
+
+                <div class=\"post-content\">
+                    <h3>$postName</h3>
+                    <h4>$postDescription</h4>
+                    <h5>$postLikes likes</h5>
+                </div>
+            ";
+
+            if(isset($_SESSION["userID"])) {
+                if($_SESSION["userRole"] == "admin" || $_SESSION["userRole"] == "mod") {
+                    if($postDeleted == 0) {
+                        echo "
+                            <button class=\"like\" name=\"like\"><img src=\"".str_repeat("../", $steps)."images/like.svg\"></button>
+                            <button class=\"delete\" name=\"delete\"><img src=\"".str_repeat("../", $steps)."images/delete.svg\"></button>
+                        ";
+                    }
                 }
             }
-        }
-    ?>
+        ?>
+    </form>
 </div>
 
 <?php

@@ -94,3 +94,9 @@ nav button {
 .logout:hover {
     color: rgb(200, 60, 60);
 }
+
+@media only screen and (max-width: 1400px) {
+    header {
+        padding: 30px 20%;
+    }
+}

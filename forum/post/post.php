@@ -3,14 +3,15 @@
     require(dirname(__DIR__, $steps)."/database.php");
     require(dirname(__DIR__, $steps)."/functions.php");
 
-    if(!isset($_POST["submit"])) {
-        header("location: ../search");
-        exit();
-    }
-
     $postID = $_GET["postID"];
 
-    callProcedure("spDeletePost", $postID);
+    if(isset($_POST["delete"])) {
+        callProcedure("spDeletePost", $postID);
+    }
+    
+    if(isset($_POST["like"])) {
+        callProcedure("spAddLike", $postID);
+    }
 
-    header("location: ../search");
+    header("location: ../post/index.php?postID=$postID");
 ?>

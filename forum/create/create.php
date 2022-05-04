@@ -17,7 +17,7 @@
     $postName = $_POST["postName"];
     $postDescription = $_POST["postDescription"];
 
-    if(checkEmptyStrings([$postName, $postDescription])) {
+    if(checkEmptyStrings($postName, $postDescription)) {
         returnError("emptyFields");
     }
 

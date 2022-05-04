@@ -31,31 +31,53 @@
     if($requestID != NULL) {
         $request = callProcedure("spGetRequestFromID", $requestID)[0];
 
-        $requestAction = $request["requestAction"];
-        $requestReason = $request["requestReason"];
+        $requestAction = ucfirst($request["requestAction"]);
+        $requestReason = ucfirst($request["requestReason"]);
     }
 
     $title = $gameName;
     require(dirname(__DIR__, $steps)."/header/index.php");
 ?>
 
-<div>
-    <?php
-        echo "
-            <b>$gameName</b>
-            <b>$developerName</b>
-            <b>$gameDescription</b>
-            <b>$gameGenre</b>
-            <b>$gameDate</b>
-            <img src = \"data:image/png;base64,$gamePicture\">
-            <div class=\"icons\">$compatibleWindows $compatibleMacOS $compatibleLinux</div>
-        ";
+<div class="game">
+    <form action="game.php? <?php echo "requestID=$requestID" ?>" method="post">
+        <?php
+            echo "
+                <div class=\"game-info\">
+                    <h1>$gameName</h1>
+                    <h2>$developerName</h2>
+                    <h3>$gameDescription</h3>
+                    <h4>$gameGenre</h4>
+                    <h5>$gameDate</h5>
+                    <img src = \"data:image/png;base64,$gamePicture\">
+                    <div class=\"icons\">$compatibleWindows $compatibleMacOS $compatibleLinux</div>
+                </div>
+            ";
 
-        if($requestID != NULL) {
-            echo "<b>Request Action:</b> $requestAction<br>";
-            echo "<b>Request Reason:</b> $requestReason <br>";
-        }
-    ?>
+            if($requestID != NULL) {
+                if ($_SESSION["userRole"] == "admin" || $_SESSION["userID"] == $request["userID"]) {
+                    echo "
+                        <b>Request Action:</b> $requestAction<br>
+                        <b>Request Reason:</b> $requestReason <br>
+                    ";
+                }
+            }
+
+            if(isset($_SESSION["userID"])) {
+                if($_SESSION["userRole"] == "admin") {
+                    if($requestID != NULL) {
+                        echo "
+                            <div class=\"request\">
+                                <textarea class=\"reason\" style=\"display: block\"name=\"requestReason\" placeholder=\"Reason\" rows=\"8\"></textarea>
+                                <button class=\"accept\" name=\"accept\">Accept</button>
+                                <button class=\"deny\" name=\"deny\">Deny</button>
+                            </div>
+                        ";   
+                    }
+                }
+            }
+        ?>
+    </form>
 </div>
 
 <?php

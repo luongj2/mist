@@ -4,7 +4,7 @@
     }
 
     if(isset($_SESSION["userID"])) {
-        header("location: ../profile?userID=".$_SESSION["userID"]);
+        header("location: ../profile/index.php?userID=".$_SESSION["userID"]);
         exit();
     }
 

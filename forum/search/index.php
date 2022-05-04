@@ -11,28 +11,31 @@
     require(dirname(__DIR__, $steps)."/header/index.php");
 ?>
 
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<div class="search">
+    <form class="search-query" action="search.php" method="post">
+        <div class="search-bar">
+            <input type="text" name="search" placeholder="Search">
+            <button name="submit"><img src="../../images/search.svg"></button>
+        </div>
 
-<div>
-    <form action="search.php" method="post">
-        <input type="text" name="search" placeholder="Search">
+        <div class="search-options">
+            <select name="sort">
+                <option value="none">Sort By</option>
+                <option value="date">Date</option>
+                <option value="likes">Likes</option>
+            </select>
+        </div>
 
-        <button name="submit"><i class="fa fa-search"></i></button>
-        
-        <select name="sort">
-            <option value="none">Sort By</option>
-            <option value="date">Date</option>
-            <option value="likes">Likes</option>
-        </select>
-
-        <?php
-            if(isset($_SESSION["userID"])) {
-                echo "<a href=\"../create/\">Create Post</a>";
-            }
-        ?>
+        <div class="post-create">
+            <?php
+                if(isset($_SESSION["userID"])) {
+                    echo "<a href=\"../create/\">Create Post</a>";
+                }
+            ?>
+        </div>
     </form>
 
-    <ul>
+    <div class="post-list">
         <?php
             $search = getSearchQuery("search");
             $sort = getSearchQuery("sort");
@@ -44,6 +47,8 @@
                 
                 $post = callProcedure("spGetPostFromID", $postID)[0];
                 
+                $userID = $post["userID"];
+
                 $postName = $post["postName"];
                 $postAuthor = $post["postAuthor"];
                 $postDescription = $post["postDescription"];
@@ -51,19 +56,22 @@
                 $postDate = $post["postDate"];
 
                 echo "
-                    <a href=\"../post/index.php?postID=$postID\">
-                        <li>
-                            <b>$postName</b>
-                            <b>$postAuthor</b>
-                            <p>$postDescription</p>
-                            <p>$postDate</p>
-                            <p>$postLikes</p>
-                        </li>
+                    <a class=\"post\" href=\"../post/index.php?postID=$postID\">
+                        <div class=\"post-info\">
+                            <h1><img src=\"https://robohash.org/$postAuthor?set=set4\">$postAuthor</h1>
+                            <h2>$postDate</h2>
+                        </div>
+
+                        <div class=\"post-content\">
+                            <h3>$postName</h3>
+                            <h4>$postDescription</h4>
+                            <h5>$postLikes likes</h5>
+                        </div>
                     </a>
                 ";
             }
         ?>
-    </ul>
+    </div>
 </div>
 
 <?php

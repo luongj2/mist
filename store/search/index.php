@@ -11,13 +11,11 @@
     require(dirname(__DIR__, $steps)."/header/index.php");
 ?>
 
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-
 <div class="search">
     <form class="search-query" action="search.php" method="post">
         <div class="search-bar">
             <input type="text" name="search" placeholder="Search">
-            <button name="submit"><img src="../../images/searchicon.svg"></button>
+            <button name="submit"><img src="../../images/search.svg"></button>
         </div>
         
         <div class="search-options">
@@ -74,14 +72,14 @@
                 $compatibleLinux = ($game["compatibleLinux"] == 1) ? "<img src=\"../../images/os/linux.svg\">" : "";
 
                 echo "
-                    <div class=\"game\">
-                            <a class=\"game-info\" href=\"../game/index.php?gameID=$gameID\">
-                                <h1>$gameName</h1>
-                                <h2>$gameGenre $compatibleWindows $compatibleMacOS $compatibleLinux</h2>
-                            </a>
+                    <a class=\"game\" href=\"../game/index.php?gameID=$gameID\">
+                        <div class=\"game-info\">
+                            <h1>$gameName</h1>
+                            <h2>$gameGenre $compatibleWindows $compatibleMacOS $compatibleLinux</h2>
+                        </div>
 
-                            <img class=\"game-picture\" src = \"data:image/png;base64,$gamePicture\">
-                    </div>
+                        <img class=\"game-picture\" src = \"data:image/png;base64,$gamePicture\">
+                    </a>
                 ";
             }
         ?>

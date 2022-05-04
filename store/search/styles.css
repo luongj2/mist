@@ -99,8 +99,8 @@
 }
 
 .game-info img {
-    width: 10%;
-    height: 10%;
+    width: 20px;
+    height: 20px;
 }
 
 .game-picture {
@@ -109,4 +109,31 @@
 
 .game-picture img {
     width: 100%;
+}
+
+.game-info h1 {
+    font-size: 1.5vw;
+    font-weight: bold;
+}
+
+.game-info h2 {
+    align-items: center;
+    column-gap: 10px;
+    display: flex;
+    font-size: 1vw;
+    font-weight: normal;
+}
+
+@media only screen and (max-width: 1400px) {
+    .search {
+        padding: 30px;
+    }
+
+    .game-info h1 {
+        font-size: 3vw;
+    }
+    
+    .game-info h2 {
+        font-size: 2vw;
+    }
 }
