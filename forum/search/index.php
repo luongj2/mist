@@ -44,22 +44,23 @@
                 
                 $post = callProcedure("spGetPostFromID", $postID)[0];
                 
-                $postAuthor = $post["postAuthor"];
                 $postName = $post["postName"];
+                $postAuthor = $post["postAuthor"];
                 $postDescription = $post["postDescription"];
                 $postLikes = $post["postLikes"];
                 $postDate = $post["postDate"];
 
-                echo "<a href=\"../post/index.php?postID=$postID\">";
-                echo "<li>";
-                echo "<h1>$postName</h1><br>";
-                echo "<h3>$postDescription</h3><br>";
-                echo "<h4>$postAuthor</h4><br>";
-                echo "<p>Date Posted: $postDate</p><br>";
-                echo "<p>Likes: $postLikes</p><br>";
-                echo "</li>";
-                echo "<br>";
-                echo "</a>\n";
+                echo "
+                    <a href=\"../post/index.php?postID=$postID\">
+                        <li>
+                            <b>$postName</b>
+                            <b>$postAuthor</b>
+                            <p>$postDescription</p>
+                            <p>$postDate</p>
+                            <p>$postLikes</p>
+                        </li>
+                    </a>
+                ";
             }
         ?>
     </ul>

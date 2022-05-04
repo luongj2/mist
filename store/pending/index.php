@@ -1,4 +1,8 @@
 <?php
+    if(session_status() == PHP_SESSION_NONE) {
+        session_start();
+    }
+
     $title = "Pending Requests";
     $steps = 2;
     require(dirname(__DIR__, $steps)."/database.php");

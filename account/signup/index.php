@@ -24,9 +24,9 @@
             echo "<input type=\"$type\" name=\"$name\" placeholder=\"$placeholder\">";
         }
 
-        createInput("text", "userFirstName", "First Name");
-        createInput("text", "userLastName", "Last Name");
-        createInput("text", "userEmail", "Email");
+        createInput("text", "userFirstName", "First Name (16 characters maximum)");
+        createInput("text", "userLastName", "Last Name (16 characters maximum)");
+        createInput("text", "userEmail", "Email (64 characters maximum)");
         createInput("text", "userEmailVerify", "Verify Email");
         createInput("password", "userPassword", "Password (8 characters minimum)");
         createInput("password", "userPasswordVerify", "Verify Password");
@@ -45,7 +45,16 @@
 
         switch($_GET["error"]) {
             case "emptyFields":
-                echo "Please fill in all fields!";
+                echo "Please fill in all fields.";
+                break;
+            case "largeFirstName":
+                echo "Please enter a first name with less than 16 characters.";
+                break;
+            case "largeLastName":
+                echo "Please enter a last name with less than 16 characters.";
+                break;
+            case "largeEmail":
+                echo "Please enter an email with less than 64 characters.";
                 break;
             case "emailTaken":
                 echo "This email is taken. <a href=\"../login\">Log In?</button>";

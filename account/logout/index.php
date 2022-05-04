@@ -6,6 +6,6 @@
     session_unset();
     session_destroy();
 
-    header("location: ../../main");
+    header("location: ../login");
     exit();
 ?>

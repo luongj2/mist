@@ -1,82 +1,112 @@
-div {
+.search {
+    column-gap: 10px;
     display: flex;
-    justify-content: center;
     padding: 30px 20%;
 }
 
-form {
+.search-query {
+    background: rgb(25, 25, 25);
     display: flex;
     flex-direction: column;
-    margin: 20px;
     padding: 30px;
-    background: rgb(25, 25, 25);
+    row-gap: 10px;
+    width: 25%;
+    height: 25%;
 }
 
-form input {
-    display: block;
-    margin: 5px;
-    padding: 10px;
-    font-size: 14px;
-    border-radius: 5px;
+.search-bar {
+    column-gap: 10px;
+    display: flex;
+}
+
+.search-bar input {
     border: none;
-}
-
-form select {
-    margin: 5px;
-}
-
-form button {
-    cursor: pointer;
-    color: rgb(255, 255, 255);
     border-radius: 5px;
-    border: none;
-    margin: 5px auto 20px auto;
-    padding: 10px 20px;
+    padding: 10px 10px;
+    width: 100%;
+}
+
+.search-bar button {
     background: rgb(45, 150, 195);
+    border: none;
+    border-radius: 5px;
+    color: rgb(255, 255, 255);
+    cursor: pointer;
+    padding: 10px 10px;
     transition: 0.3s;
 }
 
-form button:hover {
+.search-bar button:hover {
     background: rgb(55, 180, 230);
 }
 
-form a {
+.search-options {
+    display: flex;
+    flex-direction: column;
+    row-gap: 10px;
+}
+
+.search-options select {
+    border: none;
+    border-radius: 5px;
+    padding: 10px 10px;
+}
+
+.game-requests {
+    display: flex;
+    flex-direction: column;
+    row-gap: 10px;
+}
+
+.game-requests a {
+    background: rgb(45, 150, 195);
+    border: none;
+    border-radius: 5px;
+    color: rgb(255, 255, 255);
     cursor: pointer;
-    font-size: 14px;
     font-weight: bold;
-    color: rgb(255, 255, 255);
-    text-decoration: none;
-    border-radius: 5px;
-    border: none;
-    margin: 5px auto 20px auto;
-    padding: 10px 20px;
-    background: rgb(45, 150, 195);
+    padding: 10px 10px;
+    text-align: center;
     transition: 0.3s;
 }
 
-form a:hover {
+.game-requests a:hover {
     background: rgb(55, 180, 230);
 }
 
-ul {
-    margin: 20px;
-    width: 60%;
-}
-
-ul a {
-    color: rgb(255, 255, 255);
-    text-decoration: none;
-}
-
-ul li {
+.game-list {
     display: flex;
     flex-direction: column;
-    padding: 30px;
-    list-style: none;
-    background: rgb(25, 25, 25);
+    row-gap: 10px;
+    width: 75%;
 }
 
-ul img {
-    width: 300px;
-    height: 150px;
+.game {
+    background: rgb(25, 25, 25);
+    display: flex;
+    padding: 30px;
+}
+
+.game-info {
+    color: rgb(200, 200, 200);
+    text-decoration: none;
+    transition: 0.3s;
+    width: 50%;
+}
+
+.game-info:hover {
+    color: rgb(255, 255, 255);
+}
+
+.game-info img {
+    width: 10%;
+    height: 10%;
+}
+
+.game-picture {
+    width: 50%;
+}
+
+.game-picture img {
+    width: 100%;
 }

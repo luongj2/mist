@@ -30,6 +30,10 @@
         return false;
     }
 
+    function checkLargeString($string, $length) {
+        return strlen($string) > $length;
+    }
+
     function checkEmptyBooleans(...$parameters) {
         foreach($parameters as $parameter) {
             if($parameter == 1) {
@@ -44,15 +48,15 @@
         return $parameters[0] != $parameters[1];
     }
 
-    function checkInvalidEmailFormat($userEmail) {
+    function checkInvalidEmail($userEmail) {
         return !filter_var($userEmail, FILTER_VALIDATE_EMAIL);
     }
 
-    function checkInvalidPasswordFormat($userPassword) {
+    function checkInvalidPassword($userPassword) {
         return strlen($userPassword) < 8 || preg_match('/\s/', $userPassword);
     }
 
-    function checkLargePictureSize($picture) {
+    function checkLargePicture($picture) {
         $pictureDimensions = getimagesize($picture);
         $pictureWidth = $pictureDimensions[0];
         $pictureHeight = $pictureDimensions[1];

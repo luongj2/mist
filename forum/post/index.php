@@ -4,7 +4,7 @@
     }
 
     if(!isset($_GET["postID"])) {
-        header("Location: ../store/search");
+        header("location: ../search");
         return;
     }
 
@@ -21,6 +21,9 @@
     $postDescription = $post["postDescription"];
     $postLikes = $post["postLikes"];
     $postDate = $post["postDate"];
+    $postDeleted = $post["postDeleted"];
+
+    $postName = ($postDeleted == 1 ? "[DELETED] " . $postName: $postName);
 
     $title = $postName;
     require(dirname(__DIR__, $steps)."/header/index.php");
@@ -28,11 +31,25 @@
 
 <div>
     <?php
-        echo "<h1>$postName</h1>";
-        echo "<h2>$postDescription</h2><br>";
-        echo "<h3>User: $postAuthor</h3><br>";
-        echo "<h3>Release Date: $postDate</h3><br>";
-        echo "<h3>Likes: $postLikes</h3>";   
+        echo "
+            <h1>$postName</h1><br>
+            <h2>$postDescription</h2><br>
+            <h3>$postAuthor</h3><br>
+            <h3>$postDate</h3><br>
+            <h3>$postLikes</h3><br>
+        ";
+        
+        if(isset($_SESSION["userID"])) {
+            if($_SESSION["userRole"] == "admin" || $_SESSION["userRole"] == "mod") {
+                if($postDeleted == 0) {
+                    echo "
+                        <form action=\"post.php?postID=$postID\" method=\"post\">
+                            <button name=\"submit\">Delete Post</button>
+                        </form>
+                    ";
+                }
+            }
+        }
     ?>
 </div>
 

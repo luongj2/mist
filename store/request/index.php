@@ -20,9 +20,9 @@
     <form action="request.php" method="post" enctype="multipart/form-data">
         <h1>Request Game</h1>
 
-        <input type="text" name="gameName" placeholder="Name">
-        <textarea name="gameDescription" placeholder="Description" rows="5"></textarea>
-        <input type="text" name="gameGenre" placeholder="Genre">
+        <input type="text" name="gameName" placeholder="Name (64 characters maximum)">
+        <textarea name="gameDescription" placeholder="Description (1028 characters maximum)" rows="5"></textarea>
+        <input type="text" name="gameGenre" placeholder="Genre (16 characters maximum)">
 
         <div class="compatibility">
             <input type="checkbox" name="compatibleWindows">
@@ -58,6 +58,15 @@
                     break;
                 case "emptyPicture":
                     echo "Please make sure you upload a picture!";
+                    break;
+                case "largeName":
+                    echo "Please enter a name with less than 64 characters.";
+                    break;
+                case "largeDescription":
+                    echo "Please enter a description with less than 1028 characters.";
+                    break;
+                case "largeGenre":
+                    echo "Please enter a genre with less than 16 characters.";
                     break;
                 case "largePicture":
                     echo "Please make sure the picture is less than 1200x600 pixels!";

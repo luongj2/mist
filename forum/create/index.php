@@ -1,5 +1,7 @@
 <?php
-    session_start();
+    if(session_status() == PHP_SESSION_NONE) {
+        session_start();
+    }
 
     if(!isset($_SESSION["userID"])) {
         header("location: ../search");
@@ -18,8 +20,8 @@
     <form action="create.php" method="post">
         <h1>Create Post</h1>
 
-        <input type="text" name="postName" placeholder="Name">
-        <textarea name="postDescription" placeholder="Description" rows="8"></textarea>
+        <input type="text" name="postName" placeholder="Name (64 characters maximum)">
+        <textarea name="postDescription" placeholder="Description (1028 characters maximum)" rows="8"></textarea>
         
         <button name="submit">Submit</button>
 
@@ -34,7 +36,13 @@
 
             switch($_GET["error"]) {
                 case "emptyFields":
-                    echo "Please fill in all fields!";
+                    echo "Please fill in all fields.";
+                    break;
+                case "largeName":
+                    echo "Please enter a name with less than 64 characters.";
+                    break;
+                case "largeDescription":
+                    echo "Please enter a description with less than 1028 characters.";
                     break;
                 case "none":
                     echo "Post created!";

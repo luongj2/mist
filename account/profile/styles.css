@@ -1,35 +1,25 @@
-div {
-    margin: 30px 28%;
+section {
+    margin: 30px 38%;
     padding: 30px;
     background: rgb(25, 25, 25);
 }
 
-div h1, h2, p {
+div {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
     text-align: center;
 }
 
-div h1, h2 {
-    padding: 30px;
+p {
+    padding-top: 20px;
 }
 
-div p, li {
-    padding: 8px;
-}
-
-div h1 {
-    font-size: 48px;
-}
-
-div h2 {
-    font-size: 38px;
-}
-
-div u {
-    font-size: 28px;
-}
-
-div li, i {
-    font-size: 18px;
+section img {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    background: rgb(225, 225, 225);
 }
 
 @media only screen and (max-width: 1400px) {

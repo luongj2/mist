@@ -4,11 +4,6 @@ form {
     background: rgb(25, 25, 25);
 }
 
-form h1, input, button, p, a {
-    font-family: "Motiva Sans", sans-serif;
-    text-decoration: none;
-}
-
 form h1, p {
     padding: 30px;
     text-align: center;
@@ -24,6 +19,7 @@ form input, button {
     border: none;
     font-size: 14px;
 }
+
 form input {
     margin: 10px auto;
     padding: 12px;

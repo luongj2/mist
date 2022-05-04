@@ -21,6 +21,14 @@
         returnError("emptyFields");
     }
 
+    if(checkLargeString($postName, 64)) {
+        returnError("largeName");
+    }
+
+    if(checkLargeString($postDescription, 1028)) {
+        returnError("largeDescription");
+    }
+
     callProcedure("spCreatePost", $userID, $postName, $postDescription);
 
     returnError("none");

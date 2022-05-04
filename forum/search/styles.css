@@ -71,6 +71,7 @@ ul a {
 ul li {
     display: flex;
     flex-direction: column;
+    margin: 20px;
     padding: 30px;
     list-style: none;
     background: rgb(25, 25, 25);

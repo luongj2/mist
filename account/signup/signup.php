@@ -4,7 +4,7 @@
     require(dirname(__DIR__, $steps)."/functions.php");
 
     if(!isset($_POST["submit"])) {
-        header("location: index.php");
+        header("location: ../signup");
         exit();
     }
     
@@ -19,15 +19,27 @@
         returnError("emptyFields");
     }
 
+    if(checkLargeString($userFirstName, 16)) {
+        returnError("largeFirstName");
+    }
+
+    if(checkLargeString($userLastName, 16)) {
+        returnError("largeLastName");
+    }
+
+    if(checkLargeString($userEmail, 64)) {
+        returnError("largeEmail");
+    }
+
     if(getUserFromEmail($userEmail)) {
         returnError("emailTaken");
     }
 
-    if(checkInvalidEmailFormat($userEmail)) {
+    if(checkInvalidEmail($userEmail)) {
         returnError("invalidEmailFormat");
     }
 
-    if(checkInvalidPasswordFormat($userPassword)) {
+    if(checkInvalidPassword($userPassword)) {
         returnError("invalidPasswordFormat");
     }
 

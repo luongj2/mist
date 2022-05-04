@@ -1,34 +1,34 @@
 <?php
-    if(session_status() == PHP_SESSION_NONE) {
-        session_start();
-    }
-
-    if(!isset($_SESSION["userID"])) {
-        header("location: ../login");
-        exit();
-    }
-
     $steps = 2;
     require(dirname(__DIR__, $steps)."/database.php");
     require(dirname(__DIR__, $steps)."/functions.php");
 
-    $userID = $_SESSION["userID"];
+    $userID = $_GET["userID"];
         
     $user = callProcedure("spGetUserFromID", $userID)[0];
     
     $userName = $user["userName"];
     $userDate = $user["userDate"];
-    $userRole = $user["userRole"];
+    $userRole = ucfirst($user["userRole"]);
 
     $title = $userName;
     require(dirname(__DIR__, $steps)."/header/index.php");
 ?>
 
-<div>
-    <?php
-        echo "<h1>$userName</h1>";
-    ?>
-</div>
+<section>
+    <div>
+        <?php
+            echo "<img src=\"https://robohash.org/$userName?set=set4\">";
+            echo "<h1>$userName [$userRole]</h1>";
+        ?>
+    </div>
+
+    <div>
+        <?php
+            echo "<p>Date joined: $userDate</p>";
+        ?>
+    </div>
+</section>
     
 <?php
     require(dirname(__DIR__, $steps)."/footer/index.php");

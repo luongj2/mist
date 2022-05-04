@@ -13,6 +13,6 @@
         callProcedure("spUpdateRequest", $requestID, "denied", $requestReason);
     }
 
-    header("location: index.php");
+    header("location: ../search");
     exit();
 ?>

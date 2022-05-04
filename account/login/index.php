@@ -4,7 +4,7 @@
     }
 
     if(isset($_SESSION["userID"])) {
-        header("location: ../profile");
+        header("location: ../profile?userID=".$_SESSION["userID"]);
         exit();
     }
 
@@ -41,7 +41,7 @@
 
         switch($_GET["error"]) {
             case "emptyFields":
-                echo "Please fill in all fields!";
+                echo "Please fill in all fields.";
                 break;
             case "emailNonexistent":
                 echo "The email that you entered does not match our records.";
@@ -50,7 +50,7 @@
                 echo "The password that you entered is incorrect.";
                 break;
             case "none":
-                header("location: ../../main");
+                echo("You are logged in!");
                 break;
         }
         

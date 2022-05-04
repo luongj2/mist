@@ -2,6 +2,15 @@
     if(session_status() == PHP_SESSION_NONE) {
         session_start();
     }
+
+    function createLink($href, $text) {
+        global $steps;
+        echo "<a href=\"".str_repeat("../", $steps)."$href\">$text</a>";
+    }
+        
+    function createButton($class, $text) {
+        return "<button class=\"$class\">$text</button>";
+    }
 ?>
 
 <html>
@@ -19,37 +28,26 @@
         <link rel="stylesheet" href="<?php echo str_repeat("../", $steps) ?>header/styles.css">
 
         <header>
+            <nav>
                 <?php
-                    function createLink($href, $text) {
-                        global $steps;
-                        echo "<a href=\"".str_repeat("../", $steps)."$href\">$text</a>\n";
-                    }
-                     
-                    function createButton($class, $text) {
-                        return "<button class=\"$class\">$text</button>\n";
+                    createLink("main", "<img src=\"".str_repeat("../", $steps)."images/mistlogo.png\">");
+                    createLink("store/search", "STORE");
+                    createLink("forum/search", "FORUM");
+                    createLink("about", "ABOUT");
+                ?>
+            </nav>
+
+            <nav>
+                <?php
+                    if(isset($_SESSION["userID"])) {
+                        createLink("account/profile", createButton("profile", "Profile"));
+                        createLink("account/logout", createButton("logout", "Log Out"));
+                    } else {
+                        createLink("account/login", createButton("login", "Log In"));
+                        createLink("account/signup", createButton("signup", "Sign Up"));
                     }
                 ?>
-
-                <nav>
-                    <?php
-                        createLink("main", "<img src=\"".str_repeat("../", $steps)."images/mistlogo.png\">");
-                        createLink("store/search", "STORE");
-                        createLink("forum/search", "FORUM");
-                        createLink("about", "ABOUT");
-                    ?>
-                </nav>
-
-                <nav>
-                    <?php
-                        if(isset($_SESSION["userID"])) {
-                            createLink("account/profile", createButton("profile", "Profile"));
-                            createLink("account/logout", createButton("logout", "Log Out"));
-                        } else {
-                            createLink("account/login", createButton("login", "Log In"));
-                            createLink("account/signup", createButton("signup", "Sign Up"));
-                        }
-                    ?>
-                </nav>
+            </nav>
         </header>
 
         <link rel="stylesheet" href="styles.css">

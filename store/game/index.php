@@ -4,7 +4,7 @@
     }
 
     if(!isset($_GET["gameID"])) {
-        header("Location: ../store/search");
+        header("location: ../search");
         return;
     }
 
@@ -41,13 +41,15 @@
 
 <div>
     <?php
-        echo "<b>Name:</b> $gameName<br>";
-        echo "<b>Developer:</b> $developerName<br>";
-        echo "<b>Description:</b> $gameDescription<br>";
-        echo "<b>Genre:</b> $gameGenre<br>";
-        echo "<b>Date:</b> $gameDate<br>";
-        echo "<img src = \"data:image/png;base64,$gamePicture\"><br>";
-        echo "<div class=\"icons\">$compatibleWindows $compatibleMacOS $compatibleLinux</div><br>";
+        echo "
+            <b>$gameName</b>
+            <b>$developerName</b>
+            <b>$gameDescription</b>
+            <b>$gameGenre</b>
+            <b>$gameDate</b>
+            <img src = \"data:image/png;base64,$gamePicture\">
+            <div class=\"icons\">$compatibleWindows $compatibleMacOS $compatibleLinux</div>
+        ";
 
         if($requestID != NULL) {
             echo "<b>Request Action:</b> $requestAction<br>";

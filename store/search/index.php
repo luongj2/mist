@@ -13,39 +13,44 @@
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
-<div>
-    <form action="search.php" method="post">
-        <input type="text" name="search" placeholder="Search">
+<div class="search">
+    <form class="search-query" action="search.php" method="post">
+        <div class="search-bar">
+            <input type="text" name="search" placeholder="Search">
+            <button name="submit"><img src="../../images/searchicon.svg"></button>
+        </div>
         
-        <button name="submit"><img src="../../images/searchicon.svg"></button>
-        
-        <select name="sort">
-            <option value="none">Sort By</option>
-            <option value="atoz">A-Z</option>
-            <option value="ztoa">Z-A</option>
-            <option value="oldest">Oldest</option>
-            <option value="newest">Newest</option>
-        </select>
+        <div class="search-options">
+            <select name="sort">
+                <option value="none">Sort By</option>
+                <option value="atoz">A-Z</option>
+                <option value="ztoa">Z-A</option>
+                <option value="oldest">Oldest</option>
+                <option value="newest">Newest</option>
+            </select>
 
-        <select name="filter">
-            <option value="none">Filter By</option>
-            <option value="Casual">Casual</option>
-            <option value="FPS">FPS</option>
-            <option value="RPG">RPG</option>
-        </select>
+            <select name="filter">
+                <option value="none">Filter By</option>
+                <option value="Casual">Casual</option>
+                <option value="FPS">FPS</option>
+                <option value="RPG">RPG</option>
+            </select>
+        </div>
 
-        <?php
-            if(isset($_SESSION["userID"])) {
-                echo "<a href=\"../request/\">Request Game</a>";
+        <div class="game-requests">
+            <?php
+                if(isset($_SESSION["userID"])) {
+                    echo "<a href=\"../request/\">Request Game</a>";
 
-                if($_SESSION["userRole"] == "admin") {
-                    echo "<a href=\"../pending/\">Pending Requests</a>";
+                    if($_SESSION["userRole"] == "admin") {
+                        echo "<a href=\"../pending/\">Pending Requests</a>";
+                    }
                 }
-            }
-        ?>
+            ?>
+        </div>
     </form>
 
-    <ul>
+    <div class="game-list">
         <?php
             $search = getSearchQuery("search");
             $sort = getSearchQuery("sort");
@@ -64,23 +69,23 @@
                 $gameDate = $game["gameDate"];
                 $gamePicture = base64_encode($game["gamePicture"]);
                 $compatibleWindows = $game["compatibleWindows"];
-                $compatibleMacOS = $game["compatibleMacOS"];
-                $compatibleLinux = $game["compatibleLinux"];
-                $developerName = $game["developerName"];
+                $compatibleWindows = ($game["compatibleWindows"] == 1) ? "<img src=\"../../images/os/windows.svg\">" : "";
+                $compatibleMacOS = ($game["compatibleMacOS"] == 1) ? "<img src=\"../../images/os/macos.svg\">" : "";
+                $compatibleLinux = ($game["compatibleLinux"] == 1) ? "<img src=\"../../images/os/linux.svg\">" : "";
 
-                echo "<a href=\"../game/index.php?gameID=$gameID\">";
-                echo "<li>";
-                echo "<b>Name:</b> $gameName<br>";
-                echo "<b>Developer:</b> $developerName<br>";
-                echo "<b>Description:</b> $gameDescription<br>";
-                echo "<b>Genre:</b> $gameGenre<br>";
-                echo "<b>Date:</b> $gameDate<br>";
-                echo "<img src = \"data:image/png;base64,$gamePicture\"><br>";
-                echo "</li><br>";
-                echo "</a>\n";
+                echo "
+                    <div class=\"game\">
+                            <a class=\"game-info\" href=\"../game/index.php?gameID=$gameID\">
+                                <h1>$gameName</h1>
+                                <h2>$gameGenre $compatibleWindows $compatibleMacOS $compatibleLinux</h2>
+                            </a>
+
+                            <img class=\"game-picture\" src = \"data:image/png;base64,$gamePicture\">
+                    </div>
+                ";
             }
         ?>
-    </ul>
+    </div>
 </div>
 
 <?php
