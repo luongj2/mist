@@ -46,10 +46,12 @@
             ";
 
             if(isset($_SESSION["userID"])) {
+                echo "
+                    <button class=\"like\" name=\"like\"><img src=\"".str_repeat("../", $steps)."images/like.svg\"></button>
+                ";
                 if($_SESSION["userRole"] == "admin" || $_SESSION["userRole"] == "mod") {
                     if($postDeleted == 0) {
                         echo "
-                            <button class=\"like\" name=\"like\"><img src=\"".str_repeat("../", $steps)."images/like.svg\"></button>
                             <button class=\"delete\" name=\"delete\"><img src=\"".str_repeat("../", $steps)."images/delete.svg\"></button>
                         ";
                     }
