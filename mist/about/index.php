@@ -20,30 +20,42 @@
 
     <h2>Our Team</h2>
 
-    <p>
-        <u>Joey Luong</u><br>
-        <i>Project Manager</i><br>
-    </p>
+    <div class="member-container">
+        <div class="member">
+            <div class="border">
+                <img src="../images/profile/joey.jpg" />
+            </div>
+            <h3>Joey Luong</h3>
+        </div>
 
-    <p>
-        <u>Harrison Baker</u><br>
-        <i>Technical Manager</i><br>
-    </p>
-
-    <p>
-        <u>Huy Nguyen</u><br>
-        <i>Front-End Programmer</i><br>
-    </p>
-
-    <p>
-        <u>Jon Kraft</u><br>
-        <i>Back-End Programmer</i><br>
-    </p>
-
-    <p>
-        <u>Eric Liao</u><br>
-        <i>Back-End Programmer</i>
-    </p>
+        <div class="member">
+            <div class="border">
+                <img src="../images/profile/huy.jpg" />
+            </div>
+            <h3>Huy Nguyen</h3>
+        </div>
+        
+        <div class="member">
+            <div class="border">
+                <img src="../images/profile/eric.jpg" />
+            </div>
+            <h3>Hongwei(Eric) Liao</h3>
+        </div>
+        
+        <div class="member">
+            <div class="border">
+                <img src="../images/profile/harrison.jpg" />
+            </div>
+            <h3>Harrison Baker</h3>
+        </div>
+        
+        <div class="member">
+            <div class="border">
+                <img src="../images/profile/jon.png" />
+            </div>
+            <h3>Jon Kraft</h3>
+        </div>
+    </div>
 </div>
 
 <?php

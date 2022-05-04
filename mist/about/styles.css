@@ -32,6 +32,76 @@ div li, i {
     font-size: 18px;
 }
 
+div.member-container {
+    display: flex;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+div.member {
+    text-align: center;
+    margin: 0;
+    width: 250px;
+    height: 250px;
+}
+
+/* div.member img {
+    height: 200px;
+    margin-bottom: 30px;
+    border-radius: 50%;
+    border-width: 2px !important; 
+    border: solid;
+    border-color: white;
+} */
+
+div.member .border {
+    height: 200px;
+    width: 200px;
+    margin: 21px;
+    padding: 3px;
+    background-image: conic-gradient(
+        from 25deg,
+        violet,
+        indigo,
+        blue,
+        green,
+        yellow,
+        orange,
+        red,
+        violet
+      );
+    border-radius: 50%;
+    animation: animatedborder 3s ease alternate infinite;
+}
+
+div.member .border img {
+    height: 200px;
+    display: inline-block;
+    border-radius: 50%;
+    animation: animatedimage 3s ease alternate infinite;
+}
+
+@keyframes animatedborder {
+	from {
+        transform:rotate(0deg);
+    }
+    to {
+        transform:rotate(360deg);
+    }
+}
+
+@keyframes animatedimage {
+	from {
+        transform:rotate(0deg);
+    }
+    to {
+        transform:rotate(-360deg);
+    }
+}
+
 @media only screen and (max-width: 1400px) {
     div {
         margin: 30px 18%;
