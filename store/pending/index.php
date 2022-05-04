@@ -12,49 +12,9 @@
 ?>
 
 <div class="search">
-    <form class="search-query" action="search.php" method="post">
-        <div class="search-bar">
-            <input type="text" name="search" placeholder="Search">
-            <button name="submit"><img src="../../images/search.svg"></button>
-        </div>
-        
-        <div class="search-options">
-            <select name="sort">
-                <option value="none">Sort By</option>
-                <option value="atoz">A-Z</option>
-                <option value="ztoa">Z-A</option>
-                <option value="oldest">Oldest</option>
-                <option value="newest">Newest</option>
-            </select>
-
-            <select name="filter">
-                <option value="none">Filter By</option>
-                <option value="Casual">Casual</option>
-                <option value="FPS">FPS</option>
-                <option value="RPG">RPG</option>
-            </select>
-        </div>
-
-        <div class="game-requests">
-            <?php
-                if(isset($_SESSION["userID"])) {
-                    echo "<a href=\"../request/\">Request Game</a>";
-
-                    if($_SESSION["userRole"] == "admin") {
-                        echo "<a href=\"../pending/\">Pending Requests</a>";
-                    }
-                }
-            ?>
-        </div>
-    </form>
-
     <div class="game-list">
         <?php
-            $search = getSearchQuery("search");
-            $sort = getSearchQuery("sort");
-            $filter = getSearchQuery("filter");
-
-            $games = callProcedure("spGetGamesFromSearch", $search, $sort, $filter, "accepted");
+            $games = callProcedure("spGetGamesFromSearch", "", "", "", "pending");
 
             foreach($games as $game) {
                 $gameID = $game["gameID"];
@@ -72,14 +32,14 @@
                 $compatibleLinux = ($game["compatibleLinux"] == 1) ? "<img src=\"../../images/os/linux.svg\">" : "";
 
                 echo "
-                    <div class=\"game\" onclick=\"location.href='../game/index.php?gameID=$gameID';\" style=\"cursor: pointer;\">
+                    <a class=\"game\" href=\"../game/index.php?gameID=$gameID\">
                         <div class=\"game-info\">
                             <h1>$gameName</h1>
                             <h2>$gameGenre $compatibleWindows $compatibleMacOS $compatibleLinux</h2>
                         </div>
 
                         <img class=\"game-picture\" src = \"data:image/png;base64,$gamePicture\">
-                    </div>
+                    </a>
                 ";
             }
         ?>

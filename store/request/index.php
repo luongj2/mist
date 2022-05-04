@@ -1,6 +1,18 @@
-<?php 
-    $title = "Request Game";
+<?php
+    if(session_status() == PHP_SESSION_NONE) {
+        session_start();
+    }
+
+    if(!isset($_SESSION["userID"])) {
+        header("location: ../search");
+        exit();
+    }
+
     $steps = 2;
+    require(dirname(__DIR__, $steps)."/database.php");
+    require(dirname(__DIR__, $steps)."/functions.php");
+
+    $title = "Request Game";
     require(dirname(__DIR__, $steps)."/header/index.php");
 ?>
 
@@ -8,9 +20,9 @@
     <form action="request.php" method="post" enctype="multipart/form-data">
         <h1>Request Game</h1>
 
-        <input type="text" name="gameName" placeholder="Name">
-        <textarea name="gameDescription" placeholder="Description" rows="5"></textarea>
-        <input type="text" name="gameGenre" placeholder="Genre">
+        <input type="text" name="gameName" placeholder="Name (64 characters maximum)">
+        <textarea name="gameDescription" placeholder="Description (1028 characters maximum)" rows="5"></textarea>
+        <input type="text" name="gameGenre" placeholder="Genre (16 characters maximum)">
 
         <div class="compatibility">
             <input type="checkbox" name="compatibleWindows">
@@ -22,8 +34,8 @@
         </div>
 
         <div class="thumbnail_upload">
-            <label for="gameThumbnail">Thumbnail</label>
-            <input type="file" name="gameThumbnail" accept=".jpg, .jpeg, .png" required>
+            <label for="gamePicture">Thumbnail</label>
+            <input type="file" name="gamePicture" accept=".jpg, .jpeg, .png">
         </div>
 
         <button name="submit">Submit</button>
@@ -44,11 +56,24 @@
                 case "emptyChecks":
                     echo "Please make sure there is a compatible operating system!";
                     break;
-                case "emptyThumbnail":
-                    echo "Please make sure you upload a thumbnail!";
+                case "emptyPicture":
+                    echo "Please make sure you upload a picture!";
+                    break;
+                case "largeName":
+                    echo "Please enter a name with less than 64 characters.";
+                    break;
+                case "largeDescription":
+                    echo "Please enter a description with less than 1028 characters.";
+                    break;
+                case "largeGenre":
+                    echo "Please enter a genre with less than 16 characters.";
+                    break;
+                case "largePicture":
+                    echo "Please make sure the picture is less than 1200x600 pixels!";
                     break;
                 case "none":
-                    echo "Game requested!";
+                    $gameID = $_GET["gameID"];
+                    echo "Game requested! Check <a href=\"../game/index.php?gameID=$gameID\">here</a> often to see the status of your game request.";
                     break;
             }
             

@@ -1,17 +1,14 @@
 <?php
     $steps = 2;
-    require(dirname(__DIR__, $steps)."/database/database.php");
+    require(dirname(__DIR__, $steps)."/database.php");
     require(dirname(__DIR__, $steps)."/functions.php");
 
-    session_start();
-
-    if(!isset($_POST["submit"])) {
-        header("location: ../search/index.php");
-        exit();
+    if(session_status() == PHP_SESSION_NONE) {
+        session_start();
     }
 
-    if(!isset($_SESSION["userID"])) {
-        header("location: ../search/index.php");
+    if(!isset($_POST["submit"])) {
+        header("location: ../search");
         exit();
     }
 
@@ -20,8 +17,16 @@
     $postName = $_POST["postName"];
     $postDescription = $_POST["postDescription"];
 
-    if(checkEmptyStrings([$postName, $postDescription])) {
+    if(checkEmptyStrings($postName, $postDescription)) {
         returnError("emptyFields");
+    }
+
+    if(checkLargeString($postName, 64)) {
+        returnError("largeName");
+    }
+
+    if(checkLargeString($postDescription, 1028)) {
+        returnError("largeDescription");
     }
 
     callProcedure("spCreatePost", $userID, $postName, $postDescription);

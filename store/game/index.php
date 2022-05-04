@@ -1,48 +1,84 @@
 <?php
-    $steps = 2;
-    require(dirname(__DIR__, $steps)."/database/database.php");
+    if(session_status() == PHP_SESSION_NONE) {
+        session_start();
+    }
 
-    if(!isset($_GET["id"])) {
-        header("Location: ../store/search");
+    if(!isset($_GET["gameID"])) {
+        header("location: ../search");
         return;
     }
 
-    $gameID = $_GET["id"];
+    $steps = 2;
+    require(dirname(__DIR__, $steps)."/database.php");
+    require(dirname(__DIR__, $steps)."/functions.php");
+
+    $gameID = $_GET["gameID"];
+
     $game = callProcedure("spGetGameFromID", $gameID)[0];
 
-    $title = $game["gameName"];
-    require(dirname(__DIR__, $steps)."/header/index.php");
-?>
-
-<?php
     $gameName = $game["gameName"];
+    $developerName = $game["developerName"];
     $gameDescription = $game["gameDescription"];
     $gameGenre = $game["gameGenre"];
     $gameDate = $game["gameDate"];
-    $compatibleWindows = $game["compatibleWindows"];
-    $compatibleMacOS = $game["compatibleMacOS"];
-    $compatibleLinux = $game["compatibleLinux"];
-    $gameThumbnail = base64_encode($game["gameThumbnail"]);
+    $gamePicture = base64_encode($game["gamePicture"]);
+    $compatibleWindows = ($game["compatibleWindows"] == 1) ? "<img src=\"../../images/os/windows.svg\">" : "";
+    $compatibleMacOS = ($game["compatibleMacOS"] == 1) ? "<img src=\"../../images/os/macos.svg\">" : "";
+    $compatibleLinux = ($game["compatibleLinux"] == 1) ? "<img src=\"../../images/os/linux.svg\">" : "";
 
-    $companyID = $game["companyID"];
-    $userID = $game["userID"];
+    $requestID = $game["requestID"];
 
-    if($companyID != NULL) {
-        $company = callProcedure("spGetCompanyFromID", $companyID)[0];
-        $developerName = $company["companyName"];
-    } else {
-        $user = callProcedure("spGetUserFromID", $userID)[0];
-        $developerName = $user["userFirstName"]." ".$user["userLastName"];
+    if($requestID != NULL) {
+        $request = callProcedure("spGetRequestFromID", $requestID)[0];
+
+        $requestAction = ucfirst($request["requestAction"]);
+        $requestReason = ucfirst($request["requestReason"]);
     }
 
-    echo "<div>";
-    echo "<h1>$gameName</h1>";
-    echo "<img src = \"data:image/png;base64,$gameThumbnail\">";
-    echo "<h2>$gameDescription</h2><br>";
-    echo "<h3>Developer: $developerName</h3><br>";
-    echo "<h3>Release Date: $gameDate</h3>";
-    echo "</div>";        
+    $title = $gameName;
+    require(dirname(__DIR__, $steps)."/header/index.php");
 ?>
+
+<div class="game">
+    <form action="game.php? <?php echo "requestID=$requestID" ?>" method="post">
+        <?php
+            echo "
+                <div class=\"game-info\">
+                    <h1>$gameName</h1>
+                    <h2>$developerName</h2>
+                    <h3>$gameDescription</h3>
+                    <h4>$gameGenre</h4>
+                    <h5>$gameDate</h5>
+                    <img src = \"data:image/png;base64,$gamePicture\">
+                    <div class=\"icons\">$compatibleWindows $compatibleMacOS $compatibleLinux</div>
+                </div>
+            ";
+
+            if($requestID != NULL) {
+                if ($_SESSION["userRole"] == "admin" || $_SESSION["userID"] == $request["userID"]) {
+                    echo "
+                        <b>Request Action:</b> $requestAction<br>
+                        <b>Request Reason:</b> $requestReason <br>
+                    ";
+                }
+            }
+
+            if(isset($_SESSION["userID"])) {
+                if($_SESSION["userRole"] == "admin") {
+                    if($requestID != NULL) {
+                        echo "
+                            <div class=\"request\">
+                                <textarea class=\"reason\" style=\"display: block\"name=\"requestReason\" placeholder=\"Reason\" rows=\"8\"></textarea>
+                                <button class=\"accept\" name=\"accept\">Accept</button>
+                                <button class=\"deny\" name=\"deny\">Deny</button>
+                            </div>
+                        ";   
+                    }
+                }
+            }
+        ?>
+    </form>
+</div>
 
 <?php
     require(dirname(__DIR__, $steps)."/footer/index.php")

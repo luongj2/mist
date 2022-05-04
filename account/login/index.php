@@ -1,6 +1,18 @@
-<?php 
-    $title = "Log In";
+<?php
+    if(session_status() == PHP_SESSION_NONE) {
+        session_start();
+    }
+
+    if(isset($_SESSION["userID"])) {
+        header("location: ../profile/index.php?userID=".$_SESSION["userID"]);
+        exit();
+    }
+
     $steps = 2;
+    require(dirname(__DIR__, $steps)."/database.php");
+    require(dirname(__DIR__, $steps)."/functions.php");
+
+    $title = "Log In";
     require(dirname(__DIR__, $steps)."/header/index.php");
 ?>
 
@@ -29,7 +41,7 @@
 
         switch($_GET["error"]) {
             case "emptyFields":
-                echo "Please fill in all fields!";
+                echo "Please fill in all fields.";
                 break;
             case "emailNonexistent":
                 echo "The email that you entered does not match our records.";
@@ -38,7 +50,7 @@
                 echo "The password that you entered is incorrect.";
                 break;
             case "none":
-                header("location: ../../main");
+                echo("You are logged in!");
                 break;
         }
         
@@ -46,4 +58,6 @@
     ?>
 </form>
     
-<?php require(dirname(__DIR__, $steps)."/footer/index.php")?>
+<?php
+    require(dirname(__DIR__, $steps)."/footer/index.php")
+?>

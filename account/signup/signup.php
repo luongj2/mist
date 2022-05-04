@@ -1,13 +1,13 @@
 <?php
     $steps = 2;
-    require(dirname(__DIR__, $steps)."/database/database.php");
+    require(dirname(__DIR__, $steps)."/database.php");
     require(dirname(__DIR__, $steps)."/functions.php");
 
     if(!isset($_POST["submit"])) {
-        header("location: index.php");
+        header("location: ../signup");
         exit();
     }
-
+    
     $userFirstName = $_POST["userFirstName"];
     $userLastName = $_POST["userLastName"];
     $userEmail = $_POST["userEmail"];
@@ -19,15 +19,27 @@
         returnError("emptyFields");
     }
 
+    if(checkLargeString($userFirstName, 16)) {
+        returnError("largeFirstName");
+    }
+
+    if(checkLargeString($userLastName, 16)) {
+        returnError("largeLastName");
+    }
+
+    if(checkLargeString($userEmail, 64)) {
+        returnError("largeEmail");
+    }
+
     if(getUserFromEmail($userEmail)) {
         returnError("emailTaken");
     }
 
-    if(checkInvalidEmailFormat($userEmail)) {
+    if(checkInvalidEmail($userEmail)) {
         returnError("invalidEmailFormat");
     }
 
-    if(checkInvalidPasswordFormat($userPassword)) {
+    if(checkInvalidPassword($userPassword)) {
         returnError("invalidPasswordFormat");
     }
 
@@ -41,7 +53,7 @@
 
     $userPasswordHash = password_hash($userPassword, PASSWORD_DEFAULT);
 
-    callProcedure("spSignupUser", $userFirstName, $userLastName, $userEmail, $userPasswordHash);
+    callProcedure("spCreateUser", $userFirstName, $userLastName, $userEmail, $userPasswordHash);
 
     returnError("none");
 ?>

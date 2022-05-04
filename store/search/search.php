@@ -1,22 +1,25 @@
 <?php
     $steps = 2;
+    require(dirname(__DIR__, $steps)."/database.php");
     require(dirname(__DIR__, $steps)."/functions.php");
 
     if(!isset($_POST["submit"])) {
-        header("location: index.php");
+        header("location: ../search");
         exit();
     }
 
-    $search = $_POST["search"];
-    $sort = $_POST["sort"];
-    $filter = $_POST["filter"];
+    $searchQuery = [
+        "search" =>  $_POST["search"],
+        "sort" =>  $_POST["sort"],
+        "filter" =>  $_POST["filter"]
+    ];
 
-    $query = buildSearchQuery($search, $sort, $filter);
+    $searchQuery = formatSearchQuery($searchQuery);
 
-    if(!empty($query)) {
-        header("location: index.php?".$query);
+    if(!empty($searchQuery)) {
+        header("location: index.php?".$searchQuery);
     } else {
-        header("location: index.php");
+        header("location: ../search");
     }
     exit();
 ?>

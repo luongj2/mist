@@ -1,20 +1,15 @@
 <?php
     $steps = 2;
-    require(dirname(__DIR__, $steps)."/database/database.php");
+    require(dirname(__DIR__, $steps)."/database.php");
     require(dirname(__DIR__, $steps)."/functions.php");
     
     session_start();
 
     if(!isset($_POST["submit"])) {
-        header("location: ../search/index.php");
+        header("location: ../search");
         exit();
     }
-
-    if(!isset($_SESSION["userID"])) {
-        header("location: ../search/index.php");
-        exit();
-    }
-
+    
     $userID = $_SESSION["userID"];
 
     $gameName = $_POST["gameName"];
@@ -23,7 +18,8 @@
     $compatibleWindows = isset($_POST["compatibleWindows"]) ? 1 : 0;
     $compatibleMacOS = isset($_POST["compatibleMacOS"]) ? 1 : 0;
     $compatibleLinux = isset($_POST["compatibleLinux"]) ? 1 : 0;
-    $gameThumbnail = file_get_contents($_FILES["gameThumbnail"]["tmp_name"]);
+    $gamePicture = $_FILES["gamePicture"]["tmp_name"];
+    $gamePictureBLOB = file_get_contents($gamePicture);
 
     if(checkEmptyStrings($gameName, $gameDescription, $gameGenre)) {
         returnError("emptyFields");
@@ -33,7 +29,27 @@
         returnError("emptyChecks");
     }
 
-    callProcedure("spCreateGame", $userID, $gameName, $gameDescription, $gameGenre, $compatibleWindows, $compatibleMacOS, $compatibleLinux, $gameThumbnail);
+    if(checkEmptyStrings($gamePictureBLOB)) {
+        returnError("emptyPicture");
+    }
 
-    returnError("none");
+    if(checkLargeString($gameName, 64)) {
+        returnError("largeName");
+    }
+
+    if(checkLargeString($gameDescription, 1028)) {
+        returnError("largeDescription");
+    }
+
+    if(checkLargeString($gameGenre, 16)) {
+        returnError("largeGenre");
+    }
+
+    if(checkLargePicture($gamePicture)) {
+        returnError("largePicture");
+    }
+
+    $gameID = callProcedure("spCreateRequest", $userID, $gameName, $gameDescription, $gameGenre, $gamePictureBLOB, $compatibleWindows, $compatibleMacOS, $compatibleLinux)[0]["gameID"];
+
+    returnError("none&gameID=$gameID");
 ?>

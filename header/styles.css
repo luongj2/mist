@@ -1,6 +1,13 @@
 * {
     margin: 0px;
     padding: 0px;
+    font-family: "Motiva Sans", sans-serif;
+    text-decoration: none;
+}
+
+body {
+    color: rgb(200, 200, 200);
+    background-color: rgb(10, 40, 50);
 }
 
 header {
@@ -12,9 +19,7 @@ header {
 }
 
 header a, button {
-    font-family: "Motiva Sans", sans-serif;
     font-size: 14px;
-    text-decoration: none;
     text-align: center;
     transition: 0.3s;
 }
@@ -61,22 +66,22 @@ nav button {
     border: none;
     padding: 10px 20px;
     color: rgb(255, 255, 255);
-    background: rgb(90, 125, 15);
+    background: rgb(45, 150, 195);
 }
 
 .signup:hover {
-    background: rgb(120, 160, 20);
+    background: rgb(55, 180, 230);
 }
 
 .profile {
     border: none;
     padding: 10px 20px;
     color: rgb(255, 255, 255);
-    background: rgb(15, 90, 125);
+    background: rgb(45, 150, 195);
 }
 
 .profile:hover {
-    background: rgb(20, 120, 160);
+    background: rgb(55, 180, 230);
 }
 
 .logout {
@@ -92,6 +97,6 @@ nav button {
 
 @media only screen and (max-width: 1400px) {
     header {
-        padding: 30px 15%;
-    } 
+        padding: 30px 20%;
+    }
 }
