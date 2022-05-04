@@ -72,14 +72,14 @@
                 $compatibleLinux = ($game["compatibleLinux"] == 1) ? "<img src=\"../../images/os/linux.svg\">" : "";
 
                 echo "
-                    <a class=\"game\" href=\"../game/index.php?gameID=$gameID\">
+                    <div class=\"game\" onclick=\"location.href='../game/index.php?gameID=$gameID';\" style=\"cursor: pointer;\">
                         <div class=\"game-info\">
                             <h1>$gameName</h1>
                             <h2>$gameGenre $compatibleWindows $compatibleMacOS $compatibleLinux</h2>
                         </div>
 
                         <img class=\"game-picture\" src = \"data:image/png;base64,$gamePicture\">
-                    </a>
+                    </div>
                 ";
             }
         ?>

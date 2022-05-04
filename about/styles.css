@@ -57,7 +57,6 @@
 }
 
 .border {
-    animation: animatedborder 3s ease alternate infinite;
     background-image: conic-gradient(
         from 25deg,
         rgb(200, 220, 250),
@@ -79,27 +78,8 @@
 }
 
 .border img {
-    animation: animatedimage 3s ease alternate infinite;
     border-radius: 50%;
     height: 200px;
-}
-
-@keyframes animatedborder {
-	from {
-        transform:rotate(0deg);
-    }
-    to {
-        transform:rotate(360deg);
-    }
-}
-
-@keyframes animatedimage {
-	from {
-        transform:rotate(0deg);
-    }
-    to {
-        transform:rotate(-360deg);
-    }
 }
 
 @media only screen and (max-width: 1400px) {

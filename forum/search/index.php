@@ -56,7 +56,7 @@
                 $postDate = $post["postDate"];
 
                 echo "
-                    <a class=\"post\" href=\"../post/index.php?postID=$postID\">
+                    <div class=\"post\" onclick=\"location.href='../post/index.php?postID=$postID';\" style=\"cursor: pointer;\">
                         <div class=\"post-info\">
                             <h1><img src=\"https://robohash.org/$postAuthor?set=set4\">$postAuthor</h1>
                             <h2>$postDate</h2>
@@ -67,7 +67,7 @@
                             <h4>$postDescription</h4>
                             <h5>$postLikes likes</h5>
                         </div>
-                    </a>
+                    </div>
                 ";
             }
         ?>
