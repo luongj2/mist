@@ -1,44 +1,56 @@
-<?php 
-    $title = "Mist Store";
+<?php
+    if(session_status() == PHP_SESSION_NONE) {
+        session_start();
+    }
+
     $steps = 2;
     require(dirname(__DIR__, $steps)."/database.php");
     require(dirname(__DIR__, $steps)."/functions.php");
+
+    $title = "Mist Store";
     require(dirname(__DIR__, $steps)."/header/index.php");
 ?>
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
-<div>
-    <form action="search.php" method="post">
-        <input type="text" name="search" placeholder="Search">
+<div class="search">
+    <form class="search-query" action="search.php" method="post">
+        <div class="search-bar">
+            <input type="text" name="search" placeholder="Search">
+            <button name="submit"><img src="../../images/searchicon.svg"></button>
+        </div>
         
-        <button name="submit"><i class="fa fa-search"></i></button>
-        
-        <select name="sort">
-            <option value="none">Sort By</option>
-            <option value="alphabetical">Alphabetical Order</option>
-            <option value="date">Release Date</option>
-        </select>
-        
-        <select name="filter">
-            <option value="none">Filter By Genre</option>
-            <option value="casual">Casual</option>
-            <option value="fps">FPS</option>
-            <option value="rpg">RPG</option>
-        </select>
+        <div class="search-options">
+            <select name="sort">
+                <option value="none">Sort By</option>
+                <option value="atoz">A-Z</option>
+                <option value="ztoa">Z-A</option>
+                <option value="oldest">Oldest</option>
+                <option value="newest">Newest</option>
+            </select>
 
-        <?php
-            if(isset($_SESSION["userID"])) {
-                echo "<a href=\"../request/\">Request Game</a>";
+            <select name="filter">
+                <option value="none">Filter By</option>
+                <option value="Casual">Casual</option>
+                <option value="FPS">FPS</option>
+                <option value="RPG">RPG</option>
+            </select>
+        </div>
 
-                if($_SESSION["userRole"] == "admin") {
-                    echo "<a href=\"../pending/\">Pending Requests</a>";
+        <div class="game-requests">
+            <?php
+                if(isset($_SESSION["userID"])) {
+                    echo "<a href=\"../request/\">Request Game</a>";
+
+                    if($_SESSION["userRole"] == "admin") {
+                        echo "<a href=\"../pending/\">Pending Requests</a>";
+                    }
                 }
-            }
-        ?>
+            ?>
+        </div>
     </form>
 
-    <ul>
+    <div class="game-list">
         <?php
             $search = getSearchQuery("search");
             $sort = getSearchQuery("sort");
@@ -57,22 +69,23 @@
                 $gameDate = $game["gameDate"];
                 $gamePicture = base64_encode($game["gamePicture"]);
                 $compatibleWindows = $game["compatibleWindows"];
-                $compatibleMacOS = $game["compatibleMacOS"];
-                $compatibleLinux = $game["compatibleLinux"];
-                $developerName = $game["developerName"];
+                $compatibleWindows = ($game["compatibleWindows"] == 1) ? "<img src=\"../../images/os/windows.svg\">" : "";
+                $compatibleMacOS = ($game["compatibleMacOS"] == 1) ? "<img src=\"../../images/os/macos.svg\">" : "";
+                $compatibleLinux = ($game["compatibleLinux"] == 1) ? "<img src=\"../../images/os/linux.svg\">" : "";
 
-                echo "<a href=\"../game/index.php?id=$gameID\">";
-                echo "<li>";
-                echo "<img src = \"data:image/png;base64,$gamePicture\"><br>";
-                echo "<h1>$gameName</h1><br>";
-                echo "<h4>$gameDescription</h4><br>";
-                echo "<p>Release Date: $gameDate</p>";
-                echo "</li>";
-                echo "<br>";
-                echo "</a>\n";
+                echo "
+                    <div class=\"game\">
+                            <a class=\"game-info\" href=\"../game/index.php?gameID=$gameID\">
+                                <h1>$gameName</h1>
+                                <h2>$gameGenre $compatibleWindows $compatibleMacOS $compatibleLinux</h2>
+                            </a>
+
+                            <img class=\"game-picture\" src = \"data:image/png;base64,$gamePicture\">
+                    </div>
+                ";
             }
         ?>
-    </ul>
+    </div>
 </div>
 
 <?php

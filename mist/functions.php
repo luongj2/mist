@@ -1,20 +1,15 @@
 <?php
-    function buildSearchQuery(...$parameters) {
-        $query = [];
-
-        if(!empty($parameters[0])) {
-            $query["search"] = $parameters[0];
-        }
-    
-        if($parameters[1] != "none") {
-            $query["sort"] = $parameters[1];
-        }
-    
-        if($parameters[2] != "none") {
-            $query["filter"] = $parameters[2];
+    function formatSearchQuery($parameters) {
+        if(checkEmptyStrings($parameters["search"])) {
+            unset($parameters["search"]);
         }
 
-        return http_build_query($query);
+        foreach ($parameters as $index => $parameter) {
+            if($parameter == "none") {
+                unset($parameters[$index]);
+            }
+        }
+        return http_build_query($parameters);
     }
 
     function getSearchQuery($parameter) {
@@ -35,6 +30,10 @@
         return false;
     }
 
+    function checkLargeString($string, $length) {
+        return strlen($string) > $length;
+    }
+
     function checkEmptyBooleans(...$parameters) {
         foreach($parameters as $parameter) {
             if($parameter == 1) {
@@ -49,15 +48,15 @@
         return $parameters[0] != $parameters[1];
     }
 
-    function checkInvalidEmailFormat($userEmail) {
+    function checkInvalidEmail($userEmail) {
         return !filter_var($userEmail, FILTER_VALIDATE_EMAIL);
     }
 
-    function checkInvalidPasswordFormat($userPassword) {
+    function checkInvalidPassword($userPassword) {
         return strlen($userPassword) < 8 || preg_match('/\s/', $userPassword);
     }
 
-    function checkLargePictureSize($picture) {
+    function checkLargePicture($picture) {
         $pictureDimensions = getimagesize($picture);
         $pictureWidth = $pictureDimensions[0];
         $pictureHeight = $pictureDimensions[1];
@@ -78,20 +77,18 @@
     }
 
     function checkPasswordMatchesEmail($userEmail, $userPassword) {
-        $record = getUserFromEmail($userEmail);
+        $user = getUserFromEmail($userEmail);
 
-        $databasePassword = $record["userPassword"];
-
-        return !password_verify($userPassword, $databasePassword);
+        return !password_verify($userPassword, $user["userPassword"]);
     }
 
-    function loginUser($userEmail, $userPassword) {
-        $userRecord = getUserFromEmail($userEmail);
+    function loginUser($userEmail) {
+        $user = getUserFromEmail($userEmail);
         
         session_start();
 
-        $_SESSION["userID"] = $userRecord["userID"];
-        $_SESSION["userRole"] = $userRecord["userRole"];
+        $_SESSION["userID"] = $user["userID"];
+        $_SESSION["userRole"] = $user["userRole"];
     }
     
     function returnError($error) {

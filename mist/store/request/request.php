@@ -33,11 +33,23 @@
         returnError("emptyPicture");
     }
 
-    if(checkLargePictureSize($gamePicture)) {
+    if(checkLargeString($gameName, 64)) {
+        returnError("largeName");
+    }
+
+    if(checkLargeString($gameDescription, 1028)) {
+        returnError("largeDescription");
+    }
+
+    if(checkLargeString($gameGenre, 16)) {
+        returnError("largeGenre");
+    }
+
+    if(checkLargePicture($gamePicture)) {
         returnError("largePicture");
     }
 
-    callProcedure("spCreateGame", $userID, $gameName, $gameDescription, $gameGenre, $gamePictureBLOB, $compatibleWindows, $compatibleMacOS, $compatibleLinux);
+    $gameID = callProcedure("spCreateRequest", $userID, $gameName, $gameDescription, $gameGenre, $gamePictureBLOB, $compatibleWindows, $compatibleMacOS, $compatibleLinux)[0]["gameID"];
 
-    returnError("none");
+    returnError("none&gameID=$gameID");
 ?>

@@ -1,17 +1,7 @@
-body {
-    color: rgb(200, 200, 200);
-    background: rgb(30, 30, 30);
-}
-
 form {
     margin: 30px 38%;
     padding: 30px;
     background: rgb(25, 25, 25);
-}
-
-form h1, input, button, p {
-    font-family: "Motiva Sans", sans-serif;
-    text-decoration: none;
 }
 
 form h1, p {
@@ -42,12 +32,12 @@ form button {
     margin: 20px auto;
     padding: 10px 20px;
     color: rgb(255, 255, 255);
-    background: rgb(90, 125, 15);
+    background: rgb(45, 150, 195);
     transition: 0.3s;
 }
 
 form button:hover {
-    background-color: rgb(120, 160, 20);
+    background: rgb(55, 180, 230);
 }
 
 @media only screen and (max-width: 1400px) {

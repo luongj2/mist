@@ -1,14 +1,19 @@
 <?php
-    $title = "Sign Up";
-    $steps = 2;
-    require(dirname(__DIR__, $steps)."/database.php");
-    require(dirname(__DIR__, $steps)."/functions.php");
-    require(dirname(__DIR__, $steps)."/header/index.php");
+    if(session_status() == PHP_SESSION_NONE) {
+        session_start();
+    }
 
     if(isset($_SESSION["userID"])) {
         header("location: ../profile");
         exit();
     }
+
+    $steps = 2;
+    require(dirname(__DIR__, $steps)."/database.php");
+    require(dirname(__DIR__, $steps)."/functions.php");
+
+    $title = "Sign Up";
+    require(dirname(__DIR__, $steps)."/header/index.php");
 ?>
 
 <form action="signup.php" method="post">
@@ -19,9 +24,9 @@
             echo "<input type=\"$type\" name=\"$name\" placeholder=\"$placeholder\">";
         }
 
-        createInput("text", "userFirstName", "First Name");
-        createInput("text", "userLastName", "Last Name");
-        createInput("text", "userEmail", "Email");
+        createInput("text", "userFirstName", "First Name (16 characters maximum)");
+        createInput("text", "userLastName", "Last Name (16 characters maximum)");
+        createInput("text", "userEmail", "Email (64 characters maximum)");
         createInput("text", "userEmailVerify", "Verify Email");
         createInput("password", "userPassword", "Password (8 characters minimum)");
         createInput("password", "userPasswordVerify", "Verify Password");
@@ -40,7 +45,16 @@
 
         switch($_GET["error"]) {
             case "emptyFields":
-                echo "Please fill in all fields!";
+                echo "Please fill in all fields.";
+                break;
+            case "largeFirstName":
+                echo "Please enter a first name with less than 16 characters.";
+                break;
+            case "largeLastName":
+                echo "Please enter a last name with less than 16 characters.";
+                break;
+            case "largeEmail":
+                echo "Please enter an email with less than 64 characters.";
                 break;
             case "emailTaken":
                 echo "This email is taken. <a href=\"../login\">Log In?</button>";

@@ -4,7 +4,7 @@
     require(dirname(__DIR__, $steps)."/functions.php");
 
     if(!isset($_POST["submit"])) {
-        header("location: index.php");
+        header("location: ../login");
         exit();
     }
     
@@ -23,7 +23,7 @@
         returnError("incorrectPassword");
     }
 
-    loginUser($userEmail, $userPassword);
+    loginUser($userEmail);
 
     returnError("none");
 ?>
