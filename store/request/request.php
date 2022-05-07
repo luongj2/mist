@@ -3,12 +3,22 @@
     require(dirname(__DIR__, $steps)."/database.php");
     require(dirname(__DIR__, $steps)."/functions.php");
     
-    session_start();
+    if(session_status() == PHP_SESSION_NONE) {
+        session_start();
+    }
+
+    /*
+        Redirects to the search page if they did not access this script through the submit button.
+    */
 
     if(!isset($_POST["submit"])) {
         header("location: ../search");
         exit();
     }
+
+     /*
+        Grabs data from the user-filled form.
+    */
     
     $userID = $_SESSION["userID"];
 
@@ -21,6 +31,10 @@
     $gamePicture = $_FILES["gamePicture"]["tmp_name"];
     $gamePictureBLOB = file_get_contents($gamePicture);
 
+    /*
+        Checks if all fields in the form are filled out.
+    */
+
     if(checkEmptyStrings($gameName, $gameDescription, $gameGenre)) {
         returnError("emptyFields");
     }
@@ -32,6 +46,10 @@
     if(checkEmptyStrings($gamePictureBLOB)) {
         returnError("emptyPicture");
     }
+
+    /*
+        Checks if the required fields can be stored in the database based on their character count.
+    */
 
     if(checkLargeString($gameName, 64)) {
         returnError("largeName");
@@ -48,6 +66,10 @@
     if(checkLargePicture($gamePicture)) {
         returnError("largePicture");
     }
+
+    /*
+        Call the databse to create a new game.
+    */
 
     $gameID = callProcedure("spCreateRequest", $userID, $gameName, $gameDescription, $gameGenre, $gamePictureBLOB, $compatibleWindows, $compatibleMacOS, $compatibleLinux)[0]["gameID"];
 

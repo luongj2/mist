@@ -26,8 +26,12 @@
             </select>
         </div>
 
+        <!--
+            Displays the create post button if the user is logged in.
+        -->
+
         <div class="post-create">
-            <?php
+        <?php
                 if(isset($_SESSION["userID"])) {
                     echo "<a href=\"../create/\">Create Post</a>";
                 }
@@ -37,13 +41,25 @@
 
     <div class="post-list">
         <?php
+            /*
+                Grabs search queries from the page url.
+            */
+
             $search = getSearchQuery("search");
             $sort = getSearchQuery("sort");
+
+            /*
+                Grabs postIDs from the database based on search queries.
+            */
 
             $posts = callProcedure("spGetPostsFromSearch", $search, $sort);
 
             foreach($posts as $post) {
                 $postID = $post["postID"];
+
+                /*
+                    Grabs data about the post from the database based on postID.
+                */
                 
                 $post = callProcedure("spGetPostFromID", $postID)[0];
                 

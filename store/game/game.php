@@ -3,7 +3,15 @@
     require(dirname(__DIR__, $steps)."/database.php");
     require(dirname(__DIR__, $steps)."/functions.php");
 
+    /*
+        Grabs the requestID.
+    */
+
     $requestID = $_GET["requestID"];
+
+    /*
+        Call the database to accept or deny a game.
+    */
 
     if(isset($_POST["accept"])) {
         $requestReason = $_POST["requestReason"];

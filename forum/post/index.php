@@ -3,6 +3,10 @@
         session_start();
     }
 
+    /*
+        Redirects to the search page if there is no postID in the url.
+    */
+
     if(!isset($_GET["postID"])) {
         header("location: ../search");
         return;
@@ -14,6 +18,10 @@
 
     $postID = $_GET["postID"];
     
+    /*
+        Grabs data about the post from the database based on postID.
+    */
+
     $post = callProcedure("spGetPostFromID", $postID)[0];
     
     $postAuthor = $post["postAuthor"];
@@ -32,6 +40,10 @@
 <div class="post">
     <form action="post.php? <?php echo "postID=$postID" ?>" method="post">
         <?php
+            /*
+                Profile picture that is hash-generated from RoboHash.
+            */
+
             echo "
                 <div class=\"post-info\">
                     <h1><img src=\"https://robohash.org/$postAuthor?set=set4\">$postAuthor</h1>
@@ -44,6 +56,11 @@
                     <h5>$postLikes likes</h5>
                 </div>
             ";
+
+            /*
+                Displays the like button if the user is logged in.
+                Displats the delete button if the user is an admin or mod.
+            */
 
             if(isset($_SESSION["userID"])) {
                 echo "

@@ -3,6 +3,10 @@
         session_start();
     }
 
+    /*
+        Redirects to the search page if there is no gameID in the url.
+    */
+
     if(!isset($_GET["gameID"])) {
         header("location: ../search");
         return;
@@ -13,6 +17,10 @@
     require(dirname(__DIR__, $steps)."/functions.php");
 
     $gameID = $_GET["gameID"];
+
+    /*
+        Grabs data about the post from the database based on gameID.
+    */
 
     $game = callProcedure("spGetGameFromID", $gameID)[0];
 
@@ -54,6 +62,10 @@
                 </div>
             ";
 
+            /*
+                Displays the request information to admins and the user who create the request.
+            */
+
             if($requestID != NULL) {
                 if ($_SESSION["userRole"] == "admin" || $_SESSION["userID"] == $request["userID"]) {
                     echo "
@@ -62,6 +74,10 @@
                     ";
                 }
             }
+
+            /*
+                Displats the request edit form if the user is an admin.
+            */
 
             if(isset($_SESSION["userID"])) {
                 if($_SESSION["userRole"] == "admin") {

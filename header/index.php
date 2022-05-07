@@ -3,6 +3,10 @@
         session_start();
     }
 
+    /*
+        Made functions to create links so there isn't long lines of code.
+    */
+
     function createLink($href, $text) {
         global $steps;
         echo "<a href=\"".str_repeat("../", $steps)."$href\">$text</a>";
@@ -30,6 +34,10 @@
         <header>
             <nav>
                 <?php
+                    /*
+                        Creates text with hyperlinks.
+                    */
+
                     createLink("store/search", "<img src=\"".str_repeat("../", $steps)."images/mistlogo.png\">");
                     createLink("store/search", "STORE");
                     createLink("forum/search", "FORUM");
@@ -39,6 +47,11 @@
 
             <nav>
                 <?php
+                    /*
+                        Creates buttons with hyperlinks.
+                        Shows the appropriate buttons based on whether or not the user is logged in or not.
+                    */
+
                     if(isset($_SESSION["userID"])) {
                         createLink("account/profile/index.php?userID=".$_SESSION["userID"], createButton("profile", "Profile"));
                         createLink("account/logout", createButton("logout", "Log Out"));

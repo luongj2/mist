@@ -14,10 +14,18 @@
 <div class="search">
     <div class="game-list">
         <?php
+            /*
+                Grabs gameIDs what are pending from the database.
+            */
+
             $games = callProcedure("spGetGamesFromSearch", "", "", "", "pending");
 
             foreach($games as $game) {
                 $gameID = $game["gameID"];
+
+                /*
+                    Grabs data about the post from the database based on gameID.
+                */
 
                 $game = callProcedure("spGetGameFromID", $gameID)[0];
 

@@ -3,6 +3,10 @@
         session_start();
     }
 
+    /*
+        Redirects to the user profile if they are already logged in.
+    */
+
     if(isset($_SESSION["userID"])) {
         header("location: ../profile/index.php?userID=".$_SESSION["userID"]);
         exit();
@@ -19,6 +23,10 @@
 <form action="login.php" method="post">
     <h1>Log In</h1>
 
+    <!--
+        Made a function to create text inputs so there isn't long lines of code.
+    -->
+
     <?php 
         function createInput($type, $name, $placeholder) {
             echo "<input type=\"$type\" name=\"$name\" placeholder=\"$placeholder\">";
@@ -29,6 +37,10 @@
     ?>
 
     <button name="submit">Submit</button>
+
+    <!--
+        Displays an error message based on the error attached in the url.
+    -->
 
     <?php
         if(!isset($_GET["error"])) {

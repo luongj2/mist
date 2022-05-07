@@ -35,6 +35,11 @@
             </select>
         </div>
 
+        <!--
+            Displays the request games button if the user is logged in.
+            Displays the pending requests button if the user is an admin.
+        -->
+
         <div class="game-requests">
             <?php
                 if(isset($_SESSION["userID"])) {
@@ -50,6 +55,10 @@
 
     <div class="game-list">
         <?php
+            /*
+                Grabs search queries from the page url.
+            */
+
             $search = getSearchQuery("search");
             $sort = getSearchQuery("sort");
             $filter = getSearchQuery("filter");

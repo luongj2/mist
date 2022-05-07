@@ -15,6 +15,9 @@
     <div class="about-info">
         <h1>About Us</h1>
 
+        <!--
+            Our purpose, which was taken from our project overview in our docs branch.
+        -->
         <ul>
             <li>We serve to allow users to search and browse a variety of games in our game library through a web browser.</li>
             <li>Users can chat and create discussions through our online community forums.</li>
@@ -22,6 +25,10 @@
         </ul>
 
         <h1>Our Team</h1>
+
+        <!--
+            Our team, which includes our names and pictures.
+        -->
 
         <div class="members">
             <div class="member">

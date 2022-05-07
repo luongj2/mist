@@ -3,6 +3,10 @@
         session_start();
     }
 
+    /*
+        Redirects to the search page if they are not logged in.
+    */
+
     if(!isset($_SESSION["userID"])) {
         header("location: ../search");
         exit();
@@ -24,6 +28,10 @@
         <textarea name="postDescription" placeholder="Description (1028 characters maximum)" rows="8"></textarea>
         
         <button name="submit">Submit</button>
+
+        <!--
+            Displays an error message based on the error attached in the url.
+        -->
 
         <?php
             if(!isset($_GET["error"])) {
